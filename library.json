@@ -1,0 +1,29 @@
+{
+  "name": "LVGLPlusPlus",
+  "version": "0.5.0",
+  "description": "A C++ wrapper around the most excellent LVGL embedded graphics library",
+  "keywords": "lvgl, esp32, TFT_eSPI",
+  "repository":
+  {
+    "type": "git",
+    "url": "https://github.com/bobwolff68/LVGLPlusPlus.git"
+  },
+  "authors":
+  [
+    {
+      "name": "Robert Wolff",
+      "email": "bob.wolff68@gmail.com",
+      "url": "https://github.com/bobwolff68",
+      "maintainer": true
+    }
+  ],
+  "license": "BSD-3",
+  "homepage": "https://github.com/bobwolff68/LVGLPlusPlus/",
+  "dependencies": {
+    "lvgl/lvgl": "~8.3.1",
+    "lv_drivers": "https://github.com/lvgl/lv_drivers/archive/refs/tags/v8.2.0.zip"
+  },
+  "frameworks": "*",
+  "platforms": "*"
+}
+
