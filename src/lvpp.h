@@ -45,11 +45,6 @@
 class lvppButton : public lvppBase {
 public:
     lvppButton(const char* fName, const char* pText=nullptr, lv_obj_t* parent=nullptr);
-    ~lvppButton();
-    virtual void setText(const char* pText);
-    void setTextColor(lv_color_t newColor);
-protected:
-    lv_obj_t* label;
 };
 
 //
@@ -59,7 +54,6 @@ protected:
 class lvppCycleButton : public lvppButton {
 public:
     lvppCycleButton(const char* fName, lv_obj_t* parent=nullptr);
-    virtual ~lvppCycleButton();
     void clearOptions(void);
     void addOption(const char* pOption);
     void addOptionsFromVector(std::vector<std::string> &inOptions);

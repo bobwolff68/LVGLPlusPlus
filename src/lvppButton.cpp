@@ -42,34 +42,11 @@ lvppButton::lvppButton(const char* fName, const char* pText, lv_obj_t* parent) :
     }
 }
 
-lvppButton::~lvppButton() {
-    if (label) {
-      lv_obj_del_async(label);
-      label = nullptr;
-    }
-}
-
-void lvppButton::setText(const char* pText) {
-    if (pText) {
-        lv_label_set_text(label, pText);
-    }
-}
-
-void lvppButton::setTextColor(lv_color_t newColor) {
-    if (label) {
-        lv_style_set_text_color(&style_obj, newColor);
-        lv_obj_add_style(label, &style_obj, 0);
-    }
-}
 
 lvppCycleButton::lvppCycleButton(const char* fName, lv_obj_t* parent) : lvppButton(fName, NULL, parent) {
     options.clear();
     currentIndex = 0;
     quantity = 0;
-}
-
-lvppCycleButton::~lvppCycleButton() {
-
 }
 
 void lvppCycleButton::clearOptions(void) {
@@ -82,6 +59,7 @@ void lvppCycleButton::addOption(const char* pText) {
         options.push_back(pText);
         quantity++;
     }
+    setText(options[currentIndex].c_str());
 }
 
 void lvppCycleButton::addOptionsFromVector(std::vector<std::string> &inOptions) {

@@ -106,6 +106,8 @@ lvppBase::lvppBase(const char* fName, const char* oType) {
   cbOnValueChanged = nullptr;
   obj = nullptr;
   objParent = nullptr;
+  label = nullptr;
+  adjLabel = nullptr;
   friendlyName = "";
   setObjType("lvppBase");
 
@@ -119,11 +121,56 @@ lvppBase::lvppBase(const char* fName, const char* oType) {
 }
 
 lvppBase::~lvppBase() {
+    if (adjLabel) {
+      lv_obj_del_async(adjLabel);
+      adjLabel = nullptr;
+    }
+
+    if (label) {
+      lv_obj_del_async(label);
+      label = nullptr;
+    }
+
     if (obj) {
       lv_obj_del_async(obj);
       obj = nullptr;
     }
 }
+
+void lvppBase::setText(const char* pText) {
+    if (!label) {
+        label = lv_label_create(obj);
+    }
+    if (pText) {
+        lv_label_set_text(label, pText);
+    }
+}
+
+void lvppBase::setTextColor(lv_color_t newColor) {
+    if (label) {
+        lv_style_set_text_color(&style_obj, newColor);
+        lv_obj_add_style(label, &style_obj, 0);
+    }
+}
+
+void lvppBase::setAdjText(const char* pText, lv_coord_t x_ofs, lv_coord_t y_ofs) {
+    if (!adjLabel) {
+        adjLabel = lv_label_create(objParent);
+    }
+    if (pText) {
+        lv_label_set_text(adjLabel, pText);
+    }
+    if (x_ofs!=-10000 && y_ofs!=-10000) {
+        lv_obj_align_to(adjLabel, obj, LV_ALIGN_CENTER, x_ofs, y_ofs);
+    }
+}
+
+// void lvppBase::setAdjTextColor(lv_color_t newColor) {
+//     if (adjLabel) {
+//         lv_style_set_text_color(&style_obj, newColor);
+//         lv_obj_add_style(adjLabel, &style_obj, 0);
+//     }
+// }
 
 void lvppBase::createObj(lv_obj_t* o) {
     if (!o)

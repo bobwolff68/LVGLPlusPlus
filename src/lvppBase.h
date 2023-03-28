@@ -51,6 +51,10 @@ public:
     void setFontSize(uint8_t points);
     void setFont(lv_font_t* pF);
     void setBGColor(lv_color16_t color16);
+    virtual void setText(const char* pText);
+    void setTextColor(lv_color_t newColor);
+    virtual void setAdjText(const char* pText, lv_coord_t x_ofs=-10000, lv_coord_t y_ofs=-10000);
+//    void setAdjTextColor(lv_color_t newColor);
     virtual void onClicked() { };
     virtual void internalOnClicked() { };
     virtual void onValueChanged() { };
@@ -72,6 +76,8 @@ public:
     };
 
 protected:
+    lv_obj_t* label;
+    lv_obj_t* adjLabel; // For items that have a label 'nearby'
     std::function<void()> cbOnClicked=nullptr; // Start without a lambda callback
     std::function<void()> cbOnValueChanged=nullptr; // Start without a lambda callback
     lv_obj_t* obj;
