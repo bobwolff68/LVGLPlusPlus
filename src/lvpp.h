@@ -101,16 +101,13 @@ public:
 class lvppLabel : public lvppBase {
 public:
     lvppLabel(const char* fName, const char* pText, lv_obj_t* parent=nullptr);
-    ~lvppLabel();
     virtual void setText(const char* pText);
     void setTextColor(lv_color_t newColor);
-protected:
 };
 
 class lvppBar : public lvppBase {
 public:
     lvppBar(const char* fName, lv_obj_t* parent=nullptr);
-    ~lvppBar();
     void setValue(int16_t value, bool animate=true);
     int16_t getValue(void) { return curValue; };
     void setRange(int16_t range_min, int16_t range_max);

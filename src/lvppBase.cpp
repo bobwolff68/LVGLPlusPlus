@@ -102,6 +102,8 @@ lvppBase::lvppBase(const char* fName, const char* oType) {
   if (!bEventNamesInitComplete)
     initEventNames();
 
+  cbOnClicked = nullptr;
+  cbOnValueChanged = nullptr;
   obj = nullptr;
   objParent = nullptr;
   friendlyName = "";
@@ -165,11 +167,15 @@ void lvppBase::baseEventHandler(lv_event_t* event) {
             printf("%s: CALLING onClicked()...\n", whoAmI());
             internalOnClicked();
             onClicked();
+            if (cbOnClicked)
+                cbOnClicked();
             break;
         case LV_EVENT_VALUE_CHANGED:
             printf("%s: CALLING onValueChanged()...\n", whoAmI());
             internalOnValueChanged();
             onValueChanged();
+            if (cbOnValueChanged)
+                cbOnValueChanged();
             break;
         default:
             // Call derived class

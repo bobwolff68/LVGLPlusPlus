@@ -48,17 +48,32 @@ public:
     lv_obj_t* getObj(void) { return obj; };
     void setSize(lv_coord_t width, lv_coord_t height);
     void align(lv_align_t align, lv_coord_t x_ofs, lv_coord_t y_ofs);
+    void setFontSize(uint8_t points);
+    void setFont(lv_font_t* pF);
+    void setBGColor(lv_color16_t color16);
     virtual void onClicked() { };
     virtual void internalOnClicked() { };
     virtual void onValueChanged() { };
     virtual void internalOnValueChanged() { };
     void setFriendlyName(const char* pName);
+    std::string getFriendlyName() { return friendlyName; };
+    std::string getObjType() { return objType; };
     const char* whoAmI(void);
-    void setFontSize(uint8_t points);
-    void setFont(lv_font_t* pF);
-    void setBGColor(lv_color16_t color16);
+    // Lambda Callback setups - to allow many objects to not require subclassing
+    void setCallbackOnClicked(std::function<void()> cbF) {
+        assert(!cbOnClicked);
+        assert(cbF);
+        cbOnClicked = cbF;
+    };
+    void setCallbackOnValueChanged(std::function<void()> cbF) {
+        assert(!cbOnValueChanged);
+        assert(cbF);
+        cbOnValueChanged = cbF;
+    };
 
 protected:
+    std::function<void()> cbOnClicked=nullptr; // Start without a lambda callback
+    std::function<void()> cbOnValueChanged=nullptr; // Start without a lambda callback
     lv_obj_t* obj;
     lv_obj_t* objParent;
     std::string objType;

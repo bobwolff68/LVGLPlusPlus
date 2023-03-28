@@ -39,10 +39,6 @@ lvppBar::lvppBar(const char* fName, lv_obj_t* parent) : lvppBase(fName, "BAR") {
     setValue(0);
 }
 
-lvppBar::~lvppBar() {
-
-}
-
 void lvppBar::enableLabel(lv_align_t alignment, lv_coord_t xoff, lv_coord_t yoff) {
     if (!extraLabel) {
         extraLabel = lv_label_create(objParent);

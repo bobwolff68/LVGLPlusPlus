@@ -34,12 +34,9 @@ lvppLabel::lvppLabel(const char* fName, const char* pText, lv_obj_t* parent) : l
     createObj(lv_label_create(objParent));
 
     if (pText) {
-        lv_label_set_text(obj, pText);
+        setText(pText);
     }
 
-}
-
-lvppLabel::~lvppLabel() {
 }
 
 void lvppLabel::setText(const char* pText) {
