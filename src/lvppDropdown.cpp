@@ -35,6 +35,9 @@ lvppDropdown::lvppDropdown(const char* fName, const char* pOptions, lv_obj_t* pa
     addOptions(pOptions);
 }
 
+//
+// pOptions is a single string with '\n' between each option
+//
 void lvppDropdown::addOptions(const char* pOptions)
 {
     if (pOptions) {

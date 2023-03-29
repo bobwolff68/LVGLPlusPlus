@@ -105,14 +105,14 @@ public:
     void setValue(int16_t value, bool animate=true);
     int16_t getValue(void) { return curValue; };
     void setRange(int16_t range_min, int16_t range_max);
-    void enableLabel(lv_align_t alignment, lv_coord_t xoff, lv_coord_t yoff);
-    void setLabelFormat(const char* fmt);
+    void enableValueLabel(lv_align_t alignment, lv_coord_t xoff, lv_coord_t yoff);
+    void setValueLabelFormat(const char* fmt);
 protected:
     void internalOnValueChanged();
     int16_t curValue;
     int16_t min, max;
-    lv_obj_t* extraLabel;
-    std::string labelFormat;
+    lv_obj_t* valueLabel;
+    std::string valueLabelFormat;
 };
 
 class lvppSlider : public lvppBase {
@@ -122,14 +122,14 @@ public:
     void setValue(int16_t value, bool animate=true);
     int16_t getValue(void) { return curValue; };
     void setRange(int16_t range_min, int16_t range_max);
-    void enableLabel(lv_align_t alignment, lv_coord_t xoff, lv_coord_t yoff);
-    void setLabelFormat(const char* fmt);
+    void enableValueLabel(lv_align_t alignment, lv_coord_t xoff, lv_coord_t yoff);
+    void setValueLabelFormat(const char* fmt);
 protected:
     void internalOnValueChanged();
     int16_t curValue;
     int16_t min, max;
-    lv_obj_t* extraLabel;
-    std::string labelFormat;
+    lv_obj_t* valueLabel;
+    std::string valueLabelFormat;
 };
 
 class lvppArc : public lvppBase {
