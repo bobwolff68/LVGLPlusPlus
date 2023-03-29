@@ -42,6 +42,25 @@
 #include <vector>
 #include <string>
 
+class lvppScreen { 
+public:
+    lvppScreen(lv_obj_t* _pInitScreen=nullptr);
+    ~lvppScreen() { if (pScreen) lv_obj_del(pScreen); };
+    void AddObject(lvppBase* pObj);
+    lv_obj_t* GetScreen() { return pScreen; };
+    //
+    // LV_SCR_LOAD_ANIM_OUT_RIGHT
+    void ActivateScreen(uint32_t anim_time=500, lv_scr_load_anim_t anim=LV_SCR_LOAD_ANIM_NONE);
+    lvppBase* findObj(const char* pName);
+    void setObjValue(const char* objName, int16_t val);
+    void setObjValue(bool b);
+    void setObjText(std::string str);
+protected:
+    lv_obj_t* pScreen=nullptr;
+    std::vector<lvppBase*> objects;
+};
+
+
 class lvppButton : public lvppBase {
 public:
     lvppButton(const char* fName, const char* pText=nullptr, lv_obj_t* parent=nullptr);
@@ -105,7 +124,7 @@ public:
     void setValue(int16_t value, bool animate=true);
     int16_t getValue(void) { return curValue; };
     void setRange(int16_t range_min, int16_t range_max);
-    void enableValueLabel(lv_align_t alignment, lv_coord_t xoff, lv_coord_t yoff);
+    void enableValueLabel(lv_coord_t xoff, lv_coord_t yoff, lv_align_t alignment=LV_ALIGN_CENTER);
     void setValueLabelFormat(const char* fmt);
 protected:
     void internalOnValueChanged();
@@ -118,11 +137,10 @@ protected:
 class lvppSlider : public lvppBase {
 public:
     lvppSlider(const char* fName, lv_obj_t* parent=nullptr);
-    ~lvppSlider();
     void setValue(int16_t value, bool animate=true);
     int16_t getValue(void) { return curValue; };
     void setRange(int16_t range_min, int16_t range_max);
-    void enableValueLabel(lv_align_t alignment, lv_coord_t xoff, lv_coord_t yoff);
+    void enableValueLabel(lv_coord_t xoff, lv_coord_t yoff, lv_align_t alignment=LV_ALIGN_CENTER);
     void setValueLabelFormat(const char* fmt);
 protected:
     void internalOnValueChanged();
@@ -135,12 +153,16 @@ protected:
 class lvppArc : public lvppBase {
 public:
     lvppArc(const char* fName, lv_obj_t* parent=nullptr);
-    ~lvppArc();
     void setValue(int16_t value, bool animate=true);
     int16_t getValue(void) { return curValue; };
     void setRange(int16_t range_min, int16_t range_max);
+    void enableValueLabel(lv_coord_t xoff, lv_coord_t yoff, lv_align_t alignment=LV_ALIGN_CENTER);
+    void setValueLabelFormat(const char* fmt);
 protected:
+    void internalOnValueChanged();
     int16_t curValue;
+    lv_obj_t* valueLabel;
+    std::string valueLabelFormat;
 };
 
 class lvppDropdown : public lvppBase {

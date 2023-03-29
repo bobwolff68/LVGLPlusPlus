@@ -39,7 +39,7 @@ lvppBar::lvppBar(const char* fName, lv_obj_t* parent) : lvppBase(fName, "BAR") {
     setValue(0);
 }
 
-void lvppBar::enableValueLabel(lv_align_t alignment, lv_coord_t xoff, lv_coord_t yoff) {
+void lvppBar::enableValueLabel(lv_coord_t xoff, lv_coord_t yoff, lv_align_t alignment) {
     if (!valueLabel) {
         valueLabel = lv_label_create(objParent);
     }
@@ -98,11 +98,7 @@ lvppSlider::lvppSlider(const char* fName, lv_obj_t* parent) : lvppBase(fName, "S
     setValue(0);
 }
 
-lvppSlider::~lvppSlider() {
-
-}
-
-void lvppSlider::enableValueLabel(lv_align_t alignment, lv_coord_t xoff, lv_coord_t yoff) {
+void lvppSlider::enableValueLabel(lv_coord_t xoff, lv_coord_t yoff, lv_align_t alignment) {
     if (!valueLabel) {
         valueLabel = lv_label_create(objParent);
     }
