@@ -54,7 +54,7 @@ void lvppCycleButton::clearOptions(void) {
     quantity = 0;
 }
 
-void lvppCycleButton::addOption(const char* pText) {
+void lvppCycleButton::addOptions(const char* pText) {
     if (pText) {
         options.push_back(pText);
         quantity++;
@@ -62,7 +62,7 @@ void lvppCycleButton::addOption(const char* pText) {
     setText(options[currentIndex].c_str());
 }
 
-void lvppCycleButton::addOptionsFromVector(std::vector<std::string> &inOptions) {
+void lvppCycleButton::addOptions(std::vector<std::string> &inOptions) {
     options = inOptions;
     currentIndex = 0;
     quantity = inOptions.size();

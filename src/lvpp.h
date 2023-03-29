@@ -55,8 +55,8 @@ class lvppCycleButton : public lvppButton {
 public:
     lvppCycleButton(const char* fName, lv_obj_t* parent=nullptr);
     void clearOptions(void);
-    void addOption(const char* pOption);
-    void addOptionsFromVector(std::vector<std::string> &inOptions);
+    void addOptions(const char* pOption);
+    void addOptions(std::vector<std::string> &inOptions);
     u_int16_t getCurrentIndex() { return currentIndex; };
     const char* getCurrentText() { return options[currentIndex].c_str(); };
     void internalOnClicked();
@@ -146,9 +146,8 @@ protected:
 class lvppDropdown : public lvppBase {
 public:
     lvppDropdown(const char* fName, const char* pOptions=nullptr, lv_obj_t* parent=nullptr);
-    virtual ~lvppDropdown();
-    void setOptions(const char* pOptions);
-    void setOptions(std::vector<std::string> &options);
+    void addOptions(const char* pOptions);
+    void addOptions(std::vector<std::string> &options);
     void clearOptions(void);
     void setDropdownDirection(lv_dir_t dropDirection);
     u_int16_t getCurrentIndex() { return lv_dropdown_get_selected(obj); };

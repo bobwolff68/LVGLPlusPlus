@@ -32,17 +32,14 @@
 lvppDropdown::lvppDropdown(const char* fName, const char* pOptions, lv_obj_t* parent) : lvppBase(fName, "DROPDOWN") {
     objParent = parent ? parent : lv_scr_act();
     createObj(lv_dropdown_create(objParent));
-    setOptions(pOptions);
+    addOptions(pOptions);
 }
 
-lvppDropdown::~lvppDropdown() {
-
-}
-
-void lvppDropdown::setOptions(const char* pOptions)
+void lvppDropdown::addOptions(const char* pOptions)
 {
     if (pOptions) {
         lv_dropdown_set_options(obj, pOptions);
+        lv_dropdown_set_selected(obj, 0);
     }
 }
 
@@ -50,7 +47,7 @@ void lvppDropdown::clearOptions(void) {
     lv_dropdown_clear_options(obj);
 }
 
-void lvppDropdown::setOptions(std::vector<std::string> &options) {
+void lvppDropdown::addOptions(std::vector<std::string> &options) {
     uint32_t qty=0;
     clearOptions();
 
