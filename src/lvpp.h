@@ -132,6 +132,7 @@ protected:
     int16_t min, max;
     lv_obj_t* valueLabel;
     std::string valueLabelFormat;
+    lv_style_t style_value_obj;
 };
 
 class lvppSlider : public lvppBase {
@@ -148,21 +149,15 @@ protected:
     int16_t min, max;
     lv_obj_t* valueLabel;
     std::string valueLabelFormat;
+    lv_style_t style_value_obj;
 };
 
-class lvppArc : public lvppBase {
+class lvppArc : public lvppBaseWithValue {
 public:
     lvppArc(const char* fName, lv_obj_t* parent=nullptr);
-    void setValue(int16_t value, bool animate=true);
-    int16_t getValue(void) { return curValue; };
+    void setArcColor(lv_color_t newColor);
     void setRange(int16_t range_min, int16_t range_max);
-    void enableValueLabel(lv_coord_t xoff, lv_coord_t yoff, lv_align_t alignment=LV_ALIGN_CENTER);
-    void setValueLabelFormat(const char* fmt);
-protected:
-    void internalOnValueChanged();
-    int16_t curValue;
-    lv_obj_t* valueLabel;
-    std::string valueLabelFormat;
+    void setArcRotationAndSweep(uint16_t rot, uint16_t startAngle=361, uint16_t endAngle=361);
 };
 
 class lvppDropdown : public lvppBase {

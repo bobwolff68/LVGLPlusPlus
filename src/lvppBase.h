@@ -95,4 +95,26 @@ protected:
     static bool bEventNamesInitComplete;
 };
 
+//
+// Those indicators which have an inherant 'value' to show are based on this slight modified version
+// of lvppBase which includes a value label and an associated style object
+//
+class lvppBaseWithValue : public lvppBase {
+public:
+    lvppBaseWithValue(const char* fName, const char* oType);
+    ~lvppBaseWithValue();
+    void setValue(int16_t value, bool animate=true);
+    int16_t getValue(void) { return curValue; };
+    void enableValueLabel(lv_coord_t xoff, lv_coord_t yoff, lv_align_t alignment=LV_ALIGN_CENTER);
+    void setValueLabelFormat(const char* fmt);
+    void setValueLabelColor(lv_color_t newColor);
+    void setValueLabelFont(const lv_font_t* pF);
+protected:
+    void internalOnValueChanged();
+    int16_t curValue;
+    lv_obj_t* valueLabel;
+    std::string valueLabelFormat;
+    lv_style_t style_value_obj;
+};
+
 #endif

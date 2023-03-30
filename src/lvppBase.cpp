@@ -177,6 +177,8 @@ void lvppBase::createObj(lv_obj_t* o) {
         throw;
     
     obj = o;
+    lv_obj_add_style(obj, &style_obj, 0);
+
     lv_obj_set_user_data(obj, this);
 
     // Handle all event callbacks
@@ -307,3 +309,65 @@ const char* lvppBase::getEventName(lv_event_code_t code) {
     bEventNamesInitComplete = false;
     return (const char*)eventNames[code].c_str();
 }
+
+lvppBaseWithValue::lvppBaseWithValue(const char* fName, const char* oType) : lvppBase(fName, oType) {
+    valueLabel = nullptr;
+    valueLabelFormat = "%d";
+    curValue = 0;
+    lv_style_init(&style_value_obj);
+}
+
+lvppBaseWithValue::~lvppBaseWithValue() {
+
+}
+
+void lvppBaseWithValue::enableValueLabel(lv_coord_t xoff, lv_coord_t yoff, lv_align_t alignment) {
+    if (!valueLabel) {
+        valueLabel = lv_label_create(objParent);
+        lv_obj_add_style(valueLabel, &style_value_obj, 0);
+    }
+
+    lv_obj_align_to(valueLabel, obj, alignment, xoff, yoff);
+}
+
+void lvppBaseWithValue::setValue(int16_t value, bool animate)
+{
+    if (!valueLabel) {
+        enableValueLabel(0,0);
+    }
+    lv_arc_set_value(obj, value);
+    curValue = value;
+    lv_event_send(obj, LV_EVENT_VALUE_CHANGED, NULL);
+}
+
+void lvppBaseWithValue::setValueLabelFont(const lv_font_t* pF) {
+    if (!valueLabel) {
+        enableValueLabel(0,0);
+    }
+
+    lv_style_set_text_font(&style_value_obj, pF);
+    lv_obj_invalidate(valueLabel);
+}
+
+void lvppBaseWithValue::setValueLabelFormat(const char* fmt) {
+    if (fmt) {
+        valueLabelFormat = fmt;
+    }
+}
+
+void lvppBaseWithValue::setValueLabelColor(lv_color_t newColor) {
+    if (!valueLabel) {
+        enableValueLabel(0,0);
+    }
+
+    lv_style_set_text_color(&style_value_obj, newColor);
+    lv_obj_invalidate(valueLabel);
+}
+
+void lvppBaseWithValue::internalOnValueChanged() {
+    if (valueLabel) {
+        lv_label_set_text_fmt(valueLabel, valueLabelFormat.c_str(), curValue);
+        lv_obj_invalidate(valueLabel);
+    }
+}
+

@@ -27,26 +27,32 @@
 //
 #include "lvpp.h"
 
-lvppArc::lvppArc(const char* fName, lv_obj_t* parent) : lvppBase(fName, "ARC") {
+lvppArc::lvppArc(const char* fName, lv_obj_t* parent) : lvppBaseWithValue(fName, "ARC") {
     objParent = parent ? parent : lv_scr_act();
     createObj(lv_arc_create(objParent));
 
-    lv_arc_set_range(obj, 0, 100);
-    // Default orientation and such
-    lv_arc_set_rotation(obj, 250);
-    lv_arc_set_bg_angles(obj, 0, 260);
-    lv_arc_set_value(obj, 140);
+    setRange(0, 100);
+    // Default 'start' is at 3-oclock position as '0 degrees'
+    // This rotates 'start' to the 6-oclock position and
+    // sets the total arc to be 270 degrees from that point.
+    setArcRotationAndSweep(90, 0, 270);
     setValue(50);
 }
 
-lvppArc::~lvppArc() {
-
+void lvppArc::setArcColor(lv_color_t newColor) {
+    lv_style_set_arc_color(&style_obj, newColor);
+    lv_obj_invalidate(obj);
 }
 
-void lvppArc::setValue(int16_t value, bool animate)
-{
-    lv_arc_set_value(obj, value);
-    curValue = value;
+void lvppArc::setArcRotationAndSweep(uint16_t rot, uint16_t startAngle, uint16_t endAngle) {
+    assert(rot>=0 && rot<=360);
+    assert(startAngle>=0 && startAngle <= 361);
+    assert(endAngle>=0 && endAngle <= 361);
+
+    lv_arc_set_rotation(obj, rot); 
+    if (startAngle != 361 && endAngle != 361) {
+        lv_arc_set_bg_angles(obj, startAngle, endAngle);
+    }    
 }
 
 void lvppArc::setRange(int16_t range_min, int16_t range_max)

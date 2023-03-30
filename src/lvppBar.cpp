@@ -33,6 +33,7 @@ lvppBar::lvppBar(const char* fName, lv_obj_t* parent) : lvppBase(fName, "BAR") {
 
     valueLabel = nullptr;
     valueLabelFormat = "%d";
+    lv_style_init(&style_value_obj);
 
     min=0;
     max=100;
@@ -42,6 +43,7 @@ lvppBar::lvppBar(const char* fName, lv_obj_t* parent) : lvppBase(fName, "BAR") {
 void lvppBar::enableValueLabel(lv_coord_t xoff, lv_coord_t yoff, lv_align_t alignment) {
     if (!valueLabel) {
         valueLabel = lv_label_create(objParent);
+        lv_obj_add_style(valueLabel, &style_value_obj, 0);
     }
 
     lv_obj_align_to(valueLabel, obj, alignment, xoff, yoff);
@@ -54,9 +56,7 @@ void lvppBar::setValue(int16_t value, bool animate)
         lv_bar_set_value(obj, value, animate ? LV_ANIM_ON : LV_ANIM_OFF);
     }
 
-    // Even if the value was out of range, let's call the downstream folks expecting us.
-    internalOnValueChanged();
-    onValueChanged();
+    lv_event_send(obj, LV_EVENT_VALUE_CHANGED, NULL);
 }
 
 void lvppBar::setRange(int16_t range_min, int16_t range_max)
@@ -70,6 +70,7 @@ void lvppBar::setRange(int16_t range_min, int16_t range_max)
 void lvppBar::internalOnValueChanged() {
     if (valueLabel) {
         lv_label_set_text_fmt(valueLabel, valueLabelFormat.c_str(), curValue);
+        lv_obj_invalidate(valueLabel);
     }
 }
 
@@ -92,6 +93,7 @@ lvppSlider::lvppSlider(const char* fName, lv_obj_t* parent) : lvppBase(fName, "S
 
     valueLabel = nullptr;
     valueLabelFormat = "%d";
+    lv_style_init(&style_value_obj);
 
     min=0;
     max=100;
@@ -101,6 +103,7 @@ lvppSlider::lvppSlider(const char* fName, lv_obj_t* parent) : lvppBase(fName, "S
 void lvppSlider::enableValueLabel(lv_coord_t xoff, lv_coord_t yoff, lv_align_t alignment) {
     if (!valueLabel) {
         valueLabel = lv_label_create(objParent);
+        lv_obj_add_style(valueLabel, &style_value_obj, 0);
     }
 
     lv_obj_align_to(valueLabel, obj, alignment, xoff, yoff);
@@ -113,9 +116,7 @@ void lvppSlider::setValue(int16_t value, bool animate)
         lv_bar_set_value(obj, value, animate ? LV_ANIM_ON : LV_ANIM_OFF);
     }
 
-    // Even if the value was out of range, let's call the downstream folks expecting us.
-    internalOnValueChanged();
-    onValueChanged();
+    lv_event_send(obj, LV_EVENT_VALUE_CHANGED, NULL);
 }
 
 void lvppSlider::setRange(int16_t range_min, int16_t range_max)
@@ -131,6 +132,7 @@ void lvppSlider::internalOnValueChanged() {
 
     if (valueLabel) {
         lv_label_set_text_fmt(valueLabel, valueLabelFormat.c_str(), curValue);
+        lv_obj_invalidate(valueLabel);
     }
 }
 
