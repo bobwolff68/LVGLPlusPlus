@@ -102,8 +102,7 @@ protected:
 class lvppBaseWithValue : public lvppBase {
 public:
     lvppBaseWithValue(const char* fName, const char* oType);
-    ~lvppBaseWithValue();
-    void setValue(int16_t value, bool animate=true);
+    virtual void setValue(int16_t value, bool animate) = 0;
     int16_t getValue(void) { return curValue; };
     void enableValueLabel(lv_coord_t xoff, lv_coord_t yoff, lv_align_t alignment=LV_ALIGN_CENTER);
     void setValueLabelFormat(const char* fmt);
@@ -115,6 +114,7 @@ protected:
     lv_obj_t* valueLabel;
     std::string valueLabelFormat;
     lv_style_t style_value_obj;
+    int16_t min, max;
 };
 
 #endif

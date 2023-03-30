@@ -27,26 +27,11 @@
 //
 #include "lvpp.h"
 
-lvppBar::lvppBar(const char* fName, lv_obj_t* parent) : lvppBase(fName, "BAR") {
+lvppBar::lvppBar(const char* fName, lv_obj_t* parent) : lvppBaseWithValue(fName, "BAR") {
     objParent = parent ? parent : lv_scr_act();
     createObj(lv_bar_create(objParent));
 
-    valueLabel = nullptr;
-    valueLabelFormat = "%d";
-    lv_style_init(&style_value_obj);
-
-    min=0;
-    max=100;
     setValue(0);
-}
-
-void lvppBar::enableValueLabel(lv_coord_t xoff, lv_coord_t yoff, lv_align_t alignment) {
-    if (!valueLabel) {
-        valueLabel = lv_label_create(objParent);
-        lv_obj_add_style(valueLabel, &style_value_obj, 0);
-    }
-
-    lv_obj_align_to(valueLabel, obj, alignment, xoff, yoff);
 }
 
 void lvppBar::setValue(int16_t value, bool animate)
@@ -54,9 +39,8 @@ void lvppBar::setValue(int16_t value, bool animate)
     if (value >= min && value <= max) {
         curValue = value;
         lv_bar_set_value(obj, value, animate ? LV_ANIM_ON : LV_ANIM_OFF);
+        lv_event_send(obj, LV_EVENT_VALUE_CHANGED, NULL);
     }
-
-    lv_event_send(obj, LV_EVENT_VALUE_CHANGED, NULL);
 }
 
 void lvppBar::setRange(int16_t range_min, int16_t range_max)
@@ -67,19 +51,6 @@ void lvppBar::setRange(int16_t range_min, int16_t range_max)
     lv_bar_set_range(obj, range_min, range_max);
 }
 
-void lvppBar::internalOnValueChanged() {
-    if (valueLabel) {
-        lv_label_set_text_fmt(valueLabel, valueLabelFormat.c_str(), curValue);
-        lv_obj_invalidate(valueLabel);
-    }
-}
-
-void lvppBar::setValueLabelFormat(const char* fmt) {
-    if (fmt) {
-        valueLabelFormat = fmt;
-    }
-}
-
 
 /////////////////////////////
 //
@@ -87,26 +58,11 @@ void lvppBar::setValueLabelFormat(const char* fmt) {
 //
 /////////////////////////////
 
-lvppSlider::lvppSlider(const char* fName, lv_obj_t* parent) : lvppBase(fName, "SLIDER") {
+lvppSlider::lvppSlider(const char* fName, lv_obj_t* parent) : lvppBaseWithValue(fName, "SLIDER") {
     objParent = parent ? parent : lv_scr_act();
     createObj(lv_slider_create(objParent));
 
-    valueLabel = nullptr;
-    valueLabelFormat = "%d";
-    lv_style_init(&style_value_obj);
-
-    min=0;
-    max=100;
     setValue(0);
-}
-
-void lvppSlider::enableValueLabel(lv_coord_t xoff, lv_coord_t yoff, lv_align_t alignment) {
-    if (!valueLabel) {
-        valueLabel = lv_label_create(objParent);
-        lv_obj_add_style(valueLabel, &style_value_obj, 0);
-    }
-
-    lv_obj_align_to(valueLabel, obj, alignment, xoff, yoff);
 }
 
 void lvppSlider::setValue(int16_t value, bool animate)
@@ -114,9 +70,8 @@ void lvppSlider::setValue(int16_t value, bool animate)
     if (value >= min && value <= max) {
         curValue = value;
         lv_bar_set_value(obj, value, animate ? LV_ANIM_ON : LV_ANIM_OFF);
+        lv_event_send(obj, LV_EVENT_VALUE_CHANGED, NULL);
     }
-
-    lv_event_send(obj, LV_EVENT_VALUE_CHANGED, NULL);
 }
 
 void lvppSlider::setRange(int16_t range_min, int16_t range_max)
@@ -125,19 +80,4 @@ void lvppSlider::setRange(int16_t range_min, int16_t range_max)
     max=range_max;
 
     lv_bar_set_range(obj, range_min, range_max);
-}
-
-void lvppSlider::internalOnValueChanged() {
-    curValue = lv_slider_get_value(obj);
-
-    if (valueLabel) {
-        lv_label_set_text_fmt(valueLabel, valueLabelFormat.c_str(), curValue);
-        lv_obj_invalidate(valueLabel);
-    }
-}
-
-void lvppSlider::setValueLabelFormat(const char* fmt) {
-    if (fmt) {
-        valueLabelFormat = fmt;
-    }
 }

@@ -315,10 +315,9 @@ lvppBaseWithValue::lvppBaseWithValue(const char* fName, const char* oType) : lvp
     valueLabelFormat = "%d";
     curValue = 0;
     lv_style_init(&style_value_obj);
-}
 
-lvppBaseWithValue::~lvppBaseWithValue() {
-
+    min=0;
+    max=100;
 }
 
 void lvppBaseWithValue::enableValueLabel(lv_coord_t xoff, lv_coord_t yoff, lv_align_t alignment) {
@@ -328,16 +327,6 @@ void lvppBaseWithValue::enableValueLabel(lv_coord_t xoff, lv_coord_t yoff, lv_al
     }
 
     lv_obj_align_to(valueLabel, obj, alignment, xoff, yoff);
-}
-
-void lvppBaseWithValue::setValue(int16_t value, bool animate)
-{
-    if (!valueLabel) {
-        enableValueLabel(0,0);
-    }
-    lv_arc_set_value(obj, value);
-    curValue = value;
-    lv_event_send(obj, LV_EVENT_VALUE_CHANGED, NULL);
 }
 
 void lvppBaseWithValue::setValueLabelFont(const lv_font_t* pF) {

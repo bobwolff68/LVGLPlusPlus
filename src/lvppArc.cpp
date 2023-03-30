@@ -39,6 +39,15 @@ lvppArc::lvppArc(const char* fName, lv_obj_t* parent) : lvppBaseWithValue(fName,
     setValue(50);
 }
 
+void lvppArc::setValue(int16_t value, bool animate)
+{
+    if (value >= min && value <= max) {
+        curValue = value;
+        lv_arc_set_value(obj, value);
+        lv_event_send(obj, LV_EVENT_VALUE_CHANGED, NULL);
+    }
+}
+
 void lvppArc::setArcColor(lv_color_t newColor) {
     lv_style_set_arc_color(&style_obj, newColor);
     lv_obj_invalidate(obj);
@@ -57,5 +66,8 @@ void lvppArc::setArcRotationAndSweep(uint16_t rot, uint16_t startAngle, uint16_t
 
 void lvppArc::setRange(int16_t range_min, int16_t range_max)
 {
+    min=range_min;
+    max=range_max;
+
     lv_arc_set_range(obj, range_min, range_max);
 }
