@@ -66,14 +66,14 @@ void lvppScreen::setObjValue(const char* objName, int16_t val) {
     std::string type=pB->getObjType();
     if (pB) {
         if (type=="BAR") {
-            lvppBar* pBar = dynamic_cast<lvppBar*>(pB);
+            lvppBar* pBar = (lvppBar*)pB;
             if (!pBar)
                 throw std::bad_cast();
             else
                 pBar->setValue(val);
         }
         else if (type=="SLIDER") {
-            lvppSlider* pSlider = dynamic_cast<lvppSlider*>(pB);
+            lvppSlider* pSlider = (lvppSlider*)pB;
             if (!pSlider)
                 throw std::bad_cast();
             else
