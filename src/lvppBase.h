@@ -29,6 +29,7 @@
 #define _LVPPBASE_H
 
 #include <string>
+#include <functional>
 
 #ifdef LV_LVGL_H_INCLUDE_SIMPLE
 #include "lvgl.h"
