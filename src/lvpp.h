@@ -41,6 +41,7 @@
 
 #include <vector>
 #include <string>
+#include <map>
 
 class lvppScreen { 
 public:
@@ -159,13 +160,27 @@ public:
     lvppCanvas(const char* fName, lv_coord_t x, lv_coord_t y, lv_coord_t w, lv_coord_t h, lv_obj_t* parent=nullptr);
     virtual ~lvppCanvas();
     void setbgColor(lv_color_t bgColor, lv_opa_t opacity = LV_OPA_100);
-    void drawRect(lv_coord_t x, lv_coord_t y, lv_coord_t w, lv_coord_t h, lv_color_t color, uint16_t radius, lv_opa_t opa=LV_OPA_100);
+    void setbgColorByIndex(int index, lv_opa_t opacity = LV_OPA_100);
+    void drawRect(lv_coord_t x, lv_coord_t y, lv_coord_t w, lv_coord_t h, 
+        lv_coord_t borderThickness, lv_color_t borderColor, lv_color_t fillColor,  uint16_t radius, lv_opa_t opa);
     void drawLine(lv_coord_t x1, lv_coord_t y1, lv_coord_t x2, lv_coord_t y2, lv_coord_t width, lv_color_t color);
     void drawLabel(lv_coord_t x, lv_coord_t y, lv_coord_t maxW, lv_color_t color, const char* pText);
+    bool addColorToIndex(lv_color_t col);
+    bool addPaletteToIndex(lv_palette_t pal);
+    void clearColorIndex();
+    lv_color_t* getBuffer() { return pBuffer; };
 protected:
+    bool getIndexFromColor(lv_color_t col, lv_color_t& ind);
     lv_color_t* pBuffer;
     lv_draw_rect_dsc_t*  pDscRect;
     lv_draw_label_dsc_t* pDscLabel;
     lv_draw_line_dsc_t*  pDscLine;
     lv_point_t twoPoints[2];
+    uint16_t maxColorIndexesAllowed;
+    uint8_t colorIndexesUsed;
+#if LV_COLOR_DEPTH == 16
+    std::map<uint16_t, uint8_t> colorToIndex;
+#elif LV_COLOR_DEPTH == 8
+    std::map<uint8_t, uint8_t> colorToIndex;
+#endif
 };

@@ -54,6 +54,7 @@ void lvppScreen::AddObject(lvppBase* pObj) {
 
 lvppBase* lvppScreen::findObj(const char* pName) {
     for(auto it: objects) {
+//        printf("lvppScreen:findObj - looking at: %s\n", it->getFriendlyName().c_str());
         if (!strcmp(it->getFriendlyName().c_str(), pName))
             return it;
     }

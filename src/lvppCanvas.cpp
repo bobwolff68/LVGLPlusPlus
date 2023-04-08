@@ -45,6 +45,9 @@ lvppCanvas::lvppCanvas(const char* fName, lv_coord_t x, lv_coord_t y, lv_coord_t
     lv_canvas_set_buffer(obj, pBuffer, w, h, LV_IMG_CF_INDEXED_4BIT);
     align(LV_ALIGN_TOP_LEFT, x, y);
 
+    maxColorIndexesAllowed = 16;    // 4-bit index
+    clearColorIndex();
+
     lv_canvas_set_palette(obj, 0, lv_color_black());
     lv_canvas_set_palette(obj, 1, lv_palette_main(LV_PALETTE_GREY));
     lv_canvas_set_palette(obj, 2, lv_color_white());
@@ -74,12 +77,81 @@ lvppCanvas::~lvppCanvas() {
     }
 }
 
+//
+// Map a new color into the color index for later use.
+//
+bool lvppCanvas::addColorToIndex(lv_color_t col) {
+    if (colorToIndex.count(col.full))
+        return true; // We've already got this index color
+
+    if (colorIndexesUsed < maxColorIndexesAllowed) {
+        colorToIndex[col.full] = colorIndexesUsed;
+        lv_canvas_set_palette(obj, colorIndexesUsed++, col);
+        return true;
+    }
+    else
+        return false;
+}
+
+bool lvppCanvas::addPaletteToIndex(lv_palette_t pal) {
+    lv_color_t cc;
+    if (colorIndexesUsed < maxColorIndexesAllowed-10) {
+        cc = lv_palette_main(pal);
+        addColorToIndex(cc);
+        // Lighter shades
+        for (int i=1;i<=5;i++) {
+            cc = lv_palette_lighten(pal, i);
+            addColorToIndex(cc);
+        }
+        // Darker shades
+        for (int i=1;i<=4;i++) {
+            cc = lv_palette_darken(pal, i);
+            addColorToIndex(cc);
+        }
+        return true;
+    }
+    else
+        return false;
+}
+
+void lvppCanvas::clearColorIndex() {
+    colorIndexesUsed=0;
+    colorToIndex.clear();
+}
+
+bool lvppCanvas::getIndexFromColor(lv_color_t col, lv_color_t& ind) {
+    if (colorToIndex.count(col.full)) {
+        ind.full = colorToIndex[col.full];
+        return true;
+    }
+    else {
+        ind.full = 0;
+        return false;
+    }
+}
+
 void lvppCanvas::setbgColor(lv_color_t bgColor, lv_opa_t opacity) {
-    lv_canvas_fill_bg(obj, bgColor, LV_OPA_COVER);
+    bool found;
+    lv_color_t colInd;
+    if (getIndexFromColor(bgColor, colInd)) {
+        lv_canvas_fill_bg(obj, colInd, LV_OPA_COVER);
+    }
+}
+
+void lvppCanvas::setbgColorByIndex(int index, lv_opa_t opacity) {
+    lv_color_t colInd;
+    colInd.full = index;
+
+    if (index < colorIndexesUsed)
+        lv_canvas_fill_bg(obj, colInd, LV_OPA_COVER);
 }
 
 void lvppCanvas::drawRect(lv_coord_t x, lv_coord_t y, lv_coord_t w, lv_coord_t h, 
-        lv_color_t color, uint16_t radius, lv_opa_t opa) {
+        lv_coord_t borderThickness, lv_color_t borderColor, lv_color_t fillColor,  uint16_t radius, lv_opa_t opa) {
+    bool found;
+    lv_color_t colBorderInd, colFillInd;
+    if (!getIndexFromColor(borderColor, colBorderInd) || !getIndexFromColor(fillColor, colFillInd))
+        return;
 
     if (!pDscRect) {
         pDscRect = new lv_draw_rect_dsc_t;
@@ -88,23 +160,28 @@ void lvppCanvas::drawRect(lv_coord_t x, lv_coord_t y, lv_coord_t w, lv_coord_t h
 
     pDscRect->radius = radius;
     pDscRect->bg_opa = opa;
-    pDscRect->bg_color = color;
+    pDscRect->bg_color = colFillInd;
 //    rect_dsc.bg_grad.dir = LV_GRAD_DIR_HOR;
 //    rect_dsc.bg_grad.stops[0].color = lv_palette_main(LV_PALETTE_RED);
 //    rect_dsc.bg_grad.stops[1].color = lv_palette_main(LV_PALETTE_BLUE);
-    pDscRect->border_width = 2;
+    pDscRect->border_width = borderThickness;
     pDscRect->border_opa = LV_OPA_100;
-#if 0
-    pDscRect->border_color = lv_color_black();
-#else
-    lv_color_t b;
-    b.full = 0;
-    pDscRect->border_color = b;
-#endif
+    pDscRect->border_color = colBorderInd;
     lv_canvas_draw_rect(obj, x, y, w, h, pDscRect);
 }
 
 void lvppCanvas::drawLine(lv_coord_t x1, lv_coord_t y1, lv_coord_t x2, lv_coord_t y2, lv_coord_t width, lv_color_t color) {
+    lv_color_t colInd;
+
+    for (auto it: colorToIndex) {
+        printf("color:%d, index:%ud\n", it.first, it.second);
+    }
+
+    if (!getIndexFromColor(color, colInd)) {
+        return;
+    }
+
+    printf("drawLine: colorIn=%u, index found as: %u\n", color.full, colInd.full);
 
     if (!pDscLine) {
         pDscLine = new lv_draw_line_dsc_t;
@@ -112,7 +189,7 @@ void lvppCanvas::drawLine(lv_coord_t x1, lv_coord_t y1, lv_coord_t x2, lv_coord_
     }
 
     pDscLine->width = width;
-    pDscLine->color = color;
+    pDscLine->color = colInd;
 
     twoPoints[0].x = x1;
     twoPoints[0].y = y1;
@@ -123,6 +200,12 @@ void lvppCanvas::drawLine(lv_coord_t x1, lv_coord_t y1, lv_coord_t x2, lv_coord_
 }
 
 void lvppCanvas::drawLabel(lv_coord_t x, lv_coord_t y, lv_coord_t maxW, lv_color_t color, const char* pText) {
+    lv_color_t colInd;
+
+    if (!getIndexFromColor(color, colInd)) {
+        return;
+    }
+
     if (!pText)
         return;
 
@@ -131,7 +214,7 @@ void lvppCanvas::drawLabel(lv_coord_t x, lv_coord_t y, lv_coord_t maxW, lv_color
         lv_draw_label_dsc_init(pDscLabel);
     }
 
-    pDscLabel->color = color;
+    pDscLabel->color = colInd;
 
     lv_canvas_draw_text(obj, x, y, maxW, pDscLabel, pText);
 }
