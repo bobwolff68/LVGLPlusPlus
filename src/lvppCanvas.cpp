@@ -27,99 +27,112 @@
 //
 #include "lvpp.h"
 
-lvppCanvas::lvppCanvas(const char* fName, lv_coord_t x, lv_coord_t y, lv_coord_t w, lv_coord_t h, lv_obj_t* parent) 
-    : lvppBase(fName, "CANVAS") {
+lvppCanvasIndexed::lvppCanvasIndexed(const char* fName, lv_coord_t x, lv_coord_t y, lv_coord_t w, lv_coord_t h, uint8_t colorDepth, lv_color_t* providedBuffer, lv_obj_t* parent) 
+    : lvppBase(fName, "CANVASINDEXED") {
+    lv_img_cf_t cfType;
+    int bufSize;
+
     objParent = parent ? parent : lv_scr_act();
     createObj(lv_canvas_create(objParent));
 
-#if 0
-    pBuffer = (lv_color_t*)malloc(sizeof(lv_color_t)*LV_CANVAS_BUF_SIZE_TRUE_COLOR(w, h));
-    assert(pBuffer);
+    // All pBuffer allocation (or lack of) is done in the derived classes.
+    pBuffer=nullptr;
 
-    lv_canvas_set_buffer(obj, pBuffer, w, h, LV_IMG_CF_TRUE_COLOR);
+    switch(colorDepth) {
+        case 1:
+            cfType = LV_IMG_CF_INDEXED_1BIT;
+            maxColorIndexesAllowed = 2;
+            bufSize = sizeof(lv_color_t)*LV_CANVAS_BUF_SIZE_INDEXED_1BIT(w, h);
+            break;
+        case 2:
+            cfType = LV_IMG_CF_INDEXED_2BIT;
+            maxColorIndexesAllowed = 4;
+            bufSize = sizeof(lv_color_t)*LV_CANVAS_BUF_SIZE_INDEXED_2BIT(w, h);
+            break;
+        case 4:
+            cfType = LV_IMG_CF_INDEXED_4BIT;
+            maxColorIndexesAllowed = 16;
+            bufSize = sizeof(lv_color_t)*LV_CANVAS_BUF_SIZE_INDEXED_4BIT(w, h);
+            break;
+        case 8:
+            cfType = LV_IMG_CF_INDEXED_8BIT;
+            maxColorIndexesAllowed = 256;
+            bufSize = sizeof(lv_color_t)*LV_CANVAS_BUF_SIZE_INDEXED_8BIT(w, h);
+            break;
+        default:
+            LV_LOG_ERROR("lvppCanvasIndexed: colorDepth must be one of 1,2,4,8.");
+            throw;
+            break;
+    }
+
+    // If a buffer is provided, use it but don't assign pBuffer so it doesn't get deallocated.
+    if (providedBuffer) {
+        lv_canvas_set_buffer(obj, providedBuffer, w, h, cfType);
+    }
+    else {
+        pBuffer = (lv_color_t*)malloc(bufSize);
+        assert(pBuffer);
+
+        lv_canvas_set_buffer(obj, pBuffer, w, h, cfType);
+    }
+
     align(LV_ALIGN_TOP_LEFT, x, y);
-#else
-    pBuffer = (lv_color_t*)malloc(sizeof(lv_color_t)*LV_CANVAS_BUF_SIZE_INDEXED_4BIT(w, h));
-    assert(pBuffer);
 
-    lv_canvas_set_buffer(obj, pBuffer, w, h, LV_IMG_CF_INDEXED_4BIT);
-    align(LV_ALIGN_TOP_LEFT, x, y);
-
-    maxColorIndexesAllowed = 16;    // 4-bit index
     clearColorIndex();
-
-    lv_canvas_set_palette(obj, 0, lv_color_black());
-    lv_canvas_set_palette(obj, 1, lv_palette_main(LV_PALETTE_GREY));
-    lv_canvas_set_palette(obj, 2, lv_color_white());
-#endif
-
-    pDscLabel = nullptr;
-    pDscLine  = nullptr;
-    pDscRect  = nullptr;
 }
 
-lvppCanvas::~lvppCanvas() {
+lvppCanvasIndexed::~lvppCanvasIndexed() {
     if (pBuffer) {
-        delete pBuffer;
-        pBuffer = nullptr;
-    }
-    if (pDscLabel) {
-        delete pDscLabel;
-        pDscLabel = nullptr;
-    }
-    if (pDscLine) {
-        delete pDscLine;
-        pDscLine = nullptr;
-    }
-    if (pDscRect) {
-        delete pDscRect;
-        pDscRect = nullptr;
+        free(pBuffer);
     }
 }
 
 //
 // Map a new color into the color index for later use.
 //
-bool lvppCanvas::addColorToIndex(lv_color_t col) {
+bool lvppCanvasIndexed::addColorToIndex(lv_color_t col) {
     if (colorToIndex.count(col.full))
         return true; // We've already got this index color
 
     if (colorIndexesUsed < maxColorIndexesAllowed) {
         colorToIndex[col.full] = colorIndexesUsed;
-        lv_canvas_set_palette(obj, colorIndexesUsed++, col);
+        lv_canvas_set_palette(obj, colorIndexesUsed, col);
+        colorIndexesUsed++;
         return true;
     }
     else
         return false;
 }
 
-bool lvppCanvas::addPaletteToIndex(lv_palette_t pal) {
+bool lvppCanvasIndexed::addPaletteToIndex(lv_palette_t pal) {
     lv_color_t cc;
+    // Need to have space for 10 new color indexes.
     if (colorIndexesUsed < maxColorIndexesAllowed-10) {
+        // Darker shades first
+        for (int i=4;i>=1;i--) {
+            cc = lv_palette_darken(pal, i);
+            addColorToIndex(cc);
+        }
+        // Main central color
         cc = lv_palette_main(pal);
         addColorToIndex(cc);
-        // Lighter shades
+        // Lighter shades next
         for (int i=1;i<=5;i++) {
             cc = lv_palette_lighten(pal, i);
             addColorToIndex(cc);
         }
-        // Darker shades
-        for (int i=1;i<=4;i++) {
-            cc = lv_palette_darken(pal, i);
-            addColorToIndex(cc);
-        }
         return true;
     }
     else
         return false;
 }
 
-void lvppCanvas::clearColorIndex() {
+void lvppCanvasIndexed::clearColorIndex() {
     colorIndexesUsed=0;
     colorToIndex.clear();
 }
 
-bool lvppCanvas::getIndexFromColor(lv_color_t col, lv_color_t& ind) {
+bool lvppCanvasIndexed::getIndexFromColor(lv_color_t col, lv_color_t& ind) {
     if (colorToIndex.count(col.full)) {
         ind.full = colorToIndex[col.full];
         return true;
@@ -130,28 +143,208 @@ bool lvppCanvas::getIndexFromColor(lv_color_t col, lv_color_t& ind) {
     }
 }
 
-void lvppCanvas::setbgColor(lv_color_t bgColor, lv_opa_t opacity) {
-    bool found;
+void lvppCanvasIndexed::setbgColor(lv_color_t bgColor) {
     lv_color_t colInd;
     if (getIndexFromColor(bgColor, colInd)) {
-        lv_canvas_fill_bg(obj, colInd, LV_OPA_COVER);
+        setbgColorByIndex(colInd);
+    }
+    else {
+        LV_LOG_WARN("setbgColor: color not found in palette.");
     }
 }
 
-void lvppCanvas::setbgColorByIndex(int index, lv_opa_t opacity) {
-    lv_color_t colInd;
-    colInd.full = index;
+void lvppCanvasIndexed::setbgColorByIndex(lv_color_t bgColorIndex) {
+    if (bgColorIndex.full>=colorIndexesUsed) {
+        LV_LOG_WARN("setbgColorByIndex: index out of palette range.");
+        return;
+    }
 
-    if (index < colorIndexesUsed)
-        lv_canvas_fill_bg(obj, colInd, LV_OPA_COVER);
+    lv_canvas_fill_bg(obj, bgColorIndex, LV_OPA_COVER);
 }
 
-void lvppCanvas::drawRect(lv_coord_t x, lv_coord_t y, lv_coord_t w, lv_coord_t h, 
-        lv_coord_t borderThickness, lv_color_t borderColor, lv_color_t fillColor,  uint16_t radius, lv_opa_t opa) {
-    bool found;
-    lv_color_t colBorderInd, colFillInd;
-    if (!getIndexFromColor(borderColor, colBorderInd) || !getIndexFromColor(fillColor, colFillInd))
+void lvppCanvasIndexed::drawPixel(lv_coord_t x, lv_coord_t y, lv_color_t color) {
+    lv_color_t colInd;
+    if (getIndexFromColor(color, colInd)) {
+        drawPixelByIndex(x, y, colInd);
+    }
+    else {
+        LV_LOG_WARN("drawPixel: color not found in palette.");
+    }
+}
+
+void lvppCanvasIndexed::drawPixelByIndex(lv_coord_t x, lv_coord_t y, lv_color_t colorIndex) {
+    if (colorIndex.full>=colorIndexesUsed) {
+        LV_LOG_WARN("drawPixelByIndex: index out of palette range.");
         return;
+    }
+
+    lv_canvas_set_px_color(obj, x, y, colorIndex);
+}
+
+void lvppCanvasIndexed::drawLineVert(lv_coord_t x1, lv_coord_t y1, lv_coord_t h, lv_color_t color) {
+    lv_color_t colInd;
+    if (getIndexFromColor(color, colInd)) {
+        drawLineVertByIndex(x1, y1, h, colInd);
+    }
+    else {
+        LV_LOG_WARN("drawLineVert: color not found in palette.");
+    }
+}
+
+void lvppCanvasIndexed::drawLineVertByIndex(lv_coord_t x1, lv_coord_t y1, lv_coord_t h, lv_color_t indexCol) {
+    if (indexCol.full>=colorIndexesUsed) {
+        LV_LOG_WARN("drawLineVertByIndex: index out of palette range.");
+        return;
+    }
+
+    for (lv_coord_t y=y1; y<y1+h; y++) {
+        lv_img_buf_set_px_color(&((lv_canvas_t*)obj)->dsc, x1, y, indexCol);
+    }
+
+    lv_obj_invalidate(obj);
+}
+
+void lvppCanvasIndexed::drawLineHoriz(lv_coord_t x1, lv_coord_t y1, lv_coord_t w, lv_color_t color) {
+    lv_color_t colInd;
+    if (getIndexFromColor(color, colInd)) {
+        drawLineHorizByIndex(x1, y1, w, colInd);
+    }
+    else {
+        LV_LOG_WARN("drawLineHoriz: color not found in palette.");
+    }
+}
+
+void lvppCanvasIndexed::drawLineHorizByIndex(lv_coord_t x1, lv_coord_t y1, lv_coord_t w, lv_color_t indexCol) {
+    if (indexCol.full>=colorIndexesUsed) {
+        LV_LOG_WARN("drawLineHorizByIndex: index out of palette range.");
+        return;
+    }
+
+    for (lv_coord_t x=x1; x<x1+w; x++) {
+        lv_img_buf_set_px_color(&((lv_canvas_t*)obj)->dsc, x, y1, indexCol);
+    }
+
+    lv_obj_invalidate(obj);
+}
+
+void lvppCanvasIndexed::drawRectWithoutFill(lv_coord_t x1, lv_coord_t y1, lv_coord_t w, lv_coord_t h, 
+        lv_color_t borderColor) {
+    lv_color_t colInd;
+    if (getIndexFromColor(borderColor, colInd)) {
+        drawRectWithoutFillByIndex(x1, y1, w, h, colInd);
+    }
+    else {
+        LV_LOG_WARN("drawRectWithoutFill: color not found in palette.");
+    }
+}
+
+void lvppCanvasIndexed::drawRectWithoutFillByIndex(lv_coord_t x1, lv_coord_t y1, lv_coord_t w, lv_coord_t h, 
+        lv_color_t borderColorInd) {
+    if (borderColorInd.full>=colorIndexesUsed) {
+        LV_LOG_WARN("drawRectWithoutFillByIndex: index out of palette range.");
+        return;
+    }
+
+    for (lv_coord_t x=x1 ; x<x1+w; x++)
+        lv_img_buf_set_px_color(&((lv_canvas_t*)obj)->dsc, x, y1, borderColorInd);
+
+    for (lv_coord_t y=y1; y<y1+h; y++)
+        lv_img_buf_set_px_color(&((lv_canvas_t*)obj)->dsc, x1, y, borderColorInd);
+
+    for (lv_coord_t y=y1; y<y1+h; y++)
+        lv_img_buf_set_px_color(&((lv_canvas_t*)obj)->dsc, x1+w, y, borderColorInd);
+
+    for (lv_coord_t x=x1 ; x<x1+w; x++)
+        lv_img_buf_set_px_color(&((lv_canvas_t*)obj)->dsc, x, y1+h, borderColorInd);
+
+    lv_obj_invalidate(obj);
+}
+
+void lvppCanvasIndexed::drawRectWithFill(lv_coord_t x1, lv_coord_t y1, lv_coord_t w, lv_coord_t h, 
+        lv_color_t borderColor, lv_color_t fillColor) {
+    lv_color_t bColInd, fColInd;
+    if (getIndexFromColor(borderColor, bColInd) && getIndexFromColor(fillColor, fColInd)) {
+        drawRectWithFillByIndex(x1, y1, w, h, bColInd, fColInd);
+    }
+    else {
+        LV_LOG_WARN("drawRectWithFill: border or fill color not found in palette.");
+    }
+}
+
+void lvppCanvasIndexed::drawRectWithFillByIndex(lv_coord_t x1, lv_coord_t y1, lv_coord_t w, lv_coord_t h, 
+        lv_color_t borderColorInd, lv_color_t fillColorInd) {
+    if (borderColorInd.full>=colorIndexesUsed) {
+        LV_LOG_WARN("drawRectWithFillByIndex: border index out of palette range.");
+        return;
+    }
+    if (fillColorInd.full>=colorIndexesUsed) {
+        LV_LOG_WARN("drawRectWithFillByIndex: fill index out of palette range.");
+        return;
+    }
+
+    for (lv_coord_t x=x1 ; x<x1+w; x++)
+        lv_img_buf_set_px_color(&((lv_canvas_t*)obj)->dsc, x, y1, borderColorInd);
+
+    for (lv_coord_t y=y1; y<y1+h; y++)
+        lv_img_buf_set_px_color(&((lv_canvas_t*)obj)->dsc, x1, y, borderColorInd);
+
+    for (lv_coord_t y=y1; y<y1+h; y++)
+        lv_img_buf_set_px_color(&((lv_canvas_t*)obj)->dsc, x1+w, y, borderColorInd);
+
+    for (lv_coord_t x=x1 ; x<x1+w; x++)
+        lv_img_buf_set_px_color(&((lv_canvas_t*)obj)->dsc, x, y1+h, borderColorInd);
+
+    // Now for the fill operation
+    for (lv_coord_t y=y1+1; y<y1+h-2; y++) {
+        for (lv_coord_t x=x1+1 ; x<x1+w-2; x++) {
+            lv_img_buf_set_px_color(&((lv_canvas_t*)obj)->dsc, x, y, fillColorInd);
+        }
+    }
+    
+    lv_obj_invalidate(obj);
+}
+
+lvppCanvasFullColor::lvppCanvasFullColor(const char* fName, lv_coord_t x, lv_coord_t y, lv_coord_t w, lv_coord_t h, lv_color_t* providedBuffer, lv_obj_t* parent) 
+    : lvppBase(fName, "CANVASFULLCOLOR") {
+    objParent = parent ? parent : lv_scr_act();
+    createObj(lv_canvas_create(objParent));
+
+    pBuffer = (lv_color_t*)malloc(sizeof(lv_color_t)*LV_CANVAS_BUF_SIZE_TRUE_COLOR(w, h));
+    assert(pBuffer);
+
+    lv_canvas_set_buffer(obj, pBuffer, w, h, LV_IMG_CF_TRUE_COLOR);
+    align(LV_ALIGN_TOP_LEFT, x, y);
+
+    pDscLabel = nullptr;
+    pDscLine  = nullptr;
+    pDscRect  = nullptr;
+}
+
+lvppCanvasFullColor::~lvppCanvasFullColor() {
+    if (pDscLabel) {
+        delete pDscLabel;
+    }
+    if (pDscLine) {
+        delete pDscLine;
+    }
+    if (pDscRect) {
+        delete pDscRect;
+    }
+    if (pBuffer) {
+        free(pBuffer);
+    }
+}
+
+void lvppCanvasFullColor::setbgColor(lv_color_t bgColor) {
+    lv_canvas_fill_bg(obj, bgColor, LV_OPA_COVER);
+}
+
+void lvppCanvasFullColor::drawPixel(lv_coord_t x, lv_coord_t y, lv_color_t color) {
+    lv_canvas_set_px_color(obj, x, y, color);
+}
+
+void lvppCanvasFullColor::drawRect(lv_coord_t x, lv_coord_t y, lv_coord_t w, lv_coord_t h, 
+        lv_coord_t borderThickness, lv_color_t borderColor, lv_color_t fillColor,  uint16_t radius, lv_opa_t opa) {
 
     if (!pDscRect) {
         pDscRect = new lv_draw_rect_dsc_t;
@@ -160,28 +353,17 @@ void lvppCanvas::drawRect(lv_coord_t x, lv_coord_t y, lv_coord_t w, lv_coord_t h
 
     pDscRect->radius = radius;
     pDscRect->bg_opa = opa;
-    pDscRect->bg_color = colFillInd;
+    pDscRect->bg_color = fillColor;
 //    rect_dsc.bg_grad.dir = LV_GRAD_DIR_HOR;
 //    rect_dsc.bg_grad.stops[0].color = lv_palette_main(LV_PALETTE_RED);
 //    rect_dsc.bg_grad.stops[1].color = lv_palette_main(LV_PALETTE_BLUE);
     pDscRect->border_width = borderThickness;
     pDscRect->border_opa = LV_OPA_100;
-    pDscRect->border_color = colBorderInd;
+    pDscRect->border_color = borderColor;
     lv_canvas_draw_rect(obj, x, y, w, h, pDscRect);
 }
 
-void lvppCanvas::drawLine(lv_coord_t x1, lv_coord_t y1, lv_coord_t x2, lv_coord_t y2, lv_coord_t width, lv_color_t color) {
-    lv_color_t colInd;
-
-    for (auto it: colorToIndex) {
-        printf("color:%d, index:%ud\n", it.first, it.second);
-    }
-
-    if (!getIndexFromColor(color, colInd)) {
-        return;
-    }
-
-    printf("drawLine: colorIn=%u, index found as: %u\n", color.full, colInd.full);
+void lvppCanvasFullColor::drawLine(lv_coord_t x1, lv_coord_t y1, lv_coord_t x2, lv_coord_t y2, lv_coord_t width, lv_color_t color) {
 
     if (!pDscLine) {
         pDscLine = new lv_draw_line_dsc_t;
@@ -189,7 +371,7 @@ void lvppCanvas::drawLine(lv_coord_t x1, lv_coord_t y1, lv_coord_t x2, lv_coord_
     }
 
     pDscLine->width = width;
-    pDscLine->color = colInd;
+    pDscLine->color = color;
 
     twoPoints[0].x = x1;
     twoPoints[0].y = y1;
@@ -199,12 +381,7 @@ void lvppCanvas::drawLine(lv_coord_t x1, lv_coord_t y1, lv_coord_t x2, lv_coord_
     lv_canvas_draw_line(obj, twoPoints, 2, pDscLine);
 }
 
-void lvppCanvas::drawLabel(lv_coord_t x, lv_coord_t y, lv_coord_t maxW, lv_color_t color, const char* pText) {
-    lv_color_t colInd;
-
-    if (!getIndexFromColor(color, colInd)) {
-        return;
-    }
+void lvppCanvasFullColor::drawLabel(lv_coord_t x, lv_coord_t y, lv_coord_t maxW, lv_color_t color, const char* pText) {
 
     if (!pText)
         return;
@@ -214,7 +391,7 @@ void lvppCanvas::drawLabel(lv_coord_t x, lv_coord_t y, lv_coord_t maxW, lv_color
         lv_draw_label_dsc_init(pDscLabel);
     }
 
-    pDscLabel->color = colInd;
+    pDscLabel->color = color;
 
     lv_canvas_draw_text(obj, x, y, maxW, pDscLabel, pText);
 }

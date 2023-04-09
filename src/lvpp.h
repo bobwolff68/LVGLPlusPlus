@@ -155,27 +155,50 @@ public:
 protected:
 };
 
-class lvppCanvas : public lvppBase {
+class lvppCanvasFullColor : public lvppBase {
 public:
-    lvppCanvas(const char* fName, lv_coord_t x, lv_coord_t y, lv_coord_t w, lv_coord_t h, lv_obj_t* parent=nullptr);
-    virtual ~lvppCanvas();
-    void setbgColor(lv_color_t bgColor, lv_opa_t opacity = LV_OPA_100);
-    void setbgColorByIndex(int index, lv_opa_t opacity = LV_OPA_100);
+    lvppCanvasFullColor(const char* fName, lv_coord_t x, lv_coord_t y, lv_coord_t w, lv_coord_t h, lv_color_t* providedBuffer=nullptr, lv_obj_t* parent=nullptr);
+    virtual ~lvppCanvasFullColor();
+
+    void setbgColor(lv_color_t bgColor);
+    void drawPixel(lv_coord_t x, lv_coord_t y, lv_color_t color);
     void drawRect(lv_coord_t x, lv_coord_t y, lv_coord_t w, lv_coord_t h, 
         lv_coord_t borderThickness, lv_color_t borderColor, lv_color_t fillColor,  uint16_t radius, lv_opa_t opa);
     void drawLine(lv_coord_t x1, lv_coord_t y1, lv_coord_t x2, lv_coord_t y2, lv_coord_t width, lv_color_t color);
     void drawLabel(lv_coord_t x, lv_coord_t y, lv_coord_t maxW, lv_color_t color, const char* pText);
+protected:
+    lv_draw_rect_dsc_t*  pDscRect;
+    lv_draw_line_dsc_t*  pDscLine;
+    lv_draw_label_dsc_t* pDscLabel;
+    lv_point_t twoPoints[2];
+    lv_color_t* pBuffer;
+};
+
+class lvppCanvasIndexed : public lvppBase {
+public:
+    lvppCanvasIndexed(const char* fName, lv_coord_t x, lv_coord_t y, lv_coord_t w, lv_coord_t h, uint8_t colorDepth, lv_color_t* providedBuffer=nullptr, lv_obj_t* parent=nullptr);
+    virtual ~lvppCanvasIndexed();
     bool addColorToIndex(lv_color_t col);
     bool addPaletteToIndex(lv_palette_t pal);
     void clearColorIndex();
-    lv_color_t* getBuffer() { return pBuffer; };
-protected:
     bool getIndexFromColor(lv_color_t col, lv_color_t& ind);
-    lv_color_t* pBuffer;
-    lv_draw_rect_dsc_t*  pDscRect;
-    lv_draw_label_dsc_t* pDscLabel;
-    lv_draw_line_dsc_t*  pDscLine;
-    lv_point_t twoPoints[2];
+    void setbgColor(lv_color_t bgColor);
+    void setbgColorByIndex(lv_color_t bgColorIndex);
+    void drawPixel(lv_coord_t x, lv_coord_t y, lv_color_t color);
+    void drawPixelByIndex(lv_coord_t x, lv_coord_t y, lv_color_t colorIndex);
+    void drawLineVert(lv_coord_t x1, lv_coord_t y1, lv_coord_t h, lv_color_t color);
+    void drawLineVertByIndex(lv_coord_t x1, lv_coord_t y1, lv_coord_t h, lv_color_t indexCol);
+    void drawLineHoriz(lv_coord_t x1, lv_coord_t y1, lv_coord_t w, lv_color_t color);
+    void drawLineHorizByIndex(lv_coord_t x1, lv_coord_t y1, lv_coord_t w, lv_color_t indexCol);
+    void drawRectWithoutFill(lv_coord_t x1, lv_coord_t y1, lv_coord_t w, lv_coord_t h, 
+        lv_color_t borderColor);
+    void drawRectWithoutFillByIndex(lv_coord_t x1, lv_coord_t y1, lv_coord_t w, lv_coord_t h, 
+        lv_color_t borderColorInd);
+    void drawRectWithFill(lv_coord_t x1, lv_coord_t y1, lv_coord_t w, lv_coord_t h, 
+        lv_color_t borderColor, lv_color_t fillColor);
+    void drawRectWithFillByIndex(lv_coord_t x1, lv_coord_t y1, lv_coord_t w, lv_coord_t h, 
+        lv_color_t borderColorInd, lv_color_t fillColorInd);
+protected:
     uint16_t maxColorIndexesAllowed;
     uint8_t colorIndexesUsed;
 #if LV_COLOR_DEPTH == 16
@@ -183,4 +206,6 @@ protected:
 #elif LV_COLOR_DEPTH == 8
     std::map<uint8_t, uint8_t> colorToIndex;
 #endif
+    lv_color_t* pBuffer;
 };
+
