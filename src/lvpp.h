@@ -52,6 +52,7 @@ public:
     //
     // LV_SCR_LOAD_ANIM_OUT_RIGHT
     void ActivateScreen(uint32_t anim_time=500, lv_scr_load_anim_t anim=LV_SCR_LOAD_ANIM_NONE);
+    void disableScrollBars();
     lvppBase* findObj(const char* pName);
     void setObjValue(const char* objName, int16_t val);
     void setObjValue(bool b);

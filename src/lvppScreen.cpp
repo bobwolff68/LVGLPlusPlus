@@ -42,6 +42,10 @@ lvppScreen::lvppScreen(lv_obj_t* _pInitScreen) {
     assert(pScreen);
 }
 
+void lvppScreen::disableScrollBars() {
+    lv_obj_clear_flag(pScreen, LV_OBJ_FLAG_SCROLLABLE);
+}
+
 void lvppScreen::ActivateScreen(uint32_t anim_time, lv_scr_load_anim_t anim_type) {    
     lv_scr_load_anim(pScreen, anim_type, anim_time, 0, false);
 }
