@@ -155,6 +155,18 @@ public:
 protected:
 };
 
+class lvppRoller : public lvppBase {
+public:
+    lvppRoller(const char* fName, const char* pOptions=nullptr, lv_obj_t* parent=nullptr);
+    void addOptions(const char* pOptions);
+    void addOptions(std::vector<std::string> &options);
+    void clearOptions(void);
+    u_int16_t getCurrentIndex() { return lv_dropdown_get_selected(obj); };
+    void setCurrentIndex(uint16_t curInd);
+    void getCurrentText(char* selStr, uint8_t selStrLen) { return lv_dropdown_get_selected_str(obj, selStr, selStrLen); };
+protected:
+};
+
 class lvppCanvasFullColor : public lvppBase {
 public:
     lvppCanvasFullColor(const char* fName, lv_coord_t x, lv_coord_t y, lv_coord_t w, lv_coord_t h, lv_color_t* providedBuffer=nullptr, lv_obj_t* parent=nullptr);

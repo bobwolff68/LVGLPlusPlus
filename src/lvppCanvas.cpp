@@ -295,8 +295,8 @@ void lvppCanvasIndexed::drawRectWithFillByIndex(lv_coord_t x1, lv_coord_t y1, lv
         lv_img_buf_set_px_color(&((lv_canvas_t*)obj)->dsc, x, y1+h, borderColorInd);
 
     // Now for the fill operation
-    for (lv_coord_t y=y1+1; y<y1+h-2; y++) {
-        for (lv_coord_t x=x1+1 ; x<x1+w-2; x++) {
+    for (lv_coord_t y=y1+1; y<y1+h; y++) {
+        for (lv_coord_t x=x1+1 ; x<x1+w; x++) {
             lv_img_buf_set_px_color(&((lv_canvas_t*)obj)->dsc, x, y, fillColorInd);
         }
     }

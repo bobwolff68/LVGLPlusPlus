@@ -71,3 +71,58 @@ void lvppDropdown::setCurrentIndex(uint16_t curInd) {
         onValueChanged();
     }
 }
+
+//////////////
+//////////////
+//////////////
+
+lvppRoller::lvppRoller(const char* fName, const char* pOptions, lv_obj_t* parent) : lvppBase(fName, "DROPDOWN") {
+    objParent = parent ? parent : lv_scr_act();
+    createObj(lv_roller_create(objParent));
+    addOptions(pOptions);
+//    lv_roller_set_visible_row_count(obj, 6);
+}
+
+//
+// pOptions is a single string with '\n' between each option
+//
+void lvppRoller::addOptions(const char* pOptions)
+{
+    if (pOptions) {
+        lv_roller_set_options(obj, pOptions, LV_ROLLER_MODE_NORMAL);
+        lv_roller_set_selected(obj, 0, LV_ANIM_ON);
+    }
+}
+
+void lvppRoller::clearOptions(void) {
+    lv_roller_set_options(obj, "", LV_ROLLER_MODE_NORMAL);
+}
+
+std::string join_strings(const std::vector<std::string>& strings, const std::string& delimiter) {
+    std::string joined_string;
+    bool first = true;
+    for (const auto& str : strings) {
+        if (!first) {
+            joined_string += delimiter;
+        }
+        joined_string += str;
+        first = false;
+    }
+    return joined_string;
+}
+
+void lvppRoller::addOptions(std::vector<std::string> &options) {
+    uint32_t qty=0;
+    std::string opts;
+
+    opts = join_strings(options, "\n");
+    lv_roller_set_options(obj, opts.c_str(), LV_ROLLER_MODE_NORMAL);
+}
+
+void lvppRoller::setCurrentIndex(uint16_t curInd) {
+    if (curInd < lv_dropdown_get_option_cnt(obj)) {
+        lv_roller_set_selected(obj, curInd, LV_ANIM_ON);
+        internalOnValueChanged();
+        onValueChanged();
+    }
+}
