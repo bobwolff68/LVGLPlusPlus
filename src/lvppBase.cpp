@@ -33,11 +33,6 @@
 
 bool lvppBase::bEventNamesInitComplete = false;
 
-void lvppBase::align(lv_align_t align, lv_coord_t x_ofs, lv_coord_t y_ofs)
-{
-    lv_obj_align(obj, align, x_ofs, y_ofs);
-}
-
 /**************************
  * 
  * Available point sizes are dictated by the LV_FONT* items which are enabled at compile-time.
@@ -137,6 +132,11 @@ lvppBase::~lvppBase() {
     }
 }
 
+void lvppBase::align(lv_align_t align, lv_coord_t x_ofs, lv_coord_t y_ofs)
+{
+    lv_obj_align(obj, align, x_ofs, y_ofs);
+}
+
 void lvppBase::setText(const char* pText) {
     if (!label) {
         label = lv_label_create(obj);
@@ -144,6 +144,14 @@ void lvppBase::setText(const char* pText) {
     if (pText) {
         lv_label_set_text(label, pText);
     }
+}
+
+void lvppBase::setTextAlign(lv_align_t align, lv_coord_t xoff, lv_coord_t yoff)
+{
+    if (!label) {
+        label = lv_label_create(obj);
+    }
+    lv_obj_align(label, align, xoff, yoff);
 }
 
 void lvppBase::setTextColor(lv_color_t newColor) {
