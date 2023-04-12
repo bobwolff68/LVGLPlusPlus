@@ -243,6 +243,9 @@ void lvppBase::baseEventHandler(lv_event_t* event) {
 
 void lvppBase::setSize(lv_coord_t width, lv_coord_t height) {
     lv_obj_set_size(obj, width, height);
+    if (label) {
+        lv_obj_align(label, LV_ALIGN_CENTER, 0, 0);  // If the size of the object changed, the text will be wrong - so let's just center it as default.
+    }
 }
 
 void lvppBase::setFriendlyName(const char* pName) {
