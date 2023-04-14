@@ -27,6 +27,10 @@
 //
 #include "lvpp.h"
 
+/**
+ * @file lvppScreen.cpp Implementation of lvppScreen
+ * 
+ */
 
 ///
 ///
@@ -47,7 +51,12 @@ void lvppScreen::disableScrollBars() {
 }
 
 void lvppScreen::ActivateScreen(uint32_t anim_time, lv_scr_load_anim_t anim_type) {    
-    lv_scr_load_anim(pScreen, anim_type, anim_time, 0, false);
+    if (anim_time==0 && anim_type==LV_SCR_LOAD_ANIM_NONE) {
+        lv_scr_load(pScreen);
+    }
+    else {
+        lv_scr_load_anim(pScreen, anim_type, anim_time, 0, false);
+    }
 }
 
 void lvppScreen::AddObject(lvppBase* pObj) {
@@ -66,7 +75,7 @@ lvppBase* lvppScreen::findObj(const char* pName) {
     return nullptr;
 }
 
-void lvppScreen::setObjValue(const char* objName, int16_t val) {
+bool lvppScreen::setObjValue(const char* objName, int16_t val) {
     lvppBase* pB = findObj(objName);
     std::string type=pB->getObjType();
     if (pB) {
@@ -84,6 +93,9 @@ void lvppScreen::setObjValue(const char* objName, int16_t val) {
             else
                 pSlider->setValue(val);
         }
-
+        return true;
+    }
+    else {
+        return false;
     }
 }

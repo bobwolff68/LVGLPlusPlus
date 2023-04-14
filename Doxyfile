@@ -42,7 +42,7 @@ DOXYFILE_ENCODING      = UTF-8
 # title of most generated pages and in a few other places.
 # The default value is: My Project.
 
-PROJECT_NAME           = "WavePlay"
+PROJECT_NAME           = "LVGLPlusPlus"
 
 # The PROJECT_NUMBER tag can be used to enter a project or revision number. This
 # could be handy for archiving the generated documentation or if some version
@@ -54,7 +54,7 @@ PROJECT_NUMBER         =
 # for a project that appears at the top of each page and should give viewer a
 # quick idea about the purpose of the project. Keep the description short.
 
-PROJECT_BRIEF          = "Support classes for real-time processing and playout of WAV/PCM files on ESP32"
+PROJECT_BRIEF          = "C++ library on top of the lovely LVGL project."
 
 # With the PROJECT_LOGO tag one can specify a logo or an icon that is included
 # in the documentation. The maximum height of the logo should not exceed 55
@@ -2280,8 +2280,8 @@ PERLMOD_MAKEVAR_PREFIX =
 # C-preprocessor directives found in the sources and include files.
 # The default value is: YES.
 
-ENABLE_PREPROCESSING   = NO
-#ENABLE_PREPROCESSING   = YES
+#ENABLE_PREPROCESSING   = NO
+ENABLE_PREPROCESSING   = YES
 
 # If the MACRO_EXPANSION tag is set to YES, doxygen will expand all macro names
 # in the source code. If set to NO, only conditional compilation will be
@@ -2422,7 +2422,7 @@ HIDE_UNDOC_RELATIONS   = YES
 # set to NO
 # The default value is: NO.
 
-HAVE_DOT               = NO
+HAVE_DOT               = YES
 
 # The DOT_NUM_THREADS specifies the number of dot invocations doxygen is allowed
 # to run in parallel. When set to 0 doxygen will base this on the number of
