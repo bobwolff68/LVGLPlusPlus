@@ -69,7 +69,7 @@
  * on the same screen. The notion of a screen is identical to that of lvgl. As such, 
  * the root of this class holds an lv_obj_t poitner to the screen.
  * The concept is to have the lvppScreen object created, then create widgets that
- * are added to the lvppScreen with AddObject(). Now some interaction can be had with
+ * are added to the lvppScreen with addObject(). Now some interaction can be had with
  * those objects by either getting the object pointer via findObj() utilizing the
  * object name given to the widget at instantiation time, or, in some cases, actually
  * changing the value of the object via setObjValue(), again using the object name
@@ -83,7 +83,7 @@ public:
 /**
  * @brief Construct a new lvpp Screen object. The default constructor will allocate a new
  *        screen object and will use this screen object as the 'parent' screen to any objects
- *        which are added via AddObject()
+ *        which are added via addObject()
  * 
  * @param _pInitScreen The user can pass in an already allocated screen from lvgl if desired.
  */
@@ -102,19 +102,19 @@ public:
  * @param pObj Pointer to an lvppBase derived object to have the screen keep track of.
  *
  */
-    void AddObject(lvppBase* pObj);
+    void addObject(lvppBase* pObj);
 /**
  * @brief Get a pointer to the LVGL lv_obj_t screen object.
  * 
  * @return lv_obj_t* pointer to an LVGL base object.
  */
-    lv_obj_t* GetScreen() { return pScreen; };
+    lv_obj_t* getScreen() { return pScreen; };
     //
     // LV_SCR_LOAD_ANIM_OUT_RIGHT
 /**
  * @brief Load/Activate this screen either with or without animation based on parameters given.
  * 
- * If ActivateScreen() is called with no parameters, then the underlying load screen call is
+ * If activateScreen() is called with no parameters, then the underlying load screen call is
  * lv_scr_load(). The two optional parameters give the user the ability to animate the new
  * screen utilizing the lv_scr_load_anim() which allows an animation 'time' as well as an
  * animation 'type'. 
@@ -122,7 +122,7 @@ public:
  * @param anim_time Number of milliseconds spent doing the animated load of the screen.
  * @param anim The animation type. This is one of many LV_SCR_LOAD_ANIM_[OVER|MOVE|FADE|OUT]_[LEFT|RIGHT|TOP|BOTTOM]
  */
-    void ActivateScreen(uint32_t anim_time=0, lv_scr_load_anim_t anim=LV_SCR_LOAD_ANIM_NONE);
+    void activateScreen(uint32_t anim_time=0, lv_scr_load_anim_t anim=LV_SCR_LOAD_ANIM_NONE);
 /**
  * @brief Defeats the automatic use of scrollbars by LVGL when certain drawing operations might cause them to appear.
  * 
@@ -135,7 +135,7 @@ public:
  */
     void disableScrollBars();
 /**
- * @brief Obtain a pointer to an object which was prior added to the lvppScreen by AddObject().
+ * @brief Obtain a pointer to an object which was prior added to the lvppScreen by addObject().
  * 
  * lvppBase derived objects all have an object name at their creation. This name is used to
  * allow lvppScreen to 'find' an object and pass back the base pointer to the caller. It is up
