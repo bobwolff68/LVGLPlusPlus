@@ -27,9 +27,22 @@
 //
 #include "lvppUtils.h"
 
-// One global entry that can be used if desired.
+/** @file lvppUtils.cpp
+ *  @brief A few useful items for ESP32 use and printing.
+ * 
+*/
+
+/**
+ * @brief Globally available instance of the object to follow most Arduino-based library patterns.
+ * 
+ */
 espSystats ESPSystats;
 
+/**
+ * @brief Print a line of pre-formed information to Serial.* or simply via printf()
+ * 
+ * @param pS Pointer to the message that is to be printed.
+ */
 inline void printCharPtr(const char* pS) {
 #ifdef ESP_PLATFORM
     Serial.println(pS);
@@ -38,6 +51,11 @@ inline void printCharPtr(const char* pS) {
 #endif
 }
 
+/**
+ * @brief Helper funciton to allow printing of a std::string rather than a char*
+ * 
+ * @param s Reference to a std::string that is to be printed.
+ */
 inline void printStr(std::string& s) {
     printCharPtr(s.c_str());
 }
