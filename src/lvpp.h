@@ -561,7 +561,7 @@ protected:
  * @brief Construct a canvas which uses FULL_COLOR rather than indexed color methods.
  * 
  * Canvas drawing is very powerful in LVGL, but only when a full color canvas is available.
- * In many smaller micros, full color isn't an option due to the sheer size of needing to have
+ * In many smaller CPUs, full color isn't an option due to the sheer size of needing to have
  * a buffer which is width * height * 4-bytes plus a bit more. LVGL has some great facilities
  * around drawing rectangles, lines, and labels with really nice options like rounded ends, 
  * line thicknesses, and other style attributes. Many of these functions simply do not work
@@ -572,55 +572,285 @@ protected:
  */
 class lvppCanvasFullColor : public lvppBase {
 public:
+/**
+ * @brief Construct a new lvpp Canvas Full Color object
+ * 
+ * @param fName Internal object name. This is generally used in findObj() or lvppScreen
+ * @param x,y Top-left starting point of the canvas on the display. 
+ * @param w,h Width and height of the canvas referenced from x and y.
+ * @param providedBuffer If provided, a non-null value will cause the constructor to _not_
+ *                       allocate its own buffer. This is helpful when a series of screens
+ *                       intend to share a common canvas with no drawing changes between them.
+ * @param parent If provided, the parent of the object. This is a real LVGL lv_obj_t pointer
+ */
     lvppCanvasFullColor(const char* fName, lv_coord_t x, lv_coord_t y, lv_coord_t w, lv_coord_t h, lv_color_t* providedBuffer=nullptr, lv_obj_t* parent=nullptr);
     virtual ~lvppCanvasFullColor();
-
+/**
+ * @brief Set the background color of the canvas.
+ * 
+ * @param bgColor The color to be used in painting the background. This is an lv_color_t from LVGL.
+ */
     void setbgColor(lv_color_t bgColor);
+/**
+ * @brief Draw a single pixel on to the canvas.
+ * 
+ * @param x X location
+ * @param y Y location
+ * @param color Color to be drawn.
+ */
     void drawPixel(lv_coord_t x, lv_coord_t y, lv_color_t color);
+/**
+ * @brief Draw a rectangle on the canvas
+ * 
+ * @param x,y Starting point of the rectangle
+ * @param w,h Width and height of the rectangle
+ * @param borderThickness Thickness of the rectangle in pixels.
+ * @param borderColor Color of the rectangle's border lines.
+ * @param fillColor Color to fill in the rectangle.
+ * @param radius The outside radius for a non-square set of corners.
+ * @param opa Opacity if opacity is enabled for your configuration.
+ */
     void drawRect(lv_coord_t x, lv_coord_t y, lv_coord_t w, lv_coord_t h, 
         lv_coord_t borderThickness, lv_color_t borderColor, lv_color_t fillColor,  uint16_t radius, lv_opa_t opa);
+/**
+ * @brief Draw a line on the canvas
+ * 
+ * @param x1,y1 Starting point of the line to be drawn.
+ * @param y1,y2 Ending point of the line to be drawn.
+ * @param width Width of the line to be drawn in pixels.
+ * @param color Color of the line to be drawn.
+ */
     void drawLine(lv_coord_t x1, lv_coord_t y1, lv_coord_t x2, lv_coord_t y2, lv_coord_t width, lv_color_t color);
+/**
+ * @brief Draw a text label onto the canvas
+ * 
+ * @param x,y Starting point for the drawing of the text
+ * @param maxW Maximum width in pixels of the drawing.
+ * @param color Color of the text to be drawn
+ * @param pText Text to be drawn
+ * 
+ * @todo This likely needs more thought. It takes no account for font sizes at a minimum.
+ *       Not enough consideration has been given to _how_ this would be used quite yet.
+ */
     void drawLabel(lv_coord_t x, lv_coord_t y, lv_coord_t maxW, lv_color_t color, const char* pText);
 protected:
-    lv_draw_rect_dsc_t*  pDscRect;
-    lv_draw_line_dsc_t*  pDscLine;
-    lv_draw_label_dsc_t* pDscLabel;
-    lv_point_t twoPoints[2];
-    lv_color_t* pBuffer;
+    lv_draw_rect_dsc_t*  pDscRect;      //< LVGL attribute for rectangle drawing
+    lv_draw_line_dsc_t*  pDscLine;      //< LVGL attribute for line drawing
+    lv_draw_label_dsc_t* pDscLabel;     //< LVGL attribute for label drawing
+    lv_point_t twoPoints[2];            //< Supporting the two-point line draw
+    lv_color_t* pBuffer;                //< Location of canvas color buffer if allocated internally.
 };
 
+/**
+ * @brief Construct a canvas which uses INDEXED color rather than FULL color methods.
+ * 
+ * Canvas drawing is very powerful in LVGL, but only when a full color canvas is available.
+ * In many smaller CPUs, full color isn't an option due to the sheer size of needing to have
+ * a buffer which is width * height * 4-bytes plus a bit more. LVGL has some great facilities
+ * around drawing rectangles, lines, and labels with really nice options like rounded ends, 
+ * line thicknesses, and other style attributes. Many of these functions simply do not work
+ * in the indexed color world.
+ * 
+ * The underlying LVGL library allows for pixel drawing using an lv_color_t where the '.full'
+ * member is not actually a color but instead is an index based on how many colors are in the
+ * indexed color set. For instance, if you've chosen a 4-bit indexed color set, then the indexes
+ * would run from 0-15 and it is up to the user to "set up" the indexed color set (palette)
+ * prior to using any of those indexed values.
+ * 
+ * In lvppCanvasIndexed, some of the mystery and intricacy is taken out of the drawing and also
+ * the class supports drawing of lines and rectangles in a more limited fashion than the native
+ * full color canvas LVGL drawing routines.
+ * 
+ * To alleviate the complexity of keeping track of which color corresponds to which index value,
+ * this class allows the user to utilize either lv_color_t values or index values to do the
+ * drawing functions. The internals of the class work out the translation. This is accomplished
+ * by the user adding colors and/or palettes to the object through addColorToIndex() and 
+ * addPaletteToIndex(). These colors are then mapped to index values internally which then allows
+ * the user to work in "colors" rather than indexes to colors, if they wish. 
+ * 
+ * While it was the original intention to have users utilize only _colors_ in this class, it was
+ * revamped to allow drawing by index as well. It is up to the user to keep track of what color
+ * is which index. And all of the drawing functions which are draw*Indexed() do take an lv_color_t
+ * but this is done in the same manner that LVGL intends it. The ".full" member of that color
+ * is actually the _index value_ and not a true color. While I didn't particularly like the
+ * type conflict between a real color and an index, I felt it important to lean, again, to being
+ * more similar to LVGL concepts than to make my own.
+ * 
+ * NOTE: If the user tries to draw using an lv_color_t color which is _not_ already defined in
+ *       the indexed color set via addColorToIndex() or addPaletteToIndex(), the drawing requested
+ *       will _not_ take place and there will be an `LV_LOG_WARN()` message created to note that
+ *       the requested color was not in the indexed color set.
+ * 
+ * NOTE: The primative drawPixel() is likely 'more expensive' than drawLine() and drawRect()
+ *       functions for situations where more than a few pixels are to be drawn. This is because
+ *       the drawing is invalidated after every pixel draw in the primative case while in the
+ *       case of lines and rects, the invalidation is only done once after all of the pixels are
+ *       'laid down' in the drawing area. This is only a performance warning and not a functional
+ *       one.
+ */
 class lvppCanvasIndexed : public lvppBase {
 public:
+/**
+ * @brief Construct a new lvpp Canvas Full Color object
+ * 
+ * @param fName Internal object name. This is generally used in findObj() or lvppScreen
+ * @param x,y Top-left starting point of the canvas on the display. 
+ * @param w,h Width and height of the canvas referenced from x and y.
+ * @param colorDepth How many _bits_ of color depth shall be used for this canvas. Valid values
+ *                   would be 1, 2, 4, or 8. For instance, a 4-bit color depth would have 16 colors
+ *                   available in the indexed color set. NOTE: If the user passes in a providedBuffer,
+ *                   it is incumbent upon that user to ensure this colorDepth and the size of that
+ *                   buffer are not in conflict with each other or _bad things_ could occur.
+ * @param providedBuffer If provided, a non-null value will cause the constructor to _not_
+ *                       allocate its own buffer. This is helpful when a series of screens
+ *                       intend to share a common canvas with no drawing changes between them.
+ * @param parent If provided, the parent of the object. This is a real LVGL lv_obj_t pointer
+ */
     lvppCanvasIndexed(const char* fName, lv_coord_t x, lv_coord_t y, lv_coord_t w, lv_coord_t h, uint8_t colorDepth, lv_color_t* providedBuffer=nullptr, lv_obj_t* parent=nullptr);
     virtual ~lvppCanvasIndexed();
+/**
+ * @brief Add a single color to the indexed color set
+ * 
+ * @param col Color to add to the index.
+ * @return true If there was room to add a new color or if the color was already in the index.
+ * @return false If the index is already full based on the indexed color depth of the canvas.
+ */
     bool addColorToIndex(lv_color_t col);
+/**
+ * @brief Add a full palette of color to the indexed color set. This is 10 colors.
+ * 
+ * The concept of palette used here is that of LVGL. I felt the palette concept was a powerful
+ * one and wanted to support it here, easily. Adding a color palette will effectively add
+ * (4) darker palette colors, (1) main palette color, and (5) lighter palette colors.
+ * These figures come from the lv_palette_darken(), lv_palette_main() and lv_palette_lighten()
+ * functions.
+ * 
+ * @param col Palette (not color) to add to the index. This is generally done by the use of
+ *            LV_PALETTE_BLUE, LV_PALETTE_TEAL, LV_PALETTE_BROWN, etc.
+ * @return true If there was room to add a new color or if the color was already in the index.
+ * @return false If the index is already full based on the indexed color depth of the canvas.
+ */
     bool addPaletteToIndex(lv_palette_t pal);
+/**
+ * @brief Remove all colors from the indexed color set.
+ * 
+ */
     void clearColorIndex();
+/**
+ * @brief Get the Index of a single Color.
+ * 
+ * @param col Color being requested for translation
+ * @param ind Reference to the index which will be returned (if successful)
+ * @return true If the color col is found.
+ * @return false If the color col is not found in the indexed color set.
+ */
     bool getIndexFromColor(lv_color_t col, lv_color_t& ind);
+/**
+ * @brief Set the background color of the canvas.
+ * 
+ * @param bgColor The color to be used in painting the background. This is an lv_color_t from LVGL.
+ */
     void setbgColor(lv_color_t bgColor);
+/**
+ * @brief Set the backgrond color from an _index_ color
+ * 
+ * @param bgColorIndex The _index_ of the color to use. This is _not a true color_ but only an index.
+ */
     void setbgColorByIndex(lv_color_t bgColorIndex);
+/**
+ * @brief Draw a single pixel on to the canvas.
+ * 
+ * @param x X location
+ * @param y Y location
+ * @param color Color to be drawn.
+ */
     void drawPixel(lv_coord_t x, lv_coord_t y, lv_color_t color);
+/**
+ * @brief Draw a single pixel on to the canvas using an _index_ color.
+ * 
+ * @param x X location
+ * @param y Y location
+ * @param colorIndex The _index_ of the color to use. This is _not a true color_ but only an index.
+ */
     void drawPixelByIndex(lv_coord_t x, lv_coord_t y, lv_color_t colorIndex);
+/**
+ * @brief Draw a verical line on the canvas
+ * 
+ * @param x1,y1 Starting point of the line to be drawn.
+ * @param h Height of the line to be drawn.
+ * @param color Color of the line to be drawn.
+ */
     void drawLineVert(lv_coord_t x1, lv_coord_t y1, lv_coord_t h, lv_color_t color);
+/**
+ * @brief Draw a verical line on the canvas using an _index_ color.
+ * 
+ * @param x1,y1 Starting point of the line to be drawn.
+ * @param h Height of the line to be drawn.
+ * @param indexCol The _index_ of the color to use. This is _not a true color_ but only an index.
+ */
     void drawLineVertByIndex(lv_coord_t x1, lv_coord_t y1, lv_coord_t h, lv_color_t indexCol);
+/**
+ * @brief Draw a horizontal line on the canvas
+ * 
+ * @param x1,y1 Starting point of the line to be drawn.
+ * @param w Width of the line to be drawn.
+ * @param color Color of the line to be drawn.
+ */
     void drawLineHoriz(lv_coord_t x1, lv_coord_t y1, lv_coord_t w, lv_color_t color);
+/**
+ * @brief Draw a horizontal line on the canvas using an _index_ color.
+ * 
+ * @param x1,y1 Starting point of the line to be drawn.
+ * @param w Width of the line to be drawn.
+ * @param indexCol The _index_ of the color to use. This is _not a true color_ but only an index.
+ */
     void drawLineHorizByIndex(lv_coord_t x1, lv_coord_t y1, lv_coord_t w, lv_color_t indexCol);
+/**
+ * @brief Draw a rectangle on the canvas without filling in the rectangle.
+ * 
+ * @param x,y Starting point of the rectangle
+ * @param w,h Width and height of the rectangle
+ * @param borderColor Color of the rectangle's border lines.
+ */
     void drawRectWithoutFill(lv_coord_t x1, lv_coord_t y1, lv_coord_t w, lv_coord_t h, 
         lv_color_t borderColor);
+/**
+ * @brief Draw a rectangle on the canvas without filling in the rectangle using an _index_ color.
+ * 
+ * @param x,y Starting point of the rectangle
+ * @param w,h Width and height of the rectangle
+ * @param borderColorInd The _index_ of the color to use. This is _not a true color_ but only an index.
+ */
     void drawRectWithoutFillByIndex(lv_coord_t x1, lv_coord_t y1, lv_coord_t w, lv_coord_t h, 
         lv_color_t borderColorInd);
+/**
+ * @brief Draw a rectangle on the canvas and fill in the center of the rectangle.
+ * 
+ * @param x,y Starting point of the rectangle
+ * @param w,h Width and height of the rectangle
+ * @param borderColor Color of the rectangle's border lines.
+ * @param fillColor Color to fill in the rectangle.
+ */
     void drawRectWithFill(lv_coord_t x1, lv_coord_t y1, lv_coord_t w, lv_coord_t h, 
         lv_color_t borderColor, lv_color_t fillColor);
+/**
+ * @brief Draw a rectangle on the canvas and fill in the center of the rectangle. This uses _index_ colors.
+ * 
+ * @param x,y Starting point of the rectangle
+ * @param w,h Width and height of the rectangle
+ * @param borderColor The _index_ of the color to use. This is _not a true color_ but only an index.
+ * @param fillColor The _index_ of the color to use. This is _not a true color_ but only an index.
+ */
     void drawRectWithFillByIndex(lv_coord_t x1, lv_coord_t y1, lv_coord_t w, lv_coord_t h, 
         lv_color_t borderColorInd, lv_color_t fillColorInd);
 protected:
-    uint16_t maxColorIndexesAllowed;
-    uint8_t colorIndexesUsed;
+    uint16_t maxColorIndexesAllowed;    ///< Number of color indexes available based on the color depth at creation time.
+    uint8_t colorIndexesUsed;           ///< How many colors have presently been used in the indexed color set.
+///@todo This use of LV_COLOR_DEPTH is believed to be correct at least for 8 and 16, but is this _complete_ ?
 #if LV_COLOR_DEPTH == 16
     std::map<uint16_t, uint8_t> colorToIndex;
 #elif LV_COLOR_DEPTH == 8
     std::map<uint8_t, uint8_t> colorToIndex;
 #endif
-    lv_color_t* pBuffer;
+    lv_color_t* pBuffer;    //< Location of canvas color buffer if allocated internally.
 };
-

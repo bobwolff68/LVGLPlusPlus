@@ -27,6 +27,10 @@
 //
 #include "lvpp.h"
 
+/** @file lvppCanvas.cpp
+ * @brief Implementation of both Canvas types - full color and indexed color.
+*/
+
 lvppCanvasIndexed::lvppCanvasIndexed(const char* fName, lv_coord_t x, lv_coord_t y, lv_coord_t w, lv_coord_t h, uint8_t colorDepth, lv_color_t* providedBuffer, lv_obj_t* parent) 
     : lvppBase(fName, "CANVASINDEXED") {
     lv_img_cf_t cfType;

@@ -31,5 +31,17 @@
  *   invalidated after a change. This is still a fuzzy misunderstanding of LVGL for myself. While
  *   it has become clearer recently, some of these objects are still not 'clean' in that regard
  *   and may still have misunderstandings buried in them. #fairwarning
+ * - Find a contributor with a Windows machine who is willing and able to:
+ *   - Take the Mac native simulation configuration and translate that to Windows.
+ *   - Test against that configuration.
+ *   - Document any pre-requisite dependencies that had to be installed in the environment to make it work.
+ * - Build a test-jig program which exercises each of the lvpp* classes
+ *   - Possibly utilize lvppScreen to make each 'unit test' into a screen
+ *   - Show use of adjacent labels, labels, values, options, different drop-directions, adding
+ *     full and individual options to selection lists, etc.
+ *   - Find someone to document the requirements for the test jig.
+ *   - Find someone to implement the test jig as I think it'll require more time than I (currently) have.
+ * - Get feedback from anyone who is using the library on a non-ILI9341 display or using a different
+ *   drawing support method than TFT_eSPI from Bodmer.
  * 
 */
