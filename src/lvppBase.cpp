@@ -87,6 +87,9 @@ void lvppBase::setFont(lv_font_t* pF) {
     lv_obj_add_style(obj, &style_obj, LV_PART_MAIN | LV_STATE_DEFAULT);
 }
 
+/** @todo I think this add_style needs to go away and an 'invalidate' should be used instead.
+ * 
+*/
 void lvppBase::setBGColor(lv_color16_t color16) {
     lv_style_set_bg_color(&style_obj, color16);
 //    lv_style_set_bg_color(&style_status, lv_palette_main(LV_PALETTE_BLUE)); // lv_color_hex(0x115588));

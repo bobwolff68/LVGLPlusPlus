@@ -27,6 +27,11 @@
 //
 #include "lvpp.h"
 
+/** @file lvppBar.cpp
+ * @brief Implementation for Bar and Bar-like widgets (Bar and Slider)
+*/
+
+
 lvppBar::lvppBar(const char* fName, lv_obj_t* parent) : lvppBaseWithValue(fName, "BAR") {
     objParent = parent ? parent : lv_scr_act();
     createObj(lv_bar_create(objParent));

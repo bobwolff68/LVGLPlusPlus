@@ -27,6 +27,10 @@
 //
 #include "lvpp.h"
 
+/** @file lvppImage.cpp
+ * @brief Implementation for supporting display of an image via the lv_img_dsc_t typedef from LVGL.
+*/
+
 lvppImage::lvppImage(const char* fName, lv_obj_t* parent) : lvppBase(fName, "IMAGE") {
     objParent = parent ? parent : lv_scr_act();
     createObj(lv_img_create(objParent));

@@ -27,6 +27,10 @@
 //
 #include "lvpp.h"
 
+/** @file lvppButton.cpp
+ * @brief All button related lvpp class implementations.
+*/
+
 lvppButton::lvppButton(const char* fName, const char* pText, lv_obj_t* parent) : lvppBase(fName, "BUTTON") {
     objParent = parent ? parent : lv_scr_act();
     createObj(lv_btn_create(objParent));

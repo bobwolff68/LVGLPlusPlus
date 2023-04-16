@@ -44,23 +44,6 @@
 #include <map>
 
 /**
- * @file lvpp.h
- * @brief Main header file for all non-base object definitions.
- * 
- */
-
-/** \mainpage LVGLPlusPlus aspires to put a low-cost C++ wrapper around the LVGL library.
- *            It will not support every feature of LVGL as the feature-breadth of the
- *            full library is extensive and growing. However, it also does not preclude
- *            the co-mingling of this C++ wrapper usage and the underlying library.
- *            The user is free to get handles to pointers and use them directly in lv_* calls.
- *
- * \section intro_sec Introduction
- *
- * 
-*/
-
-/**
  * @class lvppScreen
  * @brief The lvppScreen is a non - lvppBase object for organizing the use of multiple 
  *        screens in a project.
@@ -166,9 +149,21 @@ protected:
     std::vector<lvppBase*> objects; ///< Data structure used to hold all of the object pointers.
 };
 
-
+/** @class lvppButton
+ * @brief Basic button class
+ * 
+ * LVGL button which is auto-sized, initially, based on the pText of the button label.
+ * 
+ */
 class lvppButton : public lvppBase {
 public:
+/**
+ * @brief Construct a new lvpp Button object
+ * 
+ * @param fName Button's internal name. This is generally used in findObj() or lvppScreen
+ * @param pText This is the starting text of the button's label, if provided.
+ * @param parent If provided, the parent of the button object. This is a real LVGL lv_obj_t pointer
+ */
     lvppButton(const char* fName, const char* pText=nullptr, lv_obj_t* parent=nullptr);
 };
 
@@ -176,27 +171,92 @@ public:
 // Button has multiple "values"
 // Each click cycles forward through the list of values.
 //
+/** @class lvppCycleButton
+ * @brief Derived from lvppButton, this is a button who's clicks cycle through a list of options.
+ * 
+ * Options can be added in bulk by char* or vector<string> and the label cycles based on its current state.
+ * Current index or value/text can be obtained at any time.
+ * 
+ */
 class lvppCycleButton : public lvppButton {
 public:
+/**
+ * @brief Construct a new lvpp Cycle Button object
+ * 
+ * @param fName Button's internal name. This is generally used in findObj() or lvppScreen
+ * @param parent If provided, the parent of the button object. This is a real LVGL lv_obj_t pointer
+ */
     lvppCycleButton(const char* fName, lv_obj_t* parent=nullptr);
+/**
+ * @brief Remove all options from the current options list.
+ * 
+ */
     void clearOptions(void);
+/**
+ * @brief Add button options using a single char* with options separated by `\n`
+ * 
+ * @param pOption Pointer to a character string of options separated by `\n`
+ */
     void addOptions(const char* pOption);
+/**
+ * @brief Add button options using a vector of strings
+ * 
+ * @param inOptions Uses std::vector<std::string> reference to pass all the options.
+ */
     void addOptions(std::vector<std::string> &inOptions);
+/**
+ * @brief Get the Current Index of which option is the active label on the button.
+ * 
+ * @return u_int16_t zero to n-1 value representing the current label/button state.
+ */
     u_int16_t getCurrentIndex() { return currentIndex; };
+/**
+ * @brief Get the Current Text of the button label.
+ * 
+ * @return const char* current text of the label
+ */
     const char* getCurrentText() { return options[currentIndex].c_str(); };
     void internalOnClicked();
 protected:
-    std::vector<std::string> options;
-    uint16_t currentIndex;
-    uint16_t quantity;
+    std::vector<std::string> options;   ///< Internal representation of the options for the cycling button.
+    uint16_t currentIndex;              ///< Current value of which option is active on the button label.
+    uint16_t quantity;                  ///< Total number of options.
 };
 
+/** @class lvppFullImageToggleButton
+ * @brief Button which is all image based and simply toggles on/off between the images.
+ * 
+ */
 class lvppFullImageToggleButton : public lvppBase {
 public:
+/**
+ * @brief Construct a new lvpp Full Image Toggle Button without providing either image
+ * 
+ * @param fName Button's internal name. This is generally used in findObj() or lvppScreen
+ * @param parent If provided, the parent of the button object. This is a real LVGL lv_obj_t pointer
+ */
     lvppFullImageToggleButton(const char* fName, lv_obj_t* parent=nullptr);
+/**
+ * @brief Construct a new lvpp Full Image Toggle Button providing both images
+ * 
+ * @param fName Button's internal name. This is generally used in findObj() or lvppScreen
+ * @param uncheckedImg This is a pre-prepared lv_img_dsc_t pointing to the deselected/unchecked image
+ * @param checkedImg This is a pre-prepared lv_img_dsc_t pointing to the selected/checked image
+ * @param parent If provided, the parent of the button object. This is a real LVGL lv_obj_t pointer
+ */
     lvppFullImageToggleButton(const char* fName, lv_img_dsc_t uncheckedImg, lv_img_dsc_t checkedImg, lv_obj_t* parent=nullptr);
     ~lvppFullImageToggleButton();
+/**
+ * @brief Set the Image Source for the unchecked image
+ * 
+ * @param img This is a pre-prepared lv_img_dsc_t pointing to the deselected/unchecked image
+ */
     void setImageSourceUnChecked(const lv_img_dsc_t img);
+/**
+ * @brief Set the Image Source for the checked image
+ * 
+ * @param img This is a pre-prepared lv_img_dsc_t pointing to the selected/checked image
+ */
     void setImageSourceChecked(const lv_img_dsc_t img);
     virtual void onValueChanged();
     virtual void onButtonChecked() { };
@@ -210,65 +270,286 @@ protected:
     bool bIsChecked;
 };
 
+/**
+ * @brief Object for loading and displaying an image on a screen
+ * 
+ */
 class lvppImage : public lvppBase {
 public:
+/**
+ * @brief Construct a new lvpp Image object
+ * 
+ * @param fName Internal object name. This is generally used in findObj() or lvppScreen
+ * @param parent If provided, the parent of the object. This is a real LVGL lv_obj_t pointer
+ */
     lvppImage(const char* fName, lv_obj_t* parent=nullptr);
     ~lvppImage();
+/**
+ * @brief Set the Image to be displayed. This is a pre-prepared lv_img_dsc_t directly from LVGL.
+ * 
+ * @param img 
+ */
     void setImage(lv_img_dsc_t img);
 };
 
+/**
+ * @brief Enable the display of a text item
+ * 
+ */
 class lvppLabel : public lvppBase {
 public:
+/**
+ * @brief Construct a new lvpp Label object
+ * 
+ * @param fName Internal object name. This is generally used in findObj() or lvppScreen
+ * @param pText Starting text for the label. Can be changed subsequently.
+ * @param parent If provided, the parent of the object. This is a real LVGL lv_obj_t pointer
+ */
     lvppLabel(const char* fName, const char* pText, lv_obj_t* parent=nullptr);
+/**
+ * @brief Set the Text value to display
+ * 
+ * @param pText pointer to a char string for the new value/contents of the label.
+ */
     virtual void setText(const char* pText);
+/**
+ * @brief Set the Text Color of the label (not the background)
+ * 
+ * @param newColor This is the new color to be used for the label. It is an LVGL lv_color_t construct.
+ *        Examples would be lv_color_black() or lv_palette_main(LV_COLOR_BLUE) or custom created colors.
+ */
     void setTextColor(lv_color_t newColor);
 };
 
+/**
+ * @brief Create a 'bar' widget from LVGL and allow range and value to be used.
+ * 
+ * This is based not on lvppBase but on lvppBaseWithValue as are a few other widget types.
+ * 
+ */
 class lvppBar : public lvppBaseWithValue {
 public:
+/**
+ * @brief Construct a new lvpp Bar object in the same way as most widget creations.
+ * 
+ * @param fName Internal object name. This is generally used in findObj() or lvppScreen
+ * @param parent If provided, the parent of the object. This is a real LVGL lv_obj_t pointer
+ */
     lvppBar(const char* fName, lv_obj_t* parent=nullptr);
+/**
+ * @brief Set the Range of your new bar widget
+ * 
+ * @param range_min Minimum value for the bar
+ * @param range_max Maximum value for the bar
+ */
     void setRange(int16_t range_min, int16_t range_max);
+/**
+ * @brief Set the Value of your bar
+ * 
+ * @param value New value for the bar widget
+ * @param animate Whether or not to animate from current to new position. Default is true.
+ */
     void setValue(int16_t value, bool animate=true);
 };
 
+/**
+ * @brief Construct a new Slider widget (similar to a bar in LVGL parlance).
+ * 
+ */
 class lvppSlider : public lvppBaseWithValue {
 public:
+/**
+ * @brief Construct a new lvpp Slider widget
+ * 
+ * @param fName Internal object name. This is generally used in findObj() or lvppScreen
+ * @param parent If provided, the parent of the object. This is a real LVGL lv_obj_t pointer
+ */
     lvppSlider(const char* fName, lv_obj_t* parent=nullptr);
+/**
+ * @brief Set the Range of your new slider widget
+ * 
+ * @param range_min Minimum value for the slider
+ * @param range_max Maximum value for the slider
+ */
     void setRange(int16_t range_min, int16_t range_max);
+/**
+ * @brief Set the Value of your slider
+ * 
+ * @param value New value for the slider widget
+ * @param animate Whether or not to animate from current to new position. Default is true.
+ */
     void setValue(int16_t value, bool animate=true);
 };
 
+/**
+ * @brief Create an Arc widget - also based on lvppBaseWithValue like Bar and Slider
+ * 
+ */
 class lvppArc : public lvppBaseWithValue {
 public:
+/**
+ * @brief Construct a new lvpp Arc widget
+ * 
+ * @param fName Internal object name. This is generally used in findObj() or lvppScreen
+ * @param parent If provided, the parent of the object. This is a real LVGL lv_obj_t pointer
+ */
     lvppArc(const char* fName, lv_obj_t* parent=nullptr);
+/**
+ * @brief Set the Arc Color - can be useful for custom values/ranges corresponding to different visual representations.
+ * 
+ * @param newColor The new color to use represented in LVGP lv_color_t typedef.
+ */
     void setArcColor(lv_color_t newColor);
+/**
+ * @brief Set the Range of your new arc widget
+ * 
+ * @param range_min Minimum value for the arc
+ * @param range_max Maximum value for the arc
+ */
     void setRange(int16_t range_min, int16_t range_max);
+/**
+ * @brief Set the Value of your arc
+ * 
+ * @param value New value for the arc widget
+ * @param animate Whether or not to animate from current to new position. Default is true.
+ */
     void setValue(int16_t value, bool animate=true);
+/**
+ * @brief Set the Arc Rotation And Sweep amounts.
+ * 
+ * The arc's rotation is about setting what '0 degrees' is visually. The default rotation
+ * sets '0' to be at 3-o'clock on a clock (yes this seems odd and I thought about changing
+ * it to be 12-o'clock but felt this would confuse folks who know LVGL concepts). So, an
+ * arc which has '0' at the bottom would be rotated by 90 degrees (from 3-o'clock to 6-o'clock)
+ * 
+ * The arc is a circle which is either "full" (sweep=0-360) or it is an open/broken circle
+ * which has a sweep encompassing angles greater than 0 and less than 360. These angles are
+ * only the visual representation of the arc and are not about the _value_ and _range_. For
+ * example, an arc which is 3/4 of a circle could have a sweep of 0-270 or it could be 10-280.
+ * It seems it would be typical to rotate an arc by an amount to where you want the lowest
+ * value to start and to always make the sweep start at zero. But this isn't required. One
+ * could rotate 90 degrees and have a sweep that starts at 15 degrees which would effectly
+ * be the same as rotating by 90+15 and starting the sweep at 0.
+ * 
+ * @param rot Angle to rotate from the 3-o'clock position clockwise.
+ * @param startAngle Sweep of the arc should start at this angle offset from the rotation amount.
+ * @param endAngle Sweep of the arc should end at this angle offset from the rotation amount.
+ */
     void setArcRotationAndSweep(uint16_t rot, uint16_t startAngle=361, uint16_t endAngle=361);
 };
 
+/**
+ * @brief Support for drop-down lists and choosing from a dropdown.
+ * 
+ */
 class lvppDropdown : public lvppBase {
 public:
+/**
+ * @brief Construct a new lvpp Dropdown object and optionially give its starting options list.
+ * 
+ * @param fName Internal object name. This is generally used in findObj() or lvppScreen
+ * @param pOptions Optional char pointer with a list of options which are separated by `\n`
+ * @param parent If provided, the parent of the object. This is a real LVGL lv_obj_t pointer
+ */
     lvppDropdown(const char* fName, const char* pOptions=nullptr, lv_obj_t* parent=nullptr);
-    void addOptions(const char* pOptions);
-    void addOptions(std::vector<std::string> &options);
+/**
+ * @brief sets the complete list of options by way of a char pointer with options separated by `\n`
+ * 
+ * @param pOptions pointer to a string of options separated by `\n`
+ */
+    void setOptions(const char* pOptions);
+/**
+ * @brief sets the complete list of options by way of a reference to a vector of std::string values
+ * 
+ * @param options A reference to a std::vector of std::string values.
+ */
+    void setOptions(std::vector<std::string> &options);
+/**
+ * @brief Removes all options from the dropdown.
+ * 
+ */
     void clearOptions(void);
+/**
+ * @brief Set the Dropdown Direction. Depending on the screen location of the drop-down,
+ *        it may be desirable to have the dropdown "open" above rather than below the widget location.
+ * 
+ * @param dropDirection An lv_dir_t value such as LV_DIR_BOTTOM, LV_DIR_TOP.
+ */
     void setDropdownDirection(lv_dir_t dropDirection);
+/**
+ * @brief Get the Current Index of the selected option.
+ * 
+ * @return u_int16_t Value from 0-(n-1) of the selected option.
+ */
     u_int16_t getCurrentIndex() { return lv_dropdown_get_selected(obj); };
+/**
+ * @brief Set the Current selected option manually/programmatically.
+ * 
+ * @param curInd Value from 0-(n-1) of the desired option.
+ */
     void setCurrentIndex(uint16_t curInd);
+/**
+ * @brief Get the Current Text value of the currently selected option
+ * 
+ * @param selStr A pointer to a string where the current option string will be copied.
+ * @param selStrLen The size of the selStr location to ensure a long option value won't overrun selStr memory.
+ *                  Be sure to use the size of selStr MINUS one here to ensure you can fit a null terminator.
+ */
     void getCurrentText(char* selStr, uint8_t selStrLen) { return lv_dropdown_get_selected_str(obj, selStr, selStrLen); };
 protected:
 };
 
+/**
+ * @brief Construct a roller list widget for option selection
+ * 
+ */
 class lvppRoller : public lvppBase {
 public:
+/**
+ * @brief Construct a new lvpp Roller object
+ * 
+ * @param fName Internal object name. This is generally used in findObj() or lvppScreen
+ * @param pOptions Optional char pointer with a list of options which are separated by `\n`
+ * @param parent If provided, the parent of the object. This is a real LVGL lv_obj_t pointer
+ */
     lvppRoller(const char* fName, const char* pOptions=nullptr, lv_obj_t* parent=nullptr);
-    void addOptions(const char* pOptions);
-    void addOptions(std::vector<std::string> &options);
+/**
+ * @brief sets the complete list of options by way of a char pointer with options separated by `\n`
+ * 
+ * @param pOptions pointer to a string of options separated by `\n`
+ */
+    void setOptions(const char* pOptions);
+/**
+ * @brief sets the complete list of options by way of a reference to a vector of std::string values
+ * 
+ * @param options A reference to a std::vector of std::string values.
+ */
+    void setOptions(std::vector<std::string> &options);
+/**
+ * @brief Removes all options from the roller.
+ * 
+ */
     void clearOptions(void);
-    u_int16_t getCurrentIndex() { return lv_dropdown_get_selected(obj); };
+/**
+ * @brief Get the Current Index of the selected option.
+ * 
+ * @return u_int16_t Value from 0-(n-1) of the selected option.
+ */
+    u_int16_t getCurrentIndex() { return lv_roller_get_selected(obj); };
+/**
+ * @brief Set the Current selected option manually/programmatically.
+ * 
+ * @param curInd Value from 0-(n-1) of the desired option.
+ */
     void setCurrentIndex(uint16_t curInd);
-    void getCurrentText(char* selStr, uint8_t selStrLen) { return lv_dropdown_get_selected_str(obj, selStr, selStrLen); };
+/**
+ * @brief Get the Current Text value of the currently selected option
+ * 
+ * @param selStr A pointer to a string where the current option string will be copied.
+ * @param selStrLen The size of the selStr location to ensure a long option value won't overrun selStr memory.
+ *                  Be sure to use the size of selStr MINUS one here to ensure you can fit a null terminator.
+ */
+    void getCurrentText(char* selStr, uint8_t selStrLen) { return lv_roller_get_selected_str(obj, selStr, selStrLen); };
 protected:
     // TODO: Add a vector of pair<int,string> and a map<int,int> indexToID and map<int,int> IDToIndex
     //       Then we can have a simple 'addOptions' where the user only can get the index or value out.
@@ -276,6 +557,19 @@ protected:
     //       Might want to sort the options list prior to mapping everything?
 };
 
+/**
+ * @brief Construct a canvas which uses FULL_COLOR rather than indexed color methods.
+ * 
+ * Canvas drawing is very powerful in LVGL, but only when a full color canvas is available.
+ * In many smaller micros, full color isn't an option due to the sheer size of needing to have
+ * a buffer which is width * height * 4-bytes plus a bit more. LVGL has some great facilities
+ * around drawing rectangles, lines, and labels with really nice options like rounded ends, 
+ * line thicknesses, and other style attributes. Many of these functions simply do not work
+ * in the indexed color world. So, this class implements the full color functions while the
+ * lvppCanvasIndexed implements a stripped down version of these functions within the reduced
+ * color set. See lvppCanvasIndexed for more detail on what's provided and how it works.
+ * 
+ */
 class lvppCanvasFullColor : public lvppBase {
 public:
     lvppCanvasFullColor(const char* fName, lv_coord_t x, lv_coord_t y, lv_coord_t w, lv_coord_t h, lv_color_t* providedBuffer=nullptr, lv_obj_t* parent=nullptr);

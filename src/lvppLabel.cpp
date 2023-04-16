@@ -29,6 +29,10 @@
 
 static    lv_style_t style_status;
 
+/** @file lvppLabel.cpp
+ * @brief Implementation of the label support for displaying text
+*/
+
 lvppLabel::lvppLabel(const char* fName, const char* pText, lv_obj_t* parent) : lvppBase(fName, "LABEL") {
     objParent = parent ? parent : lv_scr_act();
     createObj(lv_label_create(objParent));
@@ -45,6 +49,9 @@ void lvppLabel::setText(const char* pText) {
     }
 }
 
+/** @todo I think this add_style needs to go away and an 'invalidate' should be used instead.
+ * 
+*/
 void lvppLabel::setTextColor(lv_color_t newColor) {
     lv_style_set_text_color(&style_obj, newColor);
     lv_obj_add_style(obj, &style_obj, 0);

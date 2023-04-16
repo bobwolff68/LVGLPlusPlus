@@ -29,6 +29,10 @@
 #include <vector>
 #include <string>
 
+/** @file lvppDropdown.cpp
+ * @brief Implementation of both lvppDropdown and lvppRoller due to their similarities.
+*/
+
 lvppDropdown::lvppDropdown(const char* fName, const char* pOptions, lv_obj_t* parent) : lvppBase(fName, "DROPDOWN") {
     objParent = parent ? parent : lv_scr_act();
     createObj(lv_dropdown_create(objParent));
@@ -38,7 +42,7 @@ lvppDropdown::lvppDropdown(const char* fName, const char* pOptions, lv_obj_t* pa
 //
 // pOptions is a single string with '\n' between each option
 //
-void lvppDropdown::addOptions(const char* pOptions)
+void lvppDropdown::setOptions(const char* pOptions)
 {
     if (pOptions) {
         lv_dropdown_set_options(obj, pOptions);
@@ -50,7 +54,7 @@ void lvppDropdown::clearOptions(void) {
     lv_dropdown_clear_options(obj);
 }
 
-void lvppDropdown::addOptions(std::vector<std::string> &options) {
+void lvppDropdown::setOptions(std::vector<std::string> &options) {
     uint32_t qty=0;
     clearOptions();
 
@@ -79,14 +83,14 @@ void lvppDropdown::setCurrentIndex(uint16_t curInd) {
 lvppRoller::lvppRoller(const char* fName, const char* pOptions, lv_obj_t* parent) : lvppBase(fName, "DROPDOWN") {
     objParent = parent ? parent : lv_scr_act();
     createObj(lv_roller_create(objParent));
-    addOptions(pOptions);
+    setOptions(pOptions);
 //    lv_roller_set_visible_row_count(obj, 6);
 }
 
 //
 // pOptions is a single string with '\n' between each option
 //
-void lvppRoller::addOptions(const char* pOptions)
+void lvppRoller::setOptions(const char* pOptions)
 {
     if (pOptions) {
         lv_roller_set_options(obj, pOptions, LV_ROLLER_MODE_NORMAL);
@@ -111,7 +115,7 @@ std::string join_strings(const std::vector<std::string>& strings, const std::str
     return joined_string;
 }
 
-void lvppRoller::addOptions(std::vector<std::string> &options) {
+void lvppRoller::setOptions(std::vector<std::string> &options) {
     uint32_t qty=0;
     std::string opts;
 

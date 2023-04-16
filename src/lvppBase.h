@@ -37,6 +37,11 @@
 #include "lvgl/lvgl.h"
 #endif
 
+/** @file lvppBase.h
+ * @brief Base class for LVGLPlusPlus widgets (lvppBase)
+ * 
+ */
+
 static std::string eventNames[_LV_EVENT_LAST];
 
 class lvppBase {

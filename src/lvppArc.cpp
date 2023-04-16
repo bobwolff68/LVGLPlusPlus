@@ -27,6 +27,10 @@
 //
 #include "lvpp.h"
 
+/** @file lvppArc.cpp
+ * @brief Implementation of the LVGL Arc widget
+*/
+
 lvppArc::lvppArc(const char* fName, lv_obj_t* parent) : lvppBaseWithValue(fName, "ARC") {
     objParent = parent ? parent : lv_scr_act();
     createObj(lv_arc_create(objParent));
