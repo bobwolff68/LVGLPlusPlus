@@ -211,6 +211,7 @@ void lvppBase::lvCallback(lv_event_t* event) {
 void lvppBase::baseEventHandler(lv_event_t* event) {
     lv_event_code_t code = lv_event_get_code(event);
 
+///@todo Document this LOG_EVENTS 'feature' or remove it.
 #ifdef LOG_EVENTS
     if (!isUnknownCode(code)) {
         if (lv_event_get_current_target(event) != obj)

@@ -42,20 +42,120 @@
  * 
  */
 
-static std::string eventNames[_LV_EVENT_LAST];
+static std::string eventNames[_LV_EVENT_LAST];  ///< Place to store textual versions of event types.
 
+/**
+ * @brief lvppBase is the root of the C++ library LVGLPlusPlus. It strives to create consistent
+ *        ways to manipulate a variety of LVGL-based widgets in a consistent manner - hiding the
+ *        details away from the user where possible.
+ * 
+ * The topmost concepts for lvppBase are:
+ * - Having a handle to an LVGL object 'obj' which gets created (and named) for each widget.
+ * - Event handling for each widget is handled by the class and callbacks are used to give
+ *   the user the ability to take action on changes or events.
+ * - Lambda functions are used in some cases to allow users to utilize the widget class
+ *   without having to derive their own class from it for the sole purpose of a callback.
+ * - A main 'label' is defined for all base widgets.
+ * - An options 'adjacent label' can be used to enable a separate label that acts (often)
+ *   as a label for the item. Think of a dropdown list that needs a nearby label to tell
+ *   the user what this dropdown is intended for.
+ * - Font setting
+ * - Background color setting
+ * - Size and location/alignment of the widget
+ * - Setting of text for the main label as well as ancillary labels.
+ * 
+ */
 class lvppBase {
 public:
+/**
+ * @brief Construct a new lvpp Base object
+ * 
+ * @param fName Internal object name. This is generally used in findObj() or lvppScreen
+ * @param oType The type of the object being created. This is primarily internal, but
+ *              can be used to know the category/type of the object and can be obtained
+ *              via getObjType() if needed.
+ */
     lvppBase(const char* fName, const char* oType);
     ~lvppBase();
-    void createObj(lv_obj_t* o);
+/**
+ * @brief Create the handlers and store the newly created object.
+ * 
+ * The pattern here is that any derived widget type will, in its constructor, call createObj()
+ * with a pointer to the appropriate LVGL object type. For instance
+ *          createObj(lv_dropdown_create(objParent));
+ * This effectively make it the responsibility of the derived class to create the right _type_
+ * of object and pass it to createObj() so that the base class can hang on to that handle and
+ * then setup event callbacks for the object.
+ * 
+ * @param o The lv_obj_t pointer created by the derived class.
+ */
+    void createObj(lv_obj_t* o);        ///< Might this be better named storeNewObj() - but lots of refacotring to do if so.
+/**
+ * @brief Get the Event Name from a given event code. Translate it to text, essentially.
+ * 
+ * @param code An lv_event_code_t type from LVGL.
+ * @return const char* Pointer to a string with the textual description of the code type.
+ */
     static const char* getEventName(lv_event_code_t code);
+/**
+ * @brief Check to see if an event code is valid or not. Utility function.
+ * 
+ * @param code Event code from LVGL
+ * @return If the event code has a valid lookup, returns true.
+ */
     static bool isUnknownCode(lv_event_code_t code);
+/**
+ * @brief Get the Obj object
+ * 
+ * @return lv_obj_t* Returns the LVGL lv_obj_t for the actual widget/object. 
+ *         Great for more advanced users who may wish to manipulate the object
+ *         more fully outside of the lvpp* class library.
+ */
     lv_obj_t* getObj(void) { return obj; };
+/**
+ * @brief Set the Size object. Most of the time, LVGL does a great job of setting a sane size,
+ *        but manipulation of things like the text or the font size can cause this to no longer
+ *        be a good size. It is a common use pattern to instantiate a widget and then use
+ *        setSize() and align() to place them in your user interface as needed.
+ * 
+ * @param width New width of the widget.
+ * @param height New height of the widget.
+ */
     void setSize(lv_coord_t width, lv_coord_t height);
+/**
+ * @brief Change the x/y location of the object.
+ * 
+ * @param align This is an LVGL notion of alignment type. It is a very rich concept of
+ *              alignment that does not simply use x/y screen coordinates but uses the
+ *              x/y as an offset from some other 'anchor'. In concrete terms, this is
+ *              one of LV_ALIGN_CENTER, LV_ALIGN_TOP_MID, LV_ALIGN_BOTTON_RIGHT, etc.
+ * @param x_ofs The x offset from the align point.
+ * @param y_ofs The y offset from the align point.
+ */
     void align(lv_align_t align, lv_coord_t x_ofs, lv_coord_t y_ofs);
+/**
+ * @brief Set the Font Size for the object in simple 'points'.
+ * 
+ * NOTE: This makes easy work of changing font sizes, but its downfall is that the size
+ *       can be given for font sizes that don't exist for several reasons. Be forewarned.
+ * 
+ * @param points The desired point size for the object.
+ * @todo Possibly return a bool for errant point values or for requests of point sizes that weren't compiled in?
+ * 
+ */
     void setFontSize(uint8_t points);
+/**
+ * @brief Set the Font to be used. This is a more complete/complex version of setFontSize().
+ *        The fact that the font pointer is required at least means the user knows the font exists.
+ * 
+ * @param pF A pointer to a valid lv_font_t to be used for the object.
+ */
     void setFont(lv_font_t* pF);
+/**
+ * @brief Set the background color of the object
+ * 
+ * @param color16 
+ */
     void setBGColor(lv_color16_t color16);
     virtual void setText(const char* pText);
     void setTextAlign(lv_align_t align, lv_coord_t xoff, lv_coord_t yoff);

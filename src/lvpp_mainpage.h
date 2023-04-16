@@ -15,6 +15,16 @@
  *            The user is free to get handles to pointers and use them directly in lv_* calls.
  *
  * \section intro_sec Introduction
+ * 
+ * Philosophy - support the biggest common use cases
+ *  - Create a common set of modifier functions that work regardless of what type of widget
+ *  - Decomplexify drawing for most cases
+ *  - allow use of the underlying lvgl functionality for advanced use cases.
+ * 
+ * Really document the canvas and canvasIndexed
+ * 
+ * document typical use pattern of instantiating widgets, setting font size, then widget
+ * size and alignment and a lambda callback.
  *
  * \section todo_sec High level to-do-list
  * 
@@ -43,5 +53,8 @@
  *   - Find someone to implement the test jig as I think it'll require more time than I (currently) have.
  * - Get feedback from anyone who is using the library on a non-ILI9341 display or using a different
  *   drawing support method than TFT_eSPI from Bodmer.
- * 
+ * - Better or more complete handling of what font sizes are handled by setFontSize() without making
+ *   assumptions of what fonts were baked into the build and which were not.
+ *   - Would be great to calculate or measure what font sizes "cost" in terms of build size to give
+ *     users a good sense of what levers they are pulling and how much each lever costs.
 */

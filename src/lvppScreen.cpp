@@ -75,6 +75,10 @@ lvppBase* lvppScreen::findObj(const char* pName) {
     return nullptr;
 }
 
+///@todo Support more than just bar and slider for value setting. Get clear on what widgets
+///      should bet settable.
+///@todo Create a 'getter' version as well.
+///@todo Create a setObj() possibly for boolean types like buttons?? OR just use 1/0 as the 'val'?
 bool lvppScreen::setObjValue(const char* objName, int16_t val) {
     lvppBase* pB = findObj(objName);
     std::string type=pB->getObjType();
