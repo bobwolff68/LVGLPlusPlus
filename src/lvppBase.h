@@ -154,9 +154,9 @@ public:
 /**
  * @brief Set the background color of the object
  * 
- * @param color16 
+ * @param color lv_color_t color to be used for the background.
  */
-    void setBGColor(lv_color16_t color16);
+    void setBGColor(lv_color_t color);
     virtual void setText(const char* pText);
     void setTextAlign(lv_align_t align, lv_coord_t xoff, lv_coord_t yoff);
     void setTextColor(lv_color_t newColor);
