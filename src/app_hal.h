@@ -33,6 +33,10 @@
 #ifndef DRIVER_H
 #define DRIVER_H
 
+/** @file app_hal.h
+ * @brief Support file for app_hal.c which is only used in simulation/native builds.
+*/
+
 #ifdef __cplusplus
 extern "C" {
 #endif

@@ -43,6 +43,10 @@
 #include <string>
 #include <map>
 
+/** @file lvpp.h
+ * @brief All derived classes for LVGL based class/widgets. This is the file you want to include.
+*/
+
 /**
  * @class lvppScreen
  * @brief The lvppScreen is a non - lvppBase object for organizing the use of multiple 
@@ -616,7 +620,7 @@ public:
  * @brief Draw a line on the canvas
  * 
  * @param x1,y1 Starting point of the line to be drawn.
- * @param y1,y2 Ending point of the line to be drawn.
+ * @param x2,y2 Ending point of the line to be drawn.
  * @param width Width of the line to be drawn in pixels.
  * @param color Color of the line to be drawn.
  */
@@ -725,7 +729,7 @@ public:
  * These figures come from the lv_palette_darken(), lv_palette_main() and lv_palette_lighten()
  * functions.
  * 
- * @param col Palette (not color) to add to the index. This is generally done by the use of
+ * @param pal Palette (not color) to add to the index. This is generally done by the use of
  *            LV_PALETTE_BLUE, LV_PALETTE_TEAL, LV_PALETTE_BROWN, etc.
  * @return true If there was room to add a new color or if the color was already in the index.
  * @return false If the index is already full based on the indexed color depth of the canvas.
@@ -808,7 +812,7 @@ public:
 /**
  * @brief Draw a rectangle on the canvas without filling in the rectangle.
  * 
- * @param x,y Starting point of the rectangle
+ * @param x1,y1 Starting point of the rectangle
  * @param w,h Width and height of the rectangle
  * @param borderColor Color of the rectangle's border lines.
  */
@@ -817,7 +821,7 @@ public:
 /**
  * @brief Draw a rectangle on the canvas without filling in the rectangle using an _index_ color.
  * 
- * @param x,y Starting point of the rectangle
+ * @param x1,y1 Starting point of the rectangle
  * @param w,h Width and height of the rectangle
  * @param borderColorInd The _index_ of the color to use. This is _not a true color_ but only an index.
  */
@@ -826,7 +830,7 @@ public:
 /**
  * @brief Draw a rectangle on the canvas and fill in the center of the rectangle.
  * 
- * @param x,y Starting point of the rectangle
+ * @param x1,y1 Starting point of the rectangle
  * @param w,h Width and height of the rectangle
  * @param borderColor Color of the rectangle's border lines.
  * @param fillColor Color to fill in the rectangle.
@@ -836,10 +840,10 @@ public:
 /**
  * @brief Draw a rectangle on the canvas and fill in the center of the rectangle. This uses _index_ colors.
  * 
- * @param x,y Starting point of the rectangle
+ * @param x1,y1 Starting point of the rectangle
  * @param w,h Width and height of the rectangle
- * @param borderColor The _index_ of the color to use. This is _not a true color_ but only an index.
- * @param fillColor The _index_ of the color to use. This is _not a true color_ but only an index.
+ * @param borderColorInd The _index_ of the color to use. This is _not a true color_ but only an index.
+ * @param fillColorInd The _index_ of the color to use. This is _not a true color_ but only an index.
  */
     void drawRectWithFillByIndex(lv_coord_t x1, lv_coord_t y1, lv_coord_t w, lv_coord_t h, 
         lv_color_t borderColorInd, lv_color_t fillColorInd);

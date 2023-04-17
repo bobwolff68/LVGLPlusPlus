@@ -41,7 +41,7 @@
  * - There is a need for cleanup on how object styles are used and added and how objects are then
  *   invalidated after a change. This is still a fuzzy misunderstanding of LVGL for myself. While
  *   it has become clearer recently, some of these objects are still not 'clean' in that regard
- *   and may still have misunderstandings buried in them. #fairwarning
+ *   and may still have misunderstandings buried in them. Fair warning...
  * - Find a contributor with a Windows machine who is willing and able to:
  *   - Take the Mac native simulation configuration and translate that to Windows.
  *   - Test against that configuration.

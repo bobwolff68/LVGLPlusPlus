@@ -28,8 +28,8 @@
 #include "lvpp.h"
 
 /**
- * @file lvppScreen.cpp Implementation of lvppScreen
- * 
+ * @file lvppScreen.cpp
+ * @brief Implementation of lvppScreen class.
  */
 
 ///

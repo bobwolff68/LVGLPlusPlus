@@ -31,6 +31,10 @@
 //      https://github.com/lvgl/lv_platformio/tree/master/hal/sdl2
 //
 
+/** @file app_hal.c
+ * @brief This file is only used when emulation / native builds happen. Gated on define of USE_SDL in the build.
+*/
+
 // This file is only used when emulation / native builds happen
 // but it's hard to conditionally include/exclude files from a library build.
 // So, it gets included in all builds and only compiles on USE_SDL defined.

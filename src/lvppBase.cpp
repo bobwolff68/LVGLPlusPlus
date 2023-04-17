@@ -27,8 +27,17 @@
 //
 #include "lvppBase.h"
 
+/** @file lvppBase.cpp
+ * @brief Implementation of the base class for the library - lvppBase.
+*/
+
 #define LV_EVENT_UNKNOWN "EVENT_UNKNOWN:"
-// Noisy logging of all known events
+
+/**
+ * @brief Uncommenting the definition of LOG_EVENTS will make for a noisy logging of all events.
+ *        This can be useful if things feel upside down when you're adding features or something.
+ * 
+ */
 //#define LOG_EVENTS
 
 bool lvppBase::bEventNamesInitComplete = false;
@@ -211,7 +220,6 @@ void lvppBase::lvCallback(lv_event_t* event) {
 void lvppBase::baseEventHandler(lv_event_t* event) {
     lv_event_code_t code = lv_event_get_code(event);
 
-///@todo Document this LOG_EVENTS 'feature' or remove it.
 #ifdef LOG_EVENTS
     if (!isUnknownCode(code)) {
         if (lv_event_get_current_target(event) != obj)
