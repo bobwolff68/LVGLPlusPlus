@@ -25,6 +25,7 @@
  * 
  * document typical use pattern of instantiating widgets, setting font size, then widget
  * size and alignment and a lambda callback.
+ * 
  *
  * \section todo_sec High level to-do-list
  * 
@@ -57,4 +58,5 @@
  *   assumptions of what fonts were baked into the build and which were not.
  *   - Would be great to calculate or measure what font sizes "cost" in terms of build size to give
  *     users a good sense of what levers they are pulling and how much each lever costs.
+ * - Go through and clean up any printf() items and think about LV_INFO or LV_WARN in its place.
 */
