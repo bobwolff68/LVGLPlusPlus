@@ -1,0 +1,7 @@
+<map id="lvppBaseWithValue" name="lvppBaseWithValue">
+<area shape="rect" id="node1" title="Derivation from lvppBase. Those widgets which have an inherant &#39;value&#39; to show are based on this slig..." alt="" coords="62,79,197,104"/>
+<area shape="rect" id="node3" href="$classlvpp_arc.html" title="Create an Arc widget &#45; also based on lvppBaseWithValue like Bar and Slider." alt="" coords="5,152,72,177"/>
+<area shape="rect" id="node4" href="$classlvpp_bar.html" title="Create a &#39;bar&#39; widget from LVGL and allow range and value to be used." alt="" coords="96,152,163,177"/>
+<area shape="rect" id="node5" href="$classlvpp_slider.html" title="Construct a new Slider widget (similar to a bar in LVGL parlance)." alt="" coords="187,152,266,177"/>
+<area shape="rect" id="node2" href="$classlvpp_base.html" title="lvppBase is the root of the C++ library LVGLPlusPlus. It strives to create consistent ways to manipul..." alt="" coords="91,5,167,31"/>
+</map>
