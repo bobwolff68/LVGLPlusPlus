@@ -23,7 +23,7 @@
     "lvgl/lvgl": "~8.3.1",
     "lv_drivers": "https://github.com/lvgl/lv_drivers/archive/refs/tags/v8.2.0.zip"
   },
-  "frameworks": "*",
+  "frameworks": "Arduino, FreeRTOS",
   "platforms": "*"
 }
 
