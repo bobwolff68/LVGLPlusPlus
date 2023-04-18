@@ -10,7 +10,7 @@
 
 /** \mainpage LVGLPlusPlus High-level Goals
  * 
- * LVGLPlusPlus aspires to put a low-cost C++ wrapper around the LVGL library.
+ * LVGLPlusPlus aspires to put a C++ wrapper around the LVGL library.
  * It will not support every feature of LVGL as the feature-breadth of the
  * full library is extensive and growing. However, it also does not preclude
  * the co-mingling of this C++ wrapper usage and the underlying library.

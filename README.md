@@ -7,7 +7,7 @@ C++ wrapper around the embedded graphics library, LVGL
   - The interactive forum for LVGL is also an excellent resource. Go check it out at [LVGL Forum](https://forum.lvgl.io/)
   - The main github repo for LVGL itself is at [LVGL Main](https://github.com/lvgl/lvgl).
   - The PlatformIO example on LVGL is at [LVGL with PlatformIO](https://github.com/lvgl/lv_platformio)
-- The build environment I use is Microsoft VSCode with the PlatformIO extension. This library is a PlatformIO library.
+- The build environment I use is Microsoft VSCode with the PlatformIO extension. This library is a PlatformIO library. The author of LVGL gives some setup advice in the README for [LVGL with PlatformIO](https://github.com/lvgl/lv_platformio)
 - I'll be turning on the Github _Issues_ and _Discussions_ features as soon as I can after going live with the public repo.
 - Feel free to email me - b o b dot w o l f f 6 8 at g m a i l dot com - happy to entertain questions.
 
