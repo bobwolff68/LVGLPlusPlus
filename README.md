@@ -2,6 +2,7 @@
 C++ wrapper around the embedded graphics library, LVGL
 
 ## Important Resources at the top level
+- [Discussions](https://github.com/bobwolff68/LVGLPlusPlus/discussions) on Github are a great place to ask questions and get answers.
 - The full Doxygen-generated docs can be found on my Github Pages at [LVGLPlusPlus Doxygen Docs](https://bobwolff68.github.io/LVGLPlusPlus)
 - If you're unfamiliar with LVGL, please go check out the [Main LVGL Site](https://lvgl.io)
   - The interactive forum for LVGL is also an excellent resource. Go check it out at [LVGL Forum](https://forum.lvgl.io/)
@@ -10,6 +11,9 @@ C++ wrapper around the embedded graphics library, LVGL
 - The build environment I use is Microsoft VSCode with the PlatformIO extension. This library is a PlatformIO library. The author of LVGL gives some setup advice in the README for [LVGL with PlatformIO](https://github.com/lvgl/lv_platformio)
 - I'll be turning on the Github _Issues_ and _Discussions_ features as soon as I can after going live with the public repo.
 - Feel free to email me - b o b dot w o l f f 6 8 at g m a i l dot com - happy to entertain questions.
+- Two sample projects can be found as well:
+  - [Threaded LVGLPlusPlus Sample Project](https://github.com/bobwolff68/LVGLPlusPlus-ThreadedSample)
+  - [Non-Threaded LVGLPlusPlus Sample Project](https://github.com/bobwolff68/LVGLPlusPlus-NonThreadedSample)
 
 ## Mid-range Game Plan
 
@@ -23,6 +27,10 @@ First and foremost - please feel free to use this as is. I'd be happy to hear su
 ## Contribution and Discussion
 
 Please do strike up a discussion if you have (constructive) ideas. I'm game to brainstorm with positive thinking folks on the structure and how it marches forward.
+
+## Looking for digital design and software engineering design services?
+
+- Shameless plug: As of Spring 2023 I'm open to contract work and happy to discuss projects. Get in touch - b o b dot w o l f f 6 8 at g m a i l dot c o m
 
 Thanks!
 Bob Wolff - aka roboBob
