@@ -27,9 +27,10 @@ var NAVTREE =
   [ "LVGLPlusPlus", "index.html", [
     [ "LVGLPlusPlus High-level Goals", "index.html", "index" ],
     [ "Release Notes", "release_notes.html", [
-      [ "Release Notes Follow:", "release_notes.html#autotoc_md7", [
-        [ "Version 1.3.0 - First Public version documented in the #mainpage", "release_notes.html#autotoc_md8", [
-          [ "Pre-Version 1.3.0 - All internal and getting things squared up for public release.", "release_notes.html#autotoc_md9", null ]
+      [ "General", "release_notes.html#autotoc_md7", null ],
+      [ "Release Notes Follow:", "release_notes.html#autotoc_md8", [
+        [ "Version 1.3.0 - First Public version documented and released", "release_notes.html#autotoc_md9", [
+          [ "Pre-Version 1.3.0 - All internal and getting things squared up for public release.", "release_notes.html#autotoc_md10", null ]
         ] ]
       ] ]
     ] ],
@@ -60,7 +61,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"structesp_rec.html#afaf4cb6cebcd0d1e1ee0dceecadbfdec"
+"structesp_rec.html#a638112c7f1dfe6212d2970f35816ac8e"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
