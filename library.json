@@ -1,6 +1,6 @@
 {
   "name": "LVGLPlusPlus",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "description": "A C++ wrapper around the most excellent LVGL embedded graphics library",
   "keywords": "lvgl, esp32, TFT_eSPI, embedded graphics library, lvpp, TFT display",
   "repository":
