@@ -1,6 +1,6 @@
 {
   "name": "LVGLPlusPlus",
-  "version": "1.3.0",
+  "version": "1.3.1",
   "description": "A C++ wrapper around the most excellent LVGL embedded graphics library",
   "keywords": "lvgl, esp32, tft-espi, tft espi, tftespi, embedded graphics library, lvpp, tft display",
   "repository":
@@ -23,7 +23,7 @@
     "lvgl/lvgl": "~8.3.1",
     "lv_drivers": "https://github.com/lvgl/lv_drivers/archive/refs/tags/v8.2.0.zip"
   },
-  "frameworks": "Arduino, FreeRTOS",
+  "frameworks": "*",
   "platforms": "*"
 }
 
