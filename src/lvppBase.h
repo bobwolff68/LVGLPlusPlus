@@ -113,6 +113,14 @@ public:
  */
     lv_obj_t* getObj(void) { return obj; };
 /**
+ * @brief Get the label object
+ * 
+ * @return lv_obj_t* Returns the LVGL lv_obj_t for the actual label object. 
+ *         Great for more advanced users who may wish to manipulate the label
+ *         more fully outside of the lvpp* class library.
+ */
+    lv_obj_t* getLabelObj(void) { return label; };
+/**
  * @brief Set the Size object. Most of the time, LVGL does a great job of setting a sane size,
  *        but manipulation of things like the text or the font size can cause this to no longer
  *        be a good size. It is a common use pattern to instantiate a widget and then use
@@ -150,7 +158,7 @@ public:
  * 
  * @param pF A pointer to a valid lv_font_t to be used for the object.
  */
-    void setFont(lv_font_t* pF);
+    void setFont(const lv_font_t* pF);
 /**
  * @brief Set the background color of the object
  * 
@@ -163,6 +171,12 @@ public:
  * @param pText char pointer to the text
  */
     virtual void setText(const char* pText);
+/**
+ * @brief Get the Text from the object/label and put it in a std::string
+ * 
+ * @return std::string return the text into a string.
+ */
+    std::string getText();
 /**
  * @brief Set the Text Alignment. This allows the object's primary label to be moved from its 'center' position.
  * 
@@ -180,6 +194,21 @@ public:
  * @param newColor An lv_color_t for the desired color to use.
  */
     void setTextColor(lv_color_t newColor);
+/**
+ * @brief Set the Label's text alignment (left/right/center)
+ * 
+ * @param _align an lv_text_align_t like LV_TEXT_ALIGN_CENTER
+ */
+    void setLabelJustificationAlignment(lv_text_align_t _align);
+/**
+ * @brief Turn on or off inline text colorization. To use colors
+ *        inline, simply use #RRGGBB in the text where the R, G, and B
+ *        are hex values. Be sure to have a space before and after.
+ * 
+ * @param bEnable Turn on or off inline text colorization. Default is true.
+ */
+    void setLabelColorizationEnabled(bool bEnable=true);
+
 /**
  * @brief Set the text for the adjacent text label.
  *        This label is not enabled by default. Setting this text will create and enable the

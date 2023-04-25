@@ -111,6 +111,13 @@ public:
  */
     void activateScreen(uint32_t anim_time=0, lv_scr_load_anim_t anim=LV_SCR_LOAD_ANIM_NONE);
 /**
+ * @brief If you've activated this screen via activateScreen(), then this method will activate
+ *        the screen which was active _prior_ to calling activateScreen(). If activation has not
+ *        yet occured, then this function will have no effect.
+ * 
+ */
+    void activatePriorScreen();
+/**
  * @brief Defeats the automatic use of scrollbars by LVGL when certain drawing operations might cause them to appear.
  * 
  * When certain drawing operations take place near or beyond the X/Y borders, LVGL will make
@@ -150,6 +157,7 @@ public:
     void setObjText(std::string str);
 protected:
     lv_obj_t* pScreen=nullptr; ///< The actual underlying LVGL screen pointer.
+    lv_obj_t* pPriorScreen;     ///< Holder for prior screen when activateScreen() is called. Used in activatePriorScreen()
     std::vector<lvppBase*> objects; ///< Data structure used to hold all of the object pointers.
 };
 
@@ -306,10 +314,10 @@ public:
  * @brief Construct a new lvpp Label object
  * 
  * @param fName Internal object name. This is generally used in findObj() or lvppScreen
- * @param pText Starting text for the label. Can be changed subsequently.
+ * @param pText Starting text for the label. Can be changed subsequently. Default nullptr.
  * @param parent If provided, the parent of the object. This is a real LVGL lv_obj_t pointer
  */
-    lvppLabel(const char* fName, const char* pText, lv_obj_t* parent=nullptr);
+    lvppLabel(const char* fName, const char* pText=nullptr, lv_obj_t* parent=nullptr);
 /**
  * @brief Set the Text value to display
  * 
@@ -643,6 +651,7 @@ protected:
     lv_draw_label_dsc_t* pDscLabel;     //< LVGL attribute for label drawing
     lv_point_t twoPoints[2];            //< Supporting the two-point line draw
     lv_color_t* pBuffer;                //< Location of canvas color buffer if allocated internally.
+    lv_coord_t width, height;   //< Width and Height of this canvas.
 };
 
 /**
@@ -847,6 +856,40 @@ public:
  */
     void drawRectWithFillByIndex(lv_coord_t x1, lv_coord_t y1, lv_coord_t w, lv_coord_t h, 
         lv_color_t borderColorInd, lv_color_t fillColorInd);
+/**
+ * @brief Draw a _centered_ rectangle on the canvas. Will have xBorder/yBorder around it.
+ * 
+ * @param xBorder,yBorder The border size on each x-side and each y-side of the rectangle
+ * @param borderColor Color of the rectangle's border lines.
+ */
+    void drawCenteredRectWithoutFill(lv_coord_t xBorder, lv_coord_t yBorder, lv_color_t borderColor);
+/**
+ * @brief Draw a _centered_ rectangle on the canvas.
+ *        Will have xBorder/yBorder around it. This uses _index_ colors.
+ * 
+ * @param xBorder,yBorder The border size on each x-side and each y-side of the rectangle
+ * @param borderColorInd The _index_ of the color to use. This is _not a true color_ but only an index.
+ */
+    void drawCenteredRectWithoutFillByIndex(lv_coord_t xBorder, lv_coord_t yBorder, lv_color_t borderColorInd);
+/**
+ * @brief Draw a _centered_ rectangle on the canvas and fill in the rectangle. Will have xBorder/yBorder around it.
+ * 
+ * @param xBorder,yBorder The border size on each x-side and each y-side of the rectangle
+ * @param borderColor Color of the rectangle's border lines.
+ * @param fillColor Color to fill in the rectangle.
+ */
+    void drawCenteredRectWithFill(lv_coord_t xBorder, lv_coord_t yBorder, 
+        lv_color_t borderColor, lv_color_t fillColor);
+/**
+ * @brief Draw a _centered_ rectangle on the canvas and fill in the rectangle. 
+ *        Will have xBorder/yBorder around it. This uses _index_ colors.
+ * 
+ * @param xBorder,yBorder The border size on each x-side and each y-side of the rectangle
+ * @param borderColorInd The _index_ of the color to use. This is _not a true color_ but only an index.
+ * @param fillColorInd The _index_ of the color to use. This is _not a true color_ but only an index.
+ */
+    void drawCenteredRectWithFillByIndex(lv_coord_t xBorder, lv_coord_t yBorder, 
+        lv_color_t borderColorInd, lv_color_t fillColorInd);
 protected:
     uint16_t maxColorIndexesAllowed;    ///< Number of color indexes available based on the color depth at creation time.
     uint8_t colorIndexesUsed;           ///< How many colors have presently been used in the indexed color set.
@@ -857,4 +900,5 @@ protected:
     std::map<uint8_t, uint8_t> colorToIndex;
 #endif
     lv_color_t* pBuffer;    //< Location of canvas color buffer if allocated internally.
+    lv_coord_t width, height;   //< Width and Height of this canvas.
 };

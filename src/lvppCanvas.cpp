@@ -36,6 +36,9 @@ lvppCanvasIndexed::lvppCanvasIndexed(const char* fName, lv_coord_t x, lv_coord_t
     lv_img_cf_t cfType;
     int bufSize;
 
+    width = w;
+    height = h;
+
     objParent = parent ? parent : lv_scr_act();
     createObj(lv_canvas_create(objParent));
 
@@ -308,8 +311,64 @@ void lvppCanvasIndexed::drawRectWithFillByIndex(lv_coord_t x1, lv_coord_t y1, lv
     lv_obj_invalidate(obj);
 }
 
+void lvppCanvasIndexed::drawCenteredRectWithoutFill(lv_coord_t xBorder, lv_coord_t yBorder, lv_color_t borderColor) {
+    lv_color_t bColInd;
+    if (getIndexFromColor(borderColor, bColInd)) {
+        drawCenteredRectWithoutFillByIndex(xBorder, yBorder, bColInd);
+    }
+    else {
+        LV_LOG_WARN("drawCenteredRectWithoutFill: border color not found in palette.");
+    }
+}
+
+void lvppCanvasIndexed::drawCenteredRectWithoutFillByIndex(lv_coord_t xBorder, lv_coord_t yBorder, lv_color_t borderColorInd) {
+    lv_coord_t x,y,w,h;
+    // Calculate xywh based on width/height of canvas and border amount.
+    if (xBorder >= width/2 || yBorder >= height/2) {
+        LV_LOG_WARN("drawCenteredRectWithoutFillByIndex: xBorder or yBorder exceed half of width/height. NOT Drawn.");
+        return;
+    }
+
+    x = xBorder;
+    y = yBorder;
+    w = width - xBorder*2;
+    h = height - yBorder*2;
+    drawRectWithoutFillByIndex(x, y, w, h, borderColorInd);
+}
+
+void lvppCanvasIndexed::drawCenteredRectWithFill(lv_coord_t xBorder, lv_coord_t yBorder, 
+        lv_color_t borderColor, lv_color_t fillColor) {
+    lv_color_t bColInd, fColInd;
+    if (getIndexFromColor(borderColor, bColInd) && getIndexFromColor(fillColor, fColInd)) {
+        drawCenteredRectWithFillByIndex(xBorder, yBorder, bColInd, fColInd);
+    }
+    else {
+        LV_LOG_WARN("drawCenteredRectWithFill: border or fill color not found in palette.");
+    }
+}
+
+void lvppCanvasIndexed::drawCenteredRectWithFillByIndex(lv_coord_t xBorder, lv_coord_t yBorder, 
+        lv_color_t borderColorInd, lv_color_t fillColorInd) {
+    lv_coord_t x,y,w,h;
+    // Calculate xywh based on width/height of canvas and border amount.
+    if (xBorder >= width/2 || yBorder >= height/2) {
+        LV_LOG_WARN("drawCenteredRectWithFillByIndex: xBorder or yBorder exceed half of width/height. NOT Drawn.");
+        return;
+    }
+
+    x = xBorder;
+    y = yBorder;
+    w = width - xBorder*2;
+    h = height - yBorder*2;
+    drawRectWithFillByIndex(x, y, w, h, borderColorInd, fillColorInd);
+}
+
 lvppCanvasFullColor::lvppCanvasFullColor(const char* fName, lv_coord_t x, lv_coord_t y, lv_coord_t w, lv_coord_t h, lv_color_t* providedBuffer, lv_obj_t* parent) 
     : lvppBase(fName, "CANVASFULLCOLOR") {
+
+    width = w;
+    height = h;
+    
     objParent = parent ? parent : lv_scr_act();
     createObj(lv_canvas_create(objParent));
 

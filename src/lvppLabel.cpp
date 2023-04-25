@@ -41,6 +41,11 @@ lvppLabel::lvppLabel(const char* fName, const char* pText, lv_obj_t* parent) : l
         setText(pText);
     }
 
+    /// @brief Special case - this is a label object, so the label object has a
+    /// 'label' which is itself... this is primarily about getLabelObj()
+    /// doing the 'smart thing'.
+    label = obj;
+
 }
 
 void lvppLabel::setText(const char* pText) {
