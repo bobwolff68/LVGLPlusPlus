@@ -2,6 +2,7 @@ var classlvpp_screen =
 [
     [ "lvppScreen", "classlvpp_screen.html#a60415af62b5b0d4095faf451800f516e", null ],
     [ "~lvppScreen", "classlvpp_screen.html#a0864fff92f0c27a4b36dfa7d7fbeaeb0", null ],
+    [ "activatePriorScreen", "classlvpp_screen.html#a9624baf0786732617897180a5e02eaaa", null ],
     [ "activateScreen", "classlvpp_screen.html#a79085e9b149e62f101ba6e39f154682b", null ],
     [ "addObject", "classlvpp_screen.html#adeadaf0797842f6cdb158848ee229f7a", null ],
     [ "disableScrollBars", "classlvpp_screen.html#ac519757f657ac26c3203192136683f36", null ],
@@ -10,5 +11,6 @@ var classlvpp_screen =
     [ "setObjText", "classlvpp_screen.html#afd18e91817200bdf6743b11ff245c6f9", null ],
     [ "setObjValue", "classlvpp_screen.html#a0aa1b2bf7d9d0d56e02c030b84d244ab", null ],
     [ "objects", "classlvpp_screen.html#a495727a8cc32f2ddafd26b2a436f6241", null ],
+    [ "pPriorScreen", "classlvpp_screen.html#a06e9b56e1337c67f65f2cfe99f8b4150", null ],
     [ "pScreen", "classlvpp_screen.html#a100c13d212918c57b7eef769b46a1a4c", null ]
 ];

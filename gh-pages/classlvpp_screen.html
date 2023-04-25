@@ -119,6 +119,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a79085e9b149e62f101ba6e39f154682b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlvpp_screen.html#a79085e9b149e62f101ba6e39f154682b">activateScreen</a> (uint32_t anim_time=0, lv_scr_load_anim_t anim=LV_SCR_LOAD_ANIM_NONE)</td></tr>
 <tr class="memdesc:a79085e9b149e62f101ba6e39f154682b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Load/Activate this screen either with or without animation based on parameters given.  <br /></td></tr>
 <tr class="separator:a79085e9b149e62f101ba6e39f154682b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9624baf0786732617897180a5e02eaaa"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlvpp_screen.html#a9624baf0786732617897180a5e02eaaa">activatePriorScreen</a> ()</td></tr>
+<tr class="memdesc:a9624baf0786732617897180a5e02eaaa"><td class="mdescLeft">&#160;</td><td class="mdescRight">If you've activated this screen via <a class="el" href="classlvpp_screen.html#a79085e9b149e62f101ba6e39f154682b" title="Load/Activate this screen either with or without animation based on parameters given.">activateScreen()</a>, then this method will activate the screen which was active <em>prior</em> to calling <a class="el" href="classlvpp_screen.html#a79085e9b149e62f101ba6e39f154682b" title="Load/Activate this screen either with or without animation based on parameters given.">activateScreen()</a>. If activation has not yet occured, then this function will have no effect.  <br /></td></tr>
+<tr class="separator:a9624baf0786732617897180a5e02eaaa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac519757f657ac26c3203192136683f36"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlvpp_screen.html#ac519757f657ac26c3203192136683f36">disableScrollBars</a> ()</td></tr>
 <tr class="memdesc:ac519757f657ac26c3203192136683f36"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defeats the automatic use of scrollbars by LVGL when certain drawing operations might cause them to appear.  <br /></td></tr>
 <tr class="separator:ac519757f657ac26c3203192136683f36"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -136,6 +139,9 @@ Protected Attributes</h2></td></tr>
 <tr class="memitem:a100c13d212918c57b7eef769b46a1a4c"><td class="memItemLeft" align="right" valign="top">lv_obj_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlvpp_screen.html#a100c13d212918c57b7eef769b46a1a4c">pScreen</a> =nullptr</td></tr>
 <tr class="memdesc:a100c13d212918c57b7eef769b46a1a4c"><td class="mdescLeft">&#160;</td><td class="mdescRight">The actual underlying LVGL screen pointer.  <br /></td></tr>
 <tr class="separator:a100c13d212918c57b7eef769b46a1a4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a06e9b56e1337c67f65f2cfe99f8b4150"><td class="memItemLeft" align="right" valign="top">lv_obj_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlvpp_screen.html#a06e9b56e1337c67f65f2cfe99f8b4150">pPriorScreen</a></td></tr>
+<tr class="memdesc:a06e9b56e1337c67f65f2cfe99f8b4150"><td class="mdescLeft">&#160;</td><td class="mdescRight">Holder for prior screen when <a class="el" href="classlvpp_screen.html#a79085e9b149e62f101ba6e39f154682b" title="Load/Activate this screen either with or without animation based on parameters given.">activateScreen()</a> is called. Used in <a class="el" href="classlvpp_screen.html#a9624baf0786732617897180a5e02eaaa" title="If you&#39;ve activated this screen via activateScreen(), then this method will activate the screen which...">activatePriorScreen()</a>  <br /></td></tr>
+<tr class="separator:a06e9b56e1337c67f65f2cfe99f8b4150"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a495727a8cc32f2ddafd26b2a436f6241"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classlvpp_base.html">lvppBase</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlvpp_screen.html#a495727a8cc32f2ddafd26b2a436f6241">objects</a></td></tr>
 <tr class="memdesc:a495727a8cc32f2ddafd26b2a436f6241"><td class="mdescLeft">&#160;</td><td class="mdescRight">Data structure used to hold all of the object pointers.  <br /></td></tr>
 <tr class="separator:a495727a8cc32f2ddafd26b2a436f6241"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -200,6 +206,25 @@ Protected Attributes</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="a9624baf0786732617897180a5e02eaaa" name="a9624baf0786732617897180a5e02eaaa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9624baf0786732617897180a5e02eaaa">&#9670;&#160;</a></span>activatePriorScreen()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void lvppScreen::activatePriorScreen </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>If you've activated this screen via <a class="el" href="classlvpp_screen.html#a79085e9b149e62f101ba6e39f154682b" title="Load/Activate this screen either with or without animation based on parameters given.">activateScreen()</a>, then this method will activate the screen which was active <em>prior</em> to calling <a class="el" href="classlvpp_screen.html#a79085e9b149e62f101ba6e39f154682b" title="Load/Activate this screen either with or without animation based on parameters given.">activateScreen()</a>. If activation has not yet occured, then this function will have no effect. </p>
+
+</div>
+</div>
 <a id="a79085e9b149e62f101ba6e39f154682b" name="a79085e9b149e62f101ba6e39f154682b"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a79085e9b149e62f101ba6e39f154682b">&#9670;&#160;</a></span>activateScreen()</h2>
 
@@ -424,6 +449,30 @@ Protected Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Data structure used to hold all of the object pointers. </p>
+
+</div>
+</div>
+<a id="a06e9b56e1337c67f65f2cfe99f8b4150" name="a06e9b56e1337c67f65f2cfe99f8b4150"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a06e9b56e1337c67f65f2cfe99f8b4150">&#9670;&#160;</a></span>pPriorScreen</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">lv_obj_t* lvppScreen::pPriorScreen</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Holder for prior screen when <a class="el" href="classlvpp_screen.html#a79085e9b149e62f101ba6e39f154682b" title="Load/Activate this screen either with or without animation based on parameters given.">activateScreen()</a> is called. Used in <a class="el" href="classlvpp_screen.html#a9624baf0786732617897180a5e02eaaa" title="If you&#39;ve activated this screen via activateScreen(), then this method will activate the screen which...">activatePriorScreen()</a> </p>
 
 </div>
 </div>

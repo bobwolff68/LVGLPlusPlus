@@ -5,6 +5,10 @@ var classlvpp_canvas_indexed =
     [ "addColorToIndex", "classlvpp_canvas_indexed.html#aafbe6bb34ba13de03dd8fd9edc2ffde8", null ],
     [ "addPaletteToIndex", "classlvpp_canvas_indexed.html#a8ab00e5b252cc34f514b316a6a96c088", null ],
     [ "clearColorIndex", "classlvpp_canvas_indexed.html#a245524a45152531ebbdf3624acb990cf", null ],
+    [ "drawCenteredRectWithFill", "classlvpp_canvas_indexed.html#ac01dcb40b6d34c2e1ca057f842dcf356", null ],
+    [ "drawCenteredRectWithFillByIndex", "classlvpp_canvas_indexed.html#ab1657d3ce10ca44e9dc75b7ff497ee04", null ],
+    [ "drawCenteredRectWithoutFill", "classlvpp_canvas_indexed.html#adacac5a863c807e288ac3e9ec05b3563", null ],
+    [ "drawCenteredRectWithoutFillByIndex", "classlvpp_canvas_indexed.html#a825b8cf7500f8bb63abb74d2dcdaec63", null ],
     [ "drawLineHoriz", "classlvpp_canvas_indexed.html#a2680093b8a24299e92e410d36df90c99", null ],
     [ "drawLineHorizByIndex", "classlvpp_canvas_indexed.html#a6a0a98393c3a4ac92758cc4e4b4fdfd0", null ],
     [ "drawLineVert", "classlvpp_canvas_indexed.html#aeeffa6ffdf73d2b8b28281d0b0e8b42a", null ],
@@ -19,6 +23,8 @@ var classlvpp_canvas_indexed =
     [ "setbgColor", "classlvpp_canvas_indexed.html#ab82f2d303236c091c6650ab54f51b838", null ],
     [ "setbgColorByIndex", "classlvpp_canvas_indexed.html#a1277ec748562b3be304b656601a6c851", null ],
     [ "colorIndexesUsed", "classlvpp_canvas_indexed.html#add4f7a707bc7e395e50d9365c45b1b54", null ],
+    [ "height", "classlvpp_canvas_indexed.html#a01520b0f72dc6dda6350ce7517221253", null ],
     [ "maxColorIndexesAllowed", "classlvpp_canvas_indexed.html#a410d312a710eada9838e2faf29c07e63", null ],
-    [ "pBuffer", "classlvpp_canvas_indexed.html#a0aa1000182b39108e872251b730cdfb4", null ]
+    [ "pBuffer", "classlvpp_canvas_indexed.html#a0aa1000182b39108e872251b730cdfb4", null ],
+    [ "width", "classlvpp_canvas_indexed.html#a6a3d0296eba6e232b10dbde5df5519b2", null ]
 ];

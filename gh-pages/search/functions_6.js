@@ -7,9 +7,11 @@ var searchData=
   ['getfriendlyname_4',['getFriendlyName',['../classlvpp_base.html#a91a8f80d6ba8ef02d94df699f289bdfa',1,'lvppBase']]],
   ['getfullreport_5',['getFullReport',['../classesp_systats.html#af3de54c72fcb4513470409c9b82e7f98',1,'espSystats']]],
   ['getindexfromcolor_6',['getIndexFromColor',['../classlvpp_canvas_indexed.html#a3cd47aecb83b5682ebd7698d9eee89a6',1,'lvppCanvasIndexed']]],
-  ['getobj_7',['getObj',['../classlvpp_base.html#af7de8dd2e917914073e8409abedd7c06',1,'lvppBase']]],
-  ['getobjtype_8',['getObjType',['../classlvpp_base.html#ac8822dc01ed9a579926b0834d80bb383',1,'lvppBase']]],
-  ['getscreen_9',['getScreen',['../classlvpp_screen.html#a8b46f5559697f3df6105f8b1f46e3e82',1,'lvppScreen']]],
-  ['getstaticstats_10',['getStaticStats',['../classesp_systats.html#a483f81d17fdeccf1b335b1ad4ab52f51',1,'espSystats']]],
-  ['getvalue_11',['getValue',['../classlvpp_base_with_value.html#a76c694da1c7638739d526105a054830c',1,'lvppBaseWithValue']]]
+  ['getlabelobj_7',['getLabelObj',['../classlvpp_base.html#a487c9acd73a45a4cf2cf588a7d73d1a1',1,'lvppBase']]],
+  ['getobj_8',['getObj',['../classlvpp_base.html#af7de8dd2e917914073e8409abedd7c06',1,'lvppBase']]],
+  ['getobjtype_9',['getObjType',['../classlvpp_base.html#ac8822dc01ed9a579926b0834d80bb383',1,'lvppBase']]],
+  ['getscreen_10',['getScreen',['../classlvpp_screen.html#a8b46f5559697f3df6105f8b1f46e3e82',1,'lvppScreen']]],
+  ['getstaticstats_11',['getStaticStats',['../classesp_systats.html#a483f81d17fdeccf1b335b1ad4ab52f51',1,'espSystats']]],
+  ['gettext_12',['getText',['../classlvpp_base.html#a1c651957e716eca7b87528d37278b94c',1,'lvppBase']]],
+  ['getvalue_13',['getValue',['../classlvpp_base_with_value.html#a76c694da1c7638739d526105a054830c',1,'lvppBaseWithValue']]]
 ];

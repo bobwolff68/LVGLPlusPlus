@@ -25,7 +25,7 @@ var searchData=
   ['lvppfullimagetogglebutton_22',['lvppFullImageToggleButton',['../classlvpp_full_image_toggle_button.html',1,'lvppFullImageToggleButton'],['../classlvpp_full_image_toggle_button.html#aef21401cfa3a7151ba61ac95697dd57d',1,'lvppFullImageToggleButton::lvppFullImageToggleButton(const char *fName, lv_img_dsc_t uncheckedImg, lv_img_dsc_t checkedImg, lv_obj_t *parent=nullptr)'],['../classlvpp_full_image_toggle_button.html#a5ad959a27e631bc634c8001fbf4863c6',1,'lvppFullImageToggleButton::lvppFullImageToggleButton(const char *fName, lv_obj_t *parent=nullptr)']]],
   ['lvppimage_23',['lvppImage',['../classlvpp_image.html',1,'lvppImage'],['../classlvpp_image.html#afc39a3482704f807868c81b9b6cc84e4',1,'lvppImage::lvppImage()']]],
   ['lvppimage_2ecpp_24',['lvppImage.cpp',['../lvpp_image_8cpp.html',1,'']]],
-  ['lvpplabel_25',['lvppLabel',['../classlvpp_label.html#a4528e072b9a5226363202ffc0770f17b',1,'lvppLabel::lvppLabel()'],['../classlvpp_label.html',1,'lvppLabel']]],
+  ['lvpplabel_25',['lvppLabel',['../classlvpp_label.html#aebf2096d699807aeef69a776c080f3f3',1,'lvppLabel::lvppLabel()'],['../classlvpp_label.html',1,'lvppLabel']]],
   ['lvpplabel_2ecpp_26',['lvppLabel.cpp',['../lvpp_label_8cpp.html',1,'']]],
   ['lvpproller_27',['lvppRoller',['../classlvpp_roller.html',1,'lvppRoller'],['../classlvpp_roller.html#a068d5187d497a61d1edcc47910bfa2ec',1,'lvppRoller::lvppRoller()']]],
   ['lvppscreen_28',['lvppScreen',['../classlvpp_screen.html',1,'lvppScreen'],['../classlvpp_screen.html#a60415af62b5b0d4095faf451800f516e',1,'lvppScreen::lvppScreen()']]],

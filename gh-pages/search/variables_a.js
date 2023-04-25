@@ -5,5 +5,6 @@ var searchData=
   ['pdscline_2',['pDscLine',['../classlvpp_canvas_full_color.html#aeb4cb4506cffa441d8988c0e993abe4c',1,'lvppCanvasFullColor']]],
   ['pdscrect_3',['pDscRect',['../classlvpp_canvas_full_color.html#a45593188cc351c50b83b2a2b23b57679',1,'lvppCanvasFullColor']]],
   ['pimage_4',['pImage',['../classlvpp_full_image_toggle_button.html#afe97a3a32154e529dbf478eb634b66eb',1,'lvppFullImageToggleButton']]],
-  ['pscreen_5',['pScreen',['../classlvpp_screen.html#a100c13d212918c57b7eef769b46a1a4c',1,'lvppScreen']]]
+  ['ppriorscreen_5',['pPriorScreen',['../classlvpp_screen.html#a06e9b56e1337c67f65f2cfe99f8b4150',1,'lvppScreen']]],
+  ['pscreen_6',['pScreen',['../classlvpp_screen.html#a100c13d212918c57b7eef769b46a1a4c',1,'lvppScreen']]]
 ];

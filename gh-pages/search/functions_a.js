@@ -12,7 +12,7 @@ var searchData=
   ['lvppdropdown_9',['lvppDropdown',['../classlvpp_dropdown.html#acf9d9d389ff159e2c7c7f9059459e087',1,'lvppDropdown']]],
   ['lvppfullimagetogglebutton_10',['lvppFullImageToggleButton',['../classlvpp_full_image_toggle_button.html#a5ad959a27e631bc634c8001fbf4863c6',1,'lvppFullImageToggleButton::lvppFullImageToggleButton(const char *fName, lv_obj_t *parent=nullptr)'],['../classlvpp_full_image_toggle_button.html#aef21401cfa3a7151ba61ac95697dd57d',1,'lvppFullImageToggleButton::lvppFullImageToggleButton(const char *fName, lv_img_dsc_t uncheckedImg, lv_img_dsc_t checkedImg, lv_obj_t *parent=nullptr)']]],
   ['lvppimage_11',['lvppImage',['../classlvpp_image.html#afc39a3482704f807868c81b9b6cc84e4',1,'lvppImage']]],
-  ['lvpplabel_12',['lvppLabel',['../classlvpp_label.html#a4528e072b9a5226363202ffc0770f17b',1,'lvppLabel']]],
+  ['lvpplabel_12',['lvppLabel',['../classlvpp_label.html#aebf2096d699807aeef69a776c080f3f3',1,'lvppLabel']]],
   ['lvpproller_13',['lvppRoller',['../classlvpp_roller.html#a068d5187d497a61d1edcc47910bfa2ec',1,'lvppRoller']]],
   ['lvppscreen_14',['lvppScreen',['../classlvpp_screen.html#a60415af62b5b0d4095faf451800f516e',1,'lvppScreen']]],
   ['lvppslider_15',['lvppSlider',['../classlvpp_slider.html#a3f8e8e2c0eb39c91fb3cac5bfd9ccb81',1,'lvppSlider']]]

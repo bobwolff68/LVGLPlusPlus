@@ -141,6 +141,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:af7de8dd2e917914073e8409abedd7c06"><td class="memItemLeft" align="right" valign="top">lv_obj_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlvpp_base.html#af7de8dd2e917914073e8409abedd7c06">getObj</a> (void)</td></tr>
 <tr class="memdesc:af7de8dd2e917914073e8409abedd7c06"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the Obj object.  <br /></td></tr>
 <tr class="separator:af7de8dd2e917914073e8409abedd7c06"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a487c9acd73a45a4cf2cf588a7d73d1a1"><td class="memItemLeft" align="right" valign="top">lv_obj_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlvpp_base.html#a487c9acd73a45a4cf2cf588a7d73d1a1">getLabelObj</a> (void)</td></tr>
+<tr class="memdesc:a487c9acd73a45a4cf2cf588a7d73d1a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the label object.  <br /></td></tr>
+<tr class="separator:a487c9acd73a45a4cf2cf588a7d73d1a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab6fd6d6a7c6afe22848610d044f83f43"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlvpp_base.html#ab6fd6d6a7c6afe22848610d044f83f43">setSize</a> (lv_coord_t width, lv_coord_t height)</td></tr>
 <tr class="memdesc:ab6fd6d6a7c6afe22848610d044f83f43"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the Size object. Most of the time, LVGL does a great job of setting a sane size, but manipulation of things like the text or the font size can cause this to no longer be a good size. It is a common use pattern to instantiate a widget and then use <a class="el" href="classlvpp_base.html#ab6fd6d6a7c6afe22848610d044f83f43" title="Set the Size object. Most of the time, LVGL does a great job of setting a sane size,...">setSize()</a> and <a class="el" href="classlvpp_base.html#a386e71a76182932f4f0f79f5c52cb115" title="Change the x/y location of the object.">align()</a> to place them in your user interface as needed.  <br /></td></tr>
 <tr class="separator:ab6fd6d6a7c6afe22848610d044f83f43"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -150,21 +153,30 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a68a5b25ed4ef5edde11101a138ca83a4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlvpp_base.html#a68a5b25ed4ef5edde11101a138ca83a4">setFontSize</a> (uint8_t points)</td></tr>
 <tr class="memdesc:a68a5b25ed4ef5edde11101a138ca83a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the Font Size for the object in simple 'points'.  <br /></td></tr>
 <tr class="separator:a68a5b25ed4ef5edde11101a138ca83a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9b3414fc3a9d6bbe30733632f3d29626"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlvpp_base.html#a9b3414fc3a9d6bbe30733632f3d29626">setFont</a> (lv_font_t *pF)</td></tr>
-<tr class="memdesc:a9b3414fc3a9d6bbe30733632f3d29626"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the Font to be used. This is a more complete/complex version of <a class="el" href="classlvpp_base.html#a68a5b25ed4ef5edde11101a138ca83a4" title="Set the Font Size for the object in simple &#39;points&#39;.">setFontSize()</a>. The fact that the font pointer is required at least means the user knows the font exists.  <br /></td></tr>
-<tr class="separator:a9b3414fc3a9d6bbe30733632f3d29626"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a159c2e42a17a26a573644e2be024641f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlvpp_base.html#a159c2e42a17a26a573644e2be024641f">setFont</a> (const lv_font_t *pF)</td></tr>
+<tr class="memdesc:a159c2e42a17a26a573644e2be024641f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the Font to be used. This is a more complete/complex version of <a class="el" href="classlvpp_base.html#a68a5b25ed4ef5edde11101a138ca83a4" title="Set the Font Size for the object in simple &#39;points&#39;.">setFontSize()</a>. The fact that the font pointer is required at least means the user knows the font exists.  <br /></td></tr>
+<tr class="separator:a159c2e42a17a26a573644e2be024641f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab0ff4ce043ad58b308dd9e1e2801ef13"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlvpp_base.html#ab0ff4ce043ad58b308dd9e1e2801ef13">setBGColor</a> (lv_color_t color)</td></tr>
 <tr class="memdesc:ab0ff4ce043ad58b308dd9e1e2801ef13"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the background color of the object.  <br /></td></tr>
 <tr class="separator:ab0ff4ce043ad58b308dd9e1e2801ef13"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af56992fa6244a52c0e55bbcc54d90ec7"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlvpp_base.html#af56992fa6244a52c0e55bbcc54d90ec7">setText</a> (const char *pText)</td></tr>
 <tr class="memdesc:af56992fa6244a52c0e55bbcc54d90ec7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the Text for the primary text label. For a button, for instance, this is the text on top of the button.  <br /></td></tr>
 <tr class="separator:af56992fa6244a52c0e55bbcc54d90ec7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1c651957e716eca7b87528d37278b94c"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlvpp_base.html#a1c651957e716eca7b87528d37278b94c">getText</a> ()</td></tr>
+<tr class="memdesc:a1c651957e716eca7b87528d37278b94c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the Text from the object/label and put it in a std::string.  <br /></td></tr>
+<tr class="separator:a1c651957e716eca7b87528d37278b94c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae6b72edb4c301c7807eba4117b160f2b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlvpp_base.html#ae6b72edb4c301c7807eba4117b160f2b">setTextAlign</a> (lv_align_t <a class="el" href="classlvpp_base.html#a386e71a76182932f4f0f79f5c52cb115">align</a>, lv_coord_t xoff, lv_coord_t yoff)</td></tr>
 <tr class="memdesc:ae6b72edb4c301c7807eba4117b160f2b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the Text Alignment. This allows the object's primary label to be moved from its 'center' position.  <br /></td></tr>
 <tr class="separator:ae6b72edb4c301c7807eba4117b160f2b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad16b938b2c8cbc60d8833f092839a141"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlvpp_base.html#ad16b938b2c8cbc60d8833f092839a141">setTextColor</a> (lv_color_t newColor)</td></tr>
 <tr class="memdesc:ad16b938b2c8cbc60d8833f092839a141"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the Text Color of the primary label object.  <br /></td></tr>
 <tr class="separator:ad16b938b2c8cbc60d8833f092839a141"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a873128b1a131c4a98d9709a5b7631e75"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlvpp_base.html#a873128b1a131c4a98d9709a5b7631e75">setLabelJustificationAlignment</a> (lv_text_align_t _align)</td></tr>
+<tr class="memdesc:a873128b1a131c4a98d9709a5b7631e75"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the Label's text alignment (left/right/center)  <br /></td></tr>
+<tr class="separator:a873128b1a131c4a98d9709a5b7631e75"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af6c5012c07184686e669e67d88612b8a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlvpp_base.html#af6c5012c07184686e669e67d88612b8a">setLabelColorizationEnabled</a> (bool bEnable=true)</td></tr>
+<tr class="memdesc:af6c5012c07184686e669e67d88612b8a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Turn on or off inline text colorization. To use colors inline, simply use #RRGGBB in the text where the R, G, and B are hex values. Be sure to have a space before and after.  <br /></td></tr>
+<tr class="separator:af6c5012c07184686e669e67d88612b8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab9fe804b0a68870d9cc2a51a0fc58c86"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlvpp_base.html#ab9fe804b0a68870d9cc2a51a0fc58c86">setAdjText</a> (const char *pText, lv_coord_t x_ofs=-10000, lv_coord_t y_ofs=-10000)</td></tr>
 <tr class="memdesc:ab9fe804b0a68870d9cc2a51a0fc58c86"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the text for the adjacent text label. This label is not enabled by default. Setting this text will create and enable the adjacent label object. The label's position can be set, optionally, as well.  <br /></td></tr>
 <tr class="separator:ab9fe804b0a68870d9cc2a51a0fc58c86"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -533,6 +545,35 @@ Static Protected Attributes</h2></td></tr>
 
 </div>
 </div>
+<a id="a487c9acd73a45a4cf2cf588a7d73d1a1" name="a487c9acd73a45a4cf2cf588a7d73d1a1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a487c9acd73a45a4cf2cf588a7d73d1a1">&#9670;&#160;</a></span>getLabelObj()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">lv_obj_t * lvppBase::getLabelObj </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get the label object. </p>
+<dl class="section return"><dt>Returns</dt><dd>lv_obj_t* Returns the LVGL lv_obj_t for the actual label object. Great for more advanced users who may wish to manipulate the label more fully outside of the lvpp* class library. </dd></dl>
+
+</div>
+</div>
 <a id="af7de8dd2e917914073e8409abedd7c06" name="af7de8dd2e917914073e8409abedd7c06"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#af7de8dd2e917914073e8409abedd7c06">&#9670;&#160;</a></span>getObj()</h2>
 
@@ -587,6 +628,26 @@ Static Protected Attributes</h2></td></tr>
 
 <p>Get the Obj Type. </p>
 <dl class="section return"><dt>Returns</dt><dd>std::string of the internal object type. This is what is given in the constructor as oType. It can be used to determine the type of an object without the need for RTTI library support and dynamic_cast&lt;&gt; or other such RTTI support methodologies. </dd></dl>
+
+</div>
+</div>
+<a id="a1c651957e716eca7b87528d37278b94c" name="a1c651957e716eca7b87528d37278b94c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1c651957e716eca7b87528d37278b94c">&#9670;&#160;</a></span>getText()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string lvppBase::getText </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get the Text from the object/label and put it in a std::string. </p>
+<dl class="section return"><dt>Returns</dt><dd>std::string return the text into a string. </dd></dl>
 
 </div>
 </div>
@@ -950,8 +1011,8 @@ Static Protected Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a9b3414fc3a9d6bbe30733632f3d29626" name="a9b3414fc3a9d6bbe30733632f3d29626"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9b3414fc3a9d6bbe30733632f3d29626">&#9670;&#160;</a></span>setFont()</h2>
+<a id="a159c2e42a17a26a573644e2be024641f" name="a159c2e42a17a26a573644e2be024641f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a159c2e42a17a26a573644e2be024641f">&#9670;&#160;</a></span>setFont()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -959,7 +1020,7 @@ Static Protected Attributes</h2></td></tr>
         <tr>
           <td class="memname">void lvppBase::setFont </td>
           <td>(</td>
-          <td class="paramtype">lv_font_t *&#160;</td>
+          <td class="paramtype">const lv_font_t *&#160;</td>
           <td class="paramname"><em>pF</em></td><td>)</td>
           <td></td>
         </tr>
@@ -1024,6 +1085,58 @@ Static Protected Attributes</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">pName</td><td>pointer to a new friendly name. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="af6c5012c07184686e669e67d88612b8a" name="af6c5012c07184686e669e67d88612b8a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af6c5012c07184686e669e67d88612b8a">&#9670;&#160;</a></span>setLabelColorizationEnabled()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void lvppBase::setLabelColorizationEnabled </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>bEnable</em> = <code>true</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Turn on or off inline text colorization. To use colors inline, simply use #RRGGBB in the text where the R, G, and B are hex values. Be sure to have a space before and after. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">bEnable</td><td>Turn on or off inline text colorization. Default is true. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a873128b1a131c4a98d9709a5b7631e75" name="a873128b1a131c4a98d9709a5b7631e75"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a873128b1a131c4a98d9709a5b7631e75">&#9670;&#160;</a></span>setLabelJustificationAlignment()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void lvppBase::setLabelJustificationAlignment </td>
+          <td>(</td>
+          <td class="paramtype">lv_text_align_t&#160;</td>
+          <td class="paramname"><em>_align</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set the Label's text alignment (left/right/center) </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">_align</td><td>an lv_text_align_t like LV_TEXT_ALIGN_CENTER </td></tr>
   </table>
   </dd>
 </dl>

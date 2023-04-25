@@ -102,13 +102,32 @@ General</h1>
 <h1><a class="anchor" id="autotoc_md8"></a>
 Release Notes Follow:</h1>
 <h2><a class="anchor" id="autotoc_md9"></a>
+Version 1.3.5 - Adding a few quick feature items</h2>
+<ul>
+<li><a class="el" href="classlvpp_screen.html#a9624baf0786732617897180a5e02eaaa" title="If you&#39;ve activated this screen via activateScreen(), then this method will activate the screen which...">lvppScreen::activatePriorScreen()</a> - After using activateScreen, the user can "pop" to the prior screen with this method.</li>
+<li><a class="el" href="classlvpp_label.html#aebf2096d699807aeef69a776c080f3f3" title="Construct a new lvpp Label object.">lvppLabel::lvppLabel()</a> Constructor - can omit the initial text and will get set to ""</li>
+<li><a class="el" href="classlvpp_canvas_indexed.html" title="Construct a canvas which uses INDEXED color rather than FULL color methods.">lvppCanvasIndexed</a><ul>
+<li>Added a draw "centered" rectangle where all you have to give is the size of the border in the x-side and the y-side. Just a nice handy addition.</li>
+<li>drawCenteredRectWithFill(), drawCenteredRectWithFillByIndex()</li>
+<li>drawCenteredRectWithoutFill(), drawCenteredRectWithoutFillByIndex()</li>
+</ul>
+</li>
+<li><a class="el" href="classlvpp_base.html" title="lvppBase is the root of the C++ library LVGLPlusPlus. It strives to create consistent ways to manipul...">lvppBase</a><ul>
+<li>getText() - returns the label text as a std::string</li>
+<li>setLabelJustificationAlignment() - Want your label centered or right justified? Simple method for allowing the use of LV_TEXT_ALIGN_*</li>
+<li>setLabelColorizationEnabled() - LVGL allows the use of #RRGGBB placed inline in the text of the label to provide colorization of the text. This method enables or disables that feature.</li>
+<li>getLabelObj() - returns the 'label' object to allow more advanced usage patterns.</li>
+</ul>
+</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md10"></a>
 Version 1.3.0 - First Public version documented and released</h2>
 <ul>
 <li>April 18, 2023 - released as public repo.</li>
 <li>Fairly complete library as described at <a href="https://bobwolff68.github.io/LVGLPlusPlus">LVGLPlusPlus Github Pages</a></li>
 <li>Pre-test-jig state.</li>
 </ul>
-<h3><a class="anchor" id="autotoc_md10"></a>
+<h3><a class="anchor" id="autotoc_md11"></a>
 Pre-Version 1.3.0 - All internal and getting things squared up for public release.</h3>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->
