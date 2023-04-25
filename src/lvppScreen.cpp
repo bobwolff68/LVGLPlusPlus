@@ -44,6 +44,8 @@ lvppScreen::lvppScreen(lv_obj_t* _pInitScreen) {
     else
         pScreen = _pInitScreen;
     assert(pScreen);
+
+    pPriorScreen=nullptr;
 }
 
 void lvppScreen::disableScrollBars() {
@@ -51,11 +53,19 @@ void lvppScreen::disableScrollBars() {
 }
 
 void lvppScreen::activateScreen(uint32_t anim_time, lv_scr_load_anim_t anim_type) {    
+    pPriorScreen = lv_scr_act();
     if (anim_time==0 && anim_type==LV_SCR_LOAD_ANIM_NONE) {
         lv_scr_load(pScreen);
     }
     else {
         lv_scr_load_anim(pScreen, anim_type, anim_time, 0, false);
+    }
+}
+
+void lvppScreen::activatePriorScreen() {
+    if (pPriorScreen) {
+        lv_scr_load(pPriorScreen);
+        pPriorScreen=nullptr;
     }
 }
 

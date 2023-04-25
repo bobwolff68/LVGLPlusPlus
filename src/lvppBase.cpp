@@ -91,7 +91,7 @@ void lvppBase::setFontSize(uint8_t points) {
     lv_obj_add_style(obj, &style_obj, LV_PART_MAIN | LV_STATE_DEFAULT);
 }
 
-void lvppBase::setFont(lv_font_t* pF) {
+void lvppBase::setFont(const lv_font_t* pF) {
     lv_style_set_text_font(&style_obj, pF);
     lv_obj_add_style(obj, &style_obj, LV_PART_MAIN | LV_STATE_DEFAULT);
 }
@@ -156,6 +156,18 @@ void lvppBase::setText(const char* pText) {
     if (pText) {
         lv_label_set_text(label, pText);
     }
+    else {
+        lv_label_set_text(label, "");
+    }
+}
+
+std::string lvppBase::getText() {
+    std::string st = "";
+    if (label) {
+        st = lv_label_get_text(label);
+    }
+
+    return st;
 }
 
 void lvppBase::setTextAlign(lv_align_t align, lv_coord_t xoff, lv_coord_t yoff)
@@ -170,6 +182,18 @@ void lvppBase::setTextColor(lv_color_t newColor) {
     if (label) {
         lv_style_set_text_color(&style_obj, newColor);
         lv_obj_add_style(label, &style_obj, 0);
+    }
+}
+
+void lvppBase::setLabelJustificationAlignment(lv_text_align_t _align) {
+    if (label) {
+        lv_obj_set_style_text_align(label, LV_TEXT_ALIGN_CENTER, 0);
+    }
+}
+
+void lvppBase::setLabelColorizationEnabled(bool bEnable) {
+    if (label) {
+        lv_label_set_recolor(label, bEnable);
     }
 }
 
