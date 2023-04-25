@@ -1,7 +1,7 @@
 # LVGLPlusPlus
 C++ wrapper around the embedded graphics library, LVGL
 
-- Release notes can be found in [ReleaseNotes.md](https://github.com/bobwolff68/LVGLPlusPlus/src/ReleaseNotes.md)
+- Release notes can be found in [ReleaseNotes.md](https://bobwolff68.github.io/LVGLPlusPlus/gh-pages/release_notes.html)
 
 ## Important Resources at the top level
 - [Discussions](https://github.com/bobwolff68/LVGLPlusPlus/discussions) on Github are a great place to ask questions and get answers.
