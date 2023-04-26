@@ -357,6 +357,26 @@ const char* lvppBase::getEventName(lv_event_code_t code) {
     return (const char*)eventNames[code].c_str();
 }
 
+void lvppBase::setNewParent(lv_obj_t* pNewParent) {
+    objParent = pNewParent;
+    // Main object needs this new pointer.
+    lv_obj_set_parent(obj, pNewParent);
+    // Label's parent is 'obj' so don't reset that.
+
+    // If adjlabel exists, set its parent here
+    // This is due to the fact that adjLabel's parent is not the main object
+    // so that it can be moved outside the boundaries of the main object.
+    if (adjLabel) {
+        lv_obj_set_parent(adjLabel, pNewParent);
+    }
+}
+
+//
+//
+// l v p p B a s e W i t h V a l u e
+//
+//
+
 lvppBaseWithValue::lvppBaseWithValue(const char* fName, const char* oType) : lvppBase(fName, oType) {
     valueLabel = nullptr;
     valueLabelFormat = "%d";
@@ -407,3 +427,12 @@ void lvppBaseWithValue::internalOnValueChanged() {
     }
 }
 
+void lvppBaseWithValue::setNewParent(lv_obj_t* pNewParent) {
+    // If valuelabel exists, set its parent
+    if (valueLabel) {
+        lv_obj_set_parent(valueLabel, pNewParent);
+    }
+
+    // Now call the parent.
+    lvppBase::setNewParent(pNewParent);
+}

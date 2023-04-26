@@ -300,6 +300,13 @@ public:
         cbOnValueChanged = cbF;
     };
 
+/**
+ * @brief Changes the parent object on the fly. Used primarily for lvppScreen::addObject().
+ *        Sets parents of adjacent label, value label, and label appropriately.
+ * 
+ * @param pNewParent pointer to the new parent.
+ */
+    virtual void setNewParent(lv_obj_t* pNewParent);
 protected:
     lv_obj_t* label;    ///< Primary label.
     lv_obj_t* adjLabel; ///< For items that have a label 'nearby' (adjacent label)
@@ -416,6 +423,13 @@ public:
  * @param _max Maximum value allowed.
  */
     void setValueRange(int16_t _min, int16_t _max) { min = _min; max = _max; };
+/**
+ * @brief Changes the parent object on the fly. Used primarily for lvppScreen::addObject().
+ *        Sets parents of adjacent label, value label, and label appropriately.
+ * 
+ * @param pNewParent pointer to the new parent.
+ */
+    virtual void setNewParent(lv_obj_t* pNewParent);
 protected:
     void internalOnValueChanged();  ///< Internal handler for value change. Does the formatting as well.
     int16_t curValue;               ///< The value we're keeping and handling in this class.
