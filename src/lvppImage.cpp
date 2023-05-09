@@ -40,6 +40,15 @@ lvppImage::~lvppImage() {
 
 }
 
-void lvppImage::setImage(lv_img_dsc_t img) {
-    lv_img_set_src(obj, &img);
+void lvppImage::setImage(lv_img_dsc_t* pImg) {
+    lv_img_set_src(obj, pImg);
 }
+
+void lvppImage::setRotation(int16_t rotTenthsOfDegrees) {
+    lv_img_set_angle(obj, rotTenthsOfDegrees);
+}
+
+void lvppImage::setPivotPoint(lv_coord_t xPivot, lv_coord_t yPivot) {
+    lv_img_set_pivot(obj, xPivot, yPivot);
+}
+

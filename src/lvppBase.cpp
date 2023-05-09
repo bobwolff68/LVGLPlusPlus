@@ -27,6 +27,8 @@
 //
 #include "lvppBase.h"
 
+#include <algorithm>
+
 /** @file lvppBase.cpp
  * @brief Implementation of the base class for the library - lvppBase.
 */
@@ -84,6 +86,7 @@ void lvppBase::setFontSize(uint8_t points) {
             lv_style_set_text_font(&style_obj, &lv_font_montserrat_24);
             break;
         default:
+            LV_LOG_ERROR("lvppBase::setFontSize() - font size not available. Error.\n");
             throw;
             return;
     }
@@ -187,7 +190,7 @@ void lvppBase::setTextColor(lv_color_t newColor) {
 
 void lvppBase::setLabelJustificationAlignment(lv_text_align_t _align) {
     if (label) {
-        lv_obj_set_style_text_align(label, LV_TEXT_ALIGN_CENTER, 0);
+        lv_obj_set_style_text_align(label, _align, 0);
     }
 }
 
@@ -209,12 +212,27 @@ void lvppBase::setAdjText(const char* pText, lv_coord_t x_ofs, lv_coord_t y_ofs)
     }
 }
 
-// void lvppBase::setAdjTextColor(lv_color_t newColor) {
-//     if (adjLabel) {
-//         lv_style_set_text_color(&style_obj, newColor);
-//         lv_obj_add_style(adjLabel, &style_obj, 0);
-//     }
-// }
+void lvppBase::setAdjTextColor(lv_color_t newColor) {
+    if (adjLabel) {
+        lv_obj_set_style_text_color(adjLabel, newColor, 0);
+    }
+}
+
+void lvppBase::setAdjBGColor(lv_color_t color) {
+    if (adjLabel) {
+        lv_obj_set_style_bg_color(adjLabel, color, 0);
+    }
+}
+
+void lvppBase::setAdjFont(const lv_font_t* pF) {
+    lv_obj_set_style_text_font(adjLabel, pF, 0);
+}
+
+void lvppBase::setAdjJustificationAlignment(lv_text_align_t _align) {
+    if (adjLabel) {
+        lv_obj_set_style_text_align(adjLabel, _align, 0);
+    }
+}
 
 void lvppBase::createObj(lv_obj_t* o) {
     if (!o)
@@ -381,7 +399,6 @@ lvppBaseWithValue::lvppBaseWithValue(const char* fName, const char* oType) : lvp
     valueLabel = nullptr;
     valueLabelFormat = "%d";
     curValue = 0;
-    lv_style_init(&style_value_obj);
 
     min=0;
     max=100;
@@ -390,7 +407,6 @@ lvppBaseWithValue::lvppBaseWithValue(const char* fName, const char* oType) : lvp
 void lvppBaseWithValue::enableValueLabel(lv_coord_t xoff, lv_coord_t yoff, lv_align_t alignment) {
     if (!valueLabel) {
         valueLabel = lv_label_create(objParent);
-        lv_obj_add_style(valueLabel, &style_value_obj, 0);
     }
 
     lv_obj_align_to(valueLabel, obj, alignment, xoff, yoff);
@@ -401,7 +417,7 @@ void lvppBaseWithValue::setValueLabelFont(const lv_font_t* pF) {
         enableValueLabel(0,0);
     }
 
-    lv_style_set_text_font(&style_value_obj, pF);
+    lv_obj_set_style_text_font(valueLabel, pF, 0);
     lv_obj_invalidate(valueLabel);
 }
 
@@ -416,7 +432,25 @@ void lvppBaseWithValue::setValueLabelColor(lv_color_t newColor) {
         enableValueLabel(0,0);
     }
 
-    lv_style_set_text_color(&style_value_obj, newColor);
+    lv_obj_set_style_text_color(valueLabel, newColor, 0);
+    lv_obj_invalidate(valueLabel);
+}
+
+void lvppBaseWithValue::setValueLabelBGColor(lv_color_t newColor) {
+    if (!valueLabel) {
+        enableValueLabel(0,0);
+    }
+
+    lv_obj_set_style_bg_color(valueLabel, newColor, 0);
+    lv_obj_invalidate(valueLabel);
+}
+
+void lvppBaseWithValue::setValueLabelJustificationAlignment(lv_text_align_t _align) {
+    if (!valueLabel) {
+        enableValueLabel(0,0);
+    }
+
+    lv_obj_set_style_text_align(valueLabel, _align, 0);
     lv_obj_invalidate(valueLabel);
 }
 
@@ -435,4 +469,118 @@ void lvppBaseWithValue::setNewParent(lv_obj_t* pNewParent) {
 
     // Now call the parent.
     lvppBase::setNewParent(pNewParent);
+}
+
+//
+//
+// l v p p O p t i o n s
+//
+//
+
+void lvppOptions::setOptions(const char* pOpts) {
+    std::string currentLine;
+    const char* currentChar = pOpts;
+
+    if (!pOpts) {
+        LV_LOG_WARN("lvppOptions::setOptions - argument is nullptr. Not setting.\n");
+        return;
+    }
+
+    clearOptions();
+
+    // Rip through the pOpts string and add strings ending in \n to options.
+    while (*currentChar != '\0') {
+        if (*currentChar == '\n') {
+            // When we get to a newline...put the current line in options.
+            options.push_back(currentLine);
+            currentLine.clear();
+        } else {
+            // Add character to the end of the current line until we get a newline
+            currentLine += *currentChar;
+        }
+        currentChar++;
+    }
+    
+    // Add the last line if it doesn't end with '\n'
+    if (!currentLine.empty()) {
+        options.push_back(currentLine);
+    }
+
+    // Set all of the ID values to the index value since they aren't being used otherwise here.
+    for (unsigned int i=0; i<options.size(); i++) {
+        idList.push_back((uint64_t)i);
+    }
+
+    lvOptionSetter(getNewlineSepOptions());
+}
+
+void lvppOptions::setOptionsWithIDs(std::vector<std::pair<std::string, uint64_t>>& valIDs) {
+    options.clear();
+    for (unsigned int i=0; i<valIDs.size(); i++) {
+        options.push_back(valIDs[i].first);
+        idList.push_back(valIDs[i].second);
+    }
+}
+
+void lvppOptions::setOptions(std::vector<std::string>& _opts) {
+    options = _opts;
+
+    // Set all of the ID values to the index value since they aren't being used otherwise here.
+    for (unsigned int i=0; i<options.size(); i++) {
+        idList.push_back((uint64_t)i);
+    }
+
+    lvOptionSetter(getNewlineSepOptions());
+}
+
+void lvppOptions::addOption(const char* pOpt) {
+    options.push_back(pOpt);
+    idList.push_back((uint64_t)(options.size()-1));
+
+    lvOptionSetter(getNewlineSepOptions());
+}
+
+void lvppOptions::addOption(std::string& _opt) {
+    options.push_back(_opt);
+    idList.push_back((uint64_t)(options.size()-1));
+
+    lvOptionSetter(getNewlineSepOptions());
+}
+
+void lvppOptions::addOptionWithID(const char* pOpt, uint64_t id) {
+    options.push_back(pOpt);
+    idList.push_back((uint64_t)id);
+
+    lvOptionSetter(getNewlineSepOptions());
+}
+
+void lvppOptions::addOptionWithID(std::string& _opt, uint64_t id) {
+    options.push_back(_opt);
+    idList.push_back((uint64_t)id);
+
+    lvOptionSetter(getNewlineSepOptions());
+}
+
+void lvppOptions::clearOptions() {
+    options.clear();
+    idList.clear();
+}
+
+uint64_t lvppOptions::getSelectedID() {
+    return idList[lvOptionGetIndex()];
+}
+
+const char* lvppOptions::getNewlineSepOptions() {
+    bool first=true;
+
+    for (const auto& it: options) {
+        // Prevents final entry from having \n concatenated.
+        if (!first) {
+            oneString += '\n';
+        }
+        oneString += it;
+        first = false;
+    }
+
+    return oneString.c_str();
 }

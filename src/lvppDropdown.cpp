@@ -39,28 +39,33 @@ lvppDropdown::lvppDropdown(const char* fName, const char* pOptions, lv_obj_t* pa
     setOptions(pOptions);
 }
 
+void lvppDropdown::lvOptionSetter(const char* pOpts) {
+    lv_dropdown_set_options(obj, pOpts);
+}
+
+uint16_t lvppDropdown::lvOptionGetIndex() {
+    return (uint16_t)lv_dropdown_get_selected(obj);
+}
+
 //
 // pOptions is a single string with '\n' between each option
 //
 void lvppDropdown::setOptions(const char* pOptions)
 {
     if (pOptions) {
-        lv_dropdown_set_options(obj, pOptions);
+        lvppOptions::setOptions(pOptions);
         lv_dropdown_set_selected(obj, 0);
     }
 }
 
 void lvppDropdown::clearOptions(void) {
+    lvppOptions::clearOptions();
     lv_dropdown_clear_options(obj);
 }
 
 void lvppDropdown::setOptions(std::vector<std::string> &options) {
-    uint32_t qty=0;
-    clearOptions();
-
-    for (auto it: options) {
-        lv_dropdown_add_option(obj, it.c_str(), qty++);
-    }
+    lvppOptions::setOptions(options);
+    lv_dropdown_set_selected(obj, 0);
 }
 
 // LV_DIR_BOTTOM, LV_DIR_TOP, LV_DIR_LEFT, LV_DIR_RIGHT
@@ -68,7 +73,7 @@ void lvppDropdown::setDropdownDirection(lv_dir_t dropDirection) {
     lv_dropdown_set_dir(obj, dropDirection);
 }
 
-void lvppDropdown::setCurrentIndex(uint16_t curInd) {
+void lvppDropdown::setSelectedIndex(uint16_t curInd) {
     if (curInd < lv_dropdown_get_option_cnt(obj)) {
         lv_dropdown_set_selected(obj, curInd);
         internalOnValueChanged();
@@ -87,44 +92,40 @@ lvppRoller::lvppRoller(const char* fName, const char* pOptions, lv_obj_t* parent
 //    lv_roller_set_visible_row_count(obj, 6);
 }
 
+void lvppRoller::lvOptionSetter(const char* pOpts) {
+    lv_roller_set_options(obj, pOpts, LV_ROLLER_MODE_NORMAL);
+}
+
+uint16_t lvppRoller::lvOptionGetIndex() {
+    return (uint16_t)lv_roller_get_selected(obj);
+}
+
 //
 // pOptions is a single string with '\n' between each option
 //
 void lvppRoller::setOptions(const char* pOptions)
 {
     if (pOptions) {
-        lv_roller_set_options(obj, pOptions, LV_ROLLER_MODE_NORMAL);
+        lvppOptions::setOptions(pOptions);
         lv_roller_set_selected(obj, 0, LV_ANIM_ON);
+    }
+    else {
+        clearOptions();
     }
 }
 
 void lvppRoller::clearOptions(void) {
+    lvppOptions::clearOptions();
     lv_roller_set_options(obj, "", LV_ROLLER_MODE_NORMAL);
 }
 
-std::string join_strings(const std::vector<std::string>& strings, const std::string& delimiter) {
-    std::string joined_string;
-    bool first = true;
-    for (const auto& str : strings) {
-        if (!first) {
-            joined_string += delimiter;
-        }
-        joined_string += str;
-        first = false;
-    }
-    return joined_string;
-}
-
 void lvppRoller::setOptions(std::vector<std::string> &options) {
-    uint32_t qty=0;
-    std::string opts;
-
-    opts = join_strings(options, "\n");
-    lv_roller_set_options(obj, opts.c_str(), LV_ROLLER_MODE_NORMAL);
+    lvppOptions::setOptions(options);
+    lv_roller_set_selected(obj, 0, LV_ANIM_ON);
 }
 
-void lvppRoller::setCurrentIndex(uint16_t curInd) {
-    if (curInd < lv_dropdown_get_option_cnt(obj)) {
+void lvppRoller::setSelectedIndex(uint16_t curInd) {
+    if (curInd < lv_roller_get_option_cnt(obj)) {
         lv_roller_set_selected(obj, curInd, LV_ANIM_ON);
         internalOnValueChanged();
         onValueChanged();

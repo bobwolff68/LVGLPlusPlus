@@ -48,35 +48,32 @@ lvppButton::lvppButton(const char* fName, const char* pText, lv_obj_t* parent) :
 
 
 lvppCycleButton::lvppCycleButton(const char* fName, lv_obj_t* parent) : lvppButton(fName, NULL, parent) {
-    options.clear();
-    currentIndex = 0;
-    quantity = 0;
+    clearOptions();
 }
 
 void lvppCycleButton::clearOptions(void) {
     options.clear();
-    quantity = 0;
-}
-
-void lvppCycleButton::addOptions(const char* pText) {
-    if (pText) {
-        options.push_back(pText);
-        quantity++;
-    }
-    setText(options[currentIndex].c_str());
-}
-
-void lvppCycleButton::addOptions(std::vector<std::string> &inOptions) {
-    options = inOptions;
     currentIndex = 0;
-    quantity = inOptions.size();
+}
 
-    setText(options[currentIndex].c_str());
+void lvppCycleButton::setOptions(const char* pText) {
+    if (pText) {
+        currentIndex = 0;
+        lvppOptions::setOptions(pText);
+    }
+    else {
+        clearOptions();
+    }
+}
+
+void lvppCycleButton::setOptions(std::vector<std::string> &inOptions) {
+    currentIndex = 0;
+    lvppOptions::setOptions(inOptions);
  }
 
 void lvppCycleButton::internalOnClicked() {
     currentIndex++;
-    if (currentIndex >= quantity)
+    if (currentIndex >= options.size())
         currentIndex = 0;
     
     setText(options[currentIndex].c_str());

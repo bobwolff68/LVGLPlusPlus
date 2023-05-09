@@ -28,6 +28,8 @@
 #ifndef _LVPPBASE_H
 #define _LVPPBASE_H
 
+#include <vector>
+#include <utility> // For std::pair
 #include <string>
 #include <functional>
 
@@ -219,7 +221,31 @@ public:
  * @param y_ofs Y offset from the center of the main object.
  */
     virtual void setAdjText(const char* pText, lv_coord_t x_ofs=-10000, lv_coord_t y_ofs=-10000);
-//    void setAdjTextColor(lv_color_t newColor);
+/**
+ * @brief Set the Adjacent text color
+ * 
+ * @param newColor lv_color_t value for the new color of the adjacent text
+ */
+   void setAdjTextColor(lv_color_t newColor);
+/**
+ * @brief set the background color for the adjacent text
+ * 
+ * @param color lv_color_t to describe the background color.
+ */
+   void setAdjBGColor(lv_color_t color);
+/**
+ * @brief Set the Font to be used for the adjacent text.
+ *        
+ * 
+ * @param pF A pointer to a valid lv_font_t to be used for the object.
+ */
+    void setAdjFont(const lv_font_t* pF);
+/**
+ * @brief Set the _adjacent Label's_ text alignment (left/right/center)
+ * 
+ * @param _align an lv_text_align_t like LV_TEXT_ALIGN_CENTER
+ */
+    void setAdjJustificationAlignment(lv_text_align_t _align);
 /**
  * @brief Callback that derived objects can use to get notification when the object is clicked.
  * 
@@ -405,11 +431,23 @@ public:
  */
     void setValueLabelFormat(const char* fmt);
 /**
- * @brief Set the Value Label Color object
+ * @brief Set the Value Label's text Color
  * 
  * @param newColor The lv_color_t of the desired color for the value label.
  */
     void setValueLabelColor(lv_color_t newColor);
+/**
+ * @brief Set the Value Label's background Color
+ * 
+ * @param newColor The lv_color_t of the desired color for the value label's background
+ */
+    void setValueLabelBGColor(lv_color_t newColor);
+/**
+ * @brief Set the value Label's text alignment (left/right/center)
+ * 
+ * @param _align an lv_text_align_t like LV_TEXT_ALIGN_CENTER
+ */
+    void setValueLabelJustificationAlignment(lv_text_align_t _align);
 /**
  * @brief Set the Value Label Font
  * 
@@ -435,8 +473,107 @@ protected:
     int16_t curValue;               ///< The value we're keeping and handling in this class.
     lv_obj_t* valueLabel;           ///< The label that receives the formatted value if the label is enabled.
     std::string valueLabelFormat;   ///< The format to use when the value changes.
-    lv_style_t style_value_obj;     ///< The style of the label.
     int16_t min, max;               ///< The allowable range of the value.
 };
+
+/** @class lvppOptions
+ * @brief _Utility class_ to aid in consistent handling of all lv_ widgets which have
+ *        a list of choices. This means _roller_, _dropdown_, and from this library,
+ *        _lvppCycleButton_. Each child class will use this class to keep track of
+ *        the options and make them modifyable in a consistent manner. The ultimate
+ *        _setting_ of the values in the child class is done by that child implementing
+ *        their version of lvOptionSetter().
+ * 
+ */
+class lvppOptions {
+public:
+/**
+ * @brief Set the Options all in one shot from a const char*
+ * 
+ * @param pOpts Options all in one string separated by \n newline characters.
+ */
+    virtual void setOptions(const char* pOpts);
+/**
+ * @brief Set the Options using a vector of strings.
+ * 
+ * @param _opts reference to a std::vector<std::string> which contains all of the options.
+ */
+    virtual void setOptions(std::vector<std::string>& _opts);
+/**
+ * @brief Set the Options along with a related ID. This is intended to give the
+ *        user a more meaningful item to 'get' than text or index of what has been 
+ *        selected. Used in conjunction with getCurrentID()
+ * 
+ * @param valIDs 
+ */
+    virtual void setOptionsWithIDs(std::vector<std::pair<std::string, uint64_t>>& valIDs);
+/**
+ * @brief Add a single option to the options list.
+ * 
+ * @param pOpt const char* to a single option to add to the list.
+ */
+    virtual void addOption(const char* pOpt);
+/**
+ * @brief Add a single option to the options list and pair it with a meaningful ID. To
+ *        be used in conjunction with getSelectedID().
+ * 
+ * @param pOpt const char* to a single option to add to the list.
+ * @param id   ID to associate with this option.
+ */
+    virtual void addOptionWithID(const char* pOpt, uint64_t id);
+/**
+ * @brief Add a single option to the options list.
+ * 
+ * @param _opt reference to a std::string of a single option to add to the list.
+ */
+    virtual void addOption(std::string& _opt);
+/**
+ * @brief Add a single option to the options list and pair it with a meaningful ID. To
+ *        be used in conjunction with getSelectedID().
+ * 
+ * @param _opt const char* to a single option to add to the list.
+ * @param id   ID to associate with this option.
+ */
+    virtual void addOptionWithID(std::string& _opt, uint64_t id);
+/**
+ * @brief Removes all entries from the options list.
+ *        NOTE: Method does not clear the LVGL widget. User should declare their own
+ *              clearOptions() method and make a call to the base object for clearing
+ *              the options list prior to the user clearing the widget's actual list visually.
+ * 
+ */
+    virtual void clearOptions();
+/**
+ * @brief Get the ID associated with the currently selected item. Using this method only makes
+ *        sense if the list of options was built using setOptionsWithIDs() and/or addOptionWithID().
+ * 
+ * @return uint64_t the pre-set ID associated with this current selected value/index.
+ */
+    virtual uint64_t getSelectedID();
+protected:
+/**
+ * @brief This is the pure virtual which must be implemented by any class that utilizes
+ *        lvppOptions. It is called by the 'set' functions to do the actual setting.
+ *        Since lvppOptions is just a _utility class_, it must rely on the the child
+ *        to do the actual appropriate set function.
+ * 
+ * @param pOpts newline-separated list of options.
+ */
+    virtual void lvOptionSetter(const char* pOpts) = 0;
+/**
+ * @brief This is the pure virtual method which must be implemented by any class that
+ *        utilizes lvppOptions. The implementation should return the index of the currently
+ *        selected value in the list. The specific function will vary based on what the
+ *        child's widget type is.
+ * 
+ * @return uint16_t The index of the currently selected / displayed value. This is zero-based.
+ */
+    virtual uint16_t lvOptionGetIndex() = 0;
+    std::string oneString;              ///< Temp area for getNewlineSepOptions()
+    std::vector<std::string> options;   ///< The vector of options kept locally.
+    std::vector<uint64_t> idList;       ///< The vector of associated ID values (if used)
+    const char* getNewlineSepOptions(); ///< Packs all the option strings into a single newline separated pointer.
+};
+
 
 #endif
