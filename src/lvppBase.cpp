@@ -44,6 +44,10 @@
 
 bool lvppBase::bEventNamesInitComplete = false;
 
+const lv_font_t* lvppBase::pDefaultFont = nullptr;
+lv_color_t* lvppBase::pDefaultTextColor = nullptr;
+lv_color_t* lvppBase::pDefaultBGColor = nullptr;
+
 /**************************
  * 
  * Available point sizes are dictated by the LV_FONT* items which are enabled at compile-time.
@@ -104,8 +108,13 @@ void lvppBase::setFont(const lv_font_t* pF) {
 */
 void lvppBase::setBGColor(lv_color_t color) {
     lv_style_set_bg_color(&style_obj, color);
-//    lv_style_set_bg_color(&style_status, lv_palette_main(LV_PALETTE_BLUE)); // lv_color_hex(0x115588));
+    lv_style_set_bg_opa(&style_obj, LV_OPA_100);
     lv_obj_add_style(obj, &style_obj, LV_PART_MAIN | LV_STATE_DEFAULT);
+    if (label) {
+//        printf(":%s:setVGColor - setting label background color now.\n", whoAmI());
+        lv_obj_set_style_bg_color(label, color, 0);
+        lv_obj_set_style_bg_opa(label, LV_OPA_100, 0);
+    }
 }
 
 lvppBase::lvppBase(const char* fName, const char* oType) {
@@ -145,6 +154,72 @@ lvppBase::~lvppBase() {
       lv_obj_del_async(obj);
       obj = nullptr;
     }
+
+}
+
+void lvppBase::setDefaultFont(const lv_font_t* pFont) {
+    pDefaultFont = pFont;   // Sets regardless of whether pFont is nullptr or a valid pointer.
+}
+
+void lvppBase::setDefaultTextColor(lv_color_t col) {
+    if (!pDefaultTextColor) {
+        pDefaultTextColor = new lv_color_t;
+    }
+
+    *pDefaultTextColor = col;
+}
+
+void lvppBase::setDefaultBGColor(lv_color_t col) {
+    if (!pDefaultBGColor) {
+        pDefaultBGColor = new lv_color_t;
+    }
+
+    *pDefaultBGColor = col;
+}
+
+void lvppBase::removeDefaultBGColor() {
+    // Trying to get rid of the default by pasing nullptr in...
+    if (pDefaultBGColor) {
+        delete pDefaultBGColor;
+        pDefaultBGColor = nullptr;
+    }
+}
+
+void lvppBase::addDefaults() {
+//    printf(":%s:addDefaults - entry.\n", whoAmI());
+
+    if (pDefaultFont)
+        setFont(pDefaultFont);
+    if (pDefaultBGColor)
+        setBGColor(*pDefaultBGColor);
+    if (pDefaultTextColor)
+        setTextColor(*pDefaultTextColor);
+
+    if (adjLabel) {
+        if (pDefaultFont)
+            setAdjFont(pDefaultFont);
+        if (pDefaultBGColor)
+            setAdjBGColor(*pDefaultBGColor);
+        if (pDefaultTextColor)
+            setAdjTextColor(*pDefaultTextColor);
+    }
+}
+
+void lvppBase::createLabel() {
+//    printf(":%s:createLabel - entry.\n", whoAmI());
+
+    if (!label) {
+        label = lv_label_create(obj);
+//        printf(":%s:createLabel - label created. going to add defaults.\n", whoAmI());
+        addDefaults();
+    }
+}
+
+void lvppBase::createAdjLabel() {
+    if (!adjLabel) {
+        adjLabel = lv_label_create(objParent);
+        addDefaults();
+    }
 }
 
 void lvppBase::align(lv_align_t align, lv_coord_t x_ofs, lv_coord_t y_ofs)
@@ -153,9 +228,7 @@ void lvppBase::align(lv_align_t align, lv_coord_t x_ofs, lv_coord_t y_ofs)
 }
 
 void lvppBase::setText(const char* pText) {
-    if (!label) {
-        label = lv_label_create(obj);
-    }
+    createLabel();
     if (pText) {
         lv_label_set_text(label, pText);
     }
@@ -175,16 +248,16 @@ std::string lvppBase::getText() {
 
 void lvppBase::setTextAlign(lv_align_t align, lv_coord_t xoff, lv_coord_t yoff)
 {
-    if (!label) {
-        label = lv_label_create(obj);
-    }
+    createLabel();
     lv_obj_align(label, align, xoff, yoff);
 }
 
 void lvppBase::setTextColor(lv_color_t newColor) {
     if (label) {
+//        printf(":%s:setTextColor - setting label text color now.\n", whoAmI());
         lv_style_set_text_color(&style_obj, newColor);
         lv_obj_add_style(label, &style_obj, 0);
+        lv_obj_set_style_text_color(label, newColor, 0);
     }
 }
 
@@ -201,9 +274,7 @@ void lvppBase::setLabelColorizationEnabled(bool bEnable) {
 }
 
 void lvppBase::setAdjText(const char* pText, lv_coord_t x_ofs, lv_coord_t y_ofs) {
-    if (!adjLabel) {
-        adjLabel = lv_label_create(objParent);
-    }
+    createAdjLabel();
     if (pText) {
         lv_label_set_text(adjLabel, pText);
     }
@@ -221,11 +292,14 @@ void lvppBase::setAdjTextColor(lv_color_t newColor) {
 void lvppBase::setAdjBGColor(lv_color_t color) {
     if (adjLabel) {
         lv_obj_set_style_bg_color(adjLabel, color, 0);
+        lv_obj_set_style_bg_opa(adjLabel, LV_OPA_100, 0);
     }
 }
 
 void lvppBase::setAdjFont(const lv_font_t* pF) {
-    lv_obj_set_style_text_font(adjLabel, pF, 0);
+    if (adjLabel) {
+        lv_obj_set_style_text_font(adjLabel, pF, 0);
+    }
 }
 
 void lvppBase::setAdjJustificationAlignment(lv_text_align_t _align) {
@@ -240,6 +314,8 @@ void lvppBase::createObj(lv_obj_t* o) {
     
     obj = o;
     lv_obj_add_style(obj, &style_obj, 0);
+
+    addDefaults();
 
     lv_obj_set_user_data(obj, this);
 
@@ -275,14 +351,14 @@ void lvppBase::baseEventHandler(lv_event_t* event) {
 
     switch(code) {
         case LV_EVENT_CLICKED:
-            printf("%s: CALLING onClicked()...\n", whoAmI());
+//            printf("%s: CALLING onClicked()...\n", whoAmI());
             internalOnClicked();
             onClicked();
             if (cbOnClicked)
                 cbOnClicked();
             break;
         case LV_EVENT_VALUE_CHANGED:
-            printf("%s: CALLING onValueChanged()...\n", whoAmI());
+//            printf("%s: CALLING onValueChanged()...\n", whoAmI());
             internalOnValueChanged();
             onValueChanged();
             if (cbOnValueChanged)
@@ -404,11 +480,24 @@ lvppBaseWithValue::lvppBaseWithValue(const char* fName, const char* oType) : lvp
     max=100;
 }
 
-void lvppBaseWithValue::enableValueLabel(lv_coord_t xoff, lv_coord_t yoff, lv_align_t alignment) {
+void lvppBaseWithValue::addDefaults() {
+    if (pDefaultFont)
+        setValueLabelFont(pDefaultFont);
+    if (pDefaultBGColor)
+        setValueLabelBGColor(*pDefaultBGColor);
+    if (pDefaultTextColor)
+        setValueLabelColor(*pDefaultTextColor);
+}
+
+void lvppBaseWithValue::createValueLabel() {
     if (!valueLabel) {
         valueLabel = lv_label_create(objParent);
+        addDefaults();
     }
+}
 
+void lvppBaseWithValue::enableValueLabel(lv_coord_t xoff, lv_coord_t yoff, lv_align_t alignment) {
+    createValueLabel();
     lv_obj_align_to(valueLabel, obj, alignment, xoff, yoff);
 }
 
@@ -442,6 +531,7 @@ void lvppBaseWithValue::setValueLabelBGColor(lv_color_t newColor) {
     }
 
     lv_obj_set_style_bg_color(valueLabel, newColor, 0);
+    lv_obj_set_style_bg_opa(valueLabel, LV_OPA_100, 0);
     lv_obj_invalidate(valueLabel);
 }
 

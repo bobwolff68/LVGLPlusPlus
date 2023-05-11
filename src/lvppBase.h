@@ -333,6 +333,35 @@ public:
  * @param pNewParent pointer to the new parent.
  */
     virtual void setNewParent(lv_obj_t* pNewParent);
+/**
+ * @brief Set the Default Font to be used on all subsequent widget creations. Note - can be nullptr to
+ *        effectively un-set the default.
+ * 
+ * @param pFont pointer to a lv_font_t
+ */
+    static void setDefaultFont(const lv_font_t* pFont);
+/**
+ * @brief Set the Default Text Color to be used on all subsequent widget creations or enabling of things like
+ *        adjacent text or setting/resetting of text values.
+ * 
+ * @param col lv_color_t value to use for default color
+ */
+    static void setDefaultTextColor(lv_color_t col);
+/**
+ * @brief Set the Default Background Color to be used on all subsequent widget creations or enabling of things like
+ *        adjacent text or setting/resetting of text values.
+ * 
+ * @param col lv_color_t value to use for default color
+ */
+    static void setDefaultBGColor(lv_color_t col);
+/**
+ * @brief Removes the default background color for subsequent widget creations. Part of the reson for this is
+ *        that typically text backgrounds are an opacity of transparent and simply changing the background color
+ *        to another color (like the screen or canvas color) won't affect the change desired. By using this
+ *        method, you remove the internal usage of an opacity of 100 with the color.
+ * 
+ */
+    static void removeDefaultBGColor();
 protected:
     lv_obj_t* label;    ///< Primary label.
     lv_obj_t* adjLabel; ///< For items that have a label 'nearby' (adjacent label)
@@ -371,6 +400,14 @@ protected:
     static void initEventNames(void);
 
     static bool bEventNamesInitComplete;    ///< Status of the event names table to avoid re-processing.
+
+    static const lv_font_t* pDefaultFont;
+    static lv_color_t* pDefaultTextColor;
+    static lv_color_t* pDefaultBGColor;
+    void addDefaults();
+private:
+    void createLabel();
+    void createAdjLabel();
 };
 
 /**
@@ -474,6 +511,9 @@ protected:
     lv_obj_t* valueLabel;           ///< The label that receives the formatted value if the label is enabled.
     std::string valueLabelFormat;   ///< The format to use when the value changes.
     int16_t min, max;               ///< The allowable range of the value.
+private:
+    void createValueLabel();
+    void addDefaults();
 };
 
 /** @class lvppOptions

@@ -39,10 +39,8 @@ lvppButton::lvppButton(const char* fName, const char* pText, lv_obj_t* parent) :
 //    lv_style_set_bg_color(&style_obj, lv_color_hex(0xf1f1f1));  // lv_color_hex(0xeeeeee));
     lv_obj_add_style(obj, &style_obj, 0);
 
-    label = lv_label_create(obj);
-
     if (pText) {
-        lv_label_set_text(label, pText);
+        setText(pText);
     }
 }
 
