@@ -117,6 +117,21 @@ void lvppBase::setBGColor(lv_color_t color) {
     }
 }
 
+void lvppBase::setColorGradient(lv_color_t col1, lv_color_t col2, lv_grad_dir_t direction) {
+    lv_style_selector_t sel;
+    std::string ot = getObjType();
+
+    if (ot=="BAR" || ot=="SLIDER" || ot=="ARC") {
+        sel = LV_PART_INDICATOR;
+    }
+    else {
+        sel = LV_PART_MAIN;
+    }
+    lv_obj_set_style_bg_color(obj, col1, sel);
+    lv_obj_set_style_bg_grad_color(obj, col2, sel);
+    lv_obj_set_style_bg_grad_dir(obj, direction, sel);
+}
+
 lvppBase::lvppBase(const char* fName, const char* oType) {
   if (!bEventNamesInitComplete)
     initEventNames();
@@ -293,6 +308,14 @@ void lvppBase::setAdjBGColor(lv_color_t color) {
     if (adjLabel) {
         lv_obj_set_style_bg_color(adjLabel, color, 0);
         lv_obj_set_style_bg_opa(adjLabel, LV_OPA_100, 0);
+    }
+}
+
+void lvppBase::setAdjColorGradient(lv_color_t col1, lv_color_t col2, lv_grad_dir_t direction) {
+    if (adjLabel) {
+        lv_obj_set_style_bg_color(adjLabel, col1, LV_PART_MAIN);
+        lv_obj_set_style_bg_grad_color(adjLabel, col2, LV_PART_MAIN);
+        lv_obj_set_style_bg_grad_dir(adjLabel, direction, LV_PART_MAIN);
     }
 }
 
@@ -533,6 +556,16 @@ void lvppBaseWithValue::setValueLabelBGColor(lv_color_t newColor) {
     lv_obj_set_style_bg_color(valueLabel, newColor, 0);
     lv_obj_set_style_bg_opa(valueLabel, LV_OPA_100, 0);
     lv_obj_invalidate(valueLabel);
+}
+
+void lvppBaseWithValue::setValueLabelColorGradient(lv_color_t col1, lv_color_t col2, lv_grad_dir_t direction) {
+    if (!valueLabel) {
+        enableValueLabel(0,0);
+    }
+
+    lv_obj_set_style_bg_color(valueLabel, col1, LV_PART_MAIN);
+    lv_obj_set_style_bg_grad_color(valueLabel, col2, LV_PART_MAIN);
+    lv_obj_set_style_bg_grad_dir(valueLabel, direction, LV_PART_MAIN);
 }
 
 void lvppBaseWithValue::setValueLabelJustificationAlignment(lv_text_align_t _align) {

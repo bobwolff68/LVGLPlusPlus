@@ -168,6 +168,16 @@ public:
  */
     void setBGColor(lv_color_t color);
 /**
+ * @brief Sets a Color Gradient from col1 to col2 in a vertical or horizontal direction. The gradient is place
+ *        on the indicator for lvppBar, lvppSlider, and lvppArc. The graident is placed on the 'main' area of
+ *        all other objects.
+ * 
+ * @param col1 First lv_color_t color in the gradient
+ * @param col2 Second lv_color_t color in the gradient
+ * @param direction gradient color runs col1->col2 either LV_GRAD_DIR_VER (top to bottom) or LV_GRAD_DIR_HOR (left to right)
+ */
+    void setColorGradient(lv_color_t col1, lv_color_t col2, lv_grad_dir_t direction);
+/**
  * @brief Set the Text for the primary text label. For a button, for instance, this is the text on top of the button.
  * 
  * @param pText char pointer to the text
@@ -233,6 +243,14 @@ public:
  * @param color lv_color_t to describe the background color.
  */
    void setAdjBGColor(lv_color_t color);
+/**
+ * @brief Sets a Color Gradient from col1 to col2 in a vertical or horizontal direction.
+ * 
+ * @param col1 First lv_color_t color in the gradient
+ * @param col2 Second lv_color_t color in the gradient
+ * @param direction gradient color runs col1->col2 either LV_GRAD_DIR_VER (top to bottom) or LV_GRAD_DIR_HOR (left to right)
+ */
+    void setAdjColorGradient(lv_color_t col1, lv_color_t col2, lv_grad_dir_t direction);
 /**
  * @brief Set the Font to be used for the adjacent text.
  *        
@@ -410,6 +428,12 @@ private:
     void createAdjLabel();
 };
 
+//
+//
+// l v p p B a s e W i t h V a l u e
+//
+//
+
 /**
  * @brief Derivation from lvppBase. Those widgets which have an inherant 'value' to show are based on 
  *        this slight modified version of lvppBase which includes a value label and an associated style object.
@@ -479,6 +503,14 @@ public:
  * @param newColor The lv_color_t of the desired color for the value label's background
  */
     void setValueLabelBGColor(lv_color_t newColor);
+/**
+ * @brief Sets a Color Gradient from col1 to col2 in a vertical or horizontal direction.
+ * 
+ * @param col1 First lv_color_t color in the gradient
+ * @param col2 Second lv_color_t color in the gradient
+ * @param direction gradient color runs col1->col2 either LV_GRAD_DIR_VER (top to bottom) or LV_GRAD_DIR_HOR (left to right)
+ */
+    void setValueLabelColorGradient(lv_color_t col1, lv_color_t col2, lv_grad_dir_t direction);
 /**
  * @brief Set the value Label's text alignment (left/right/center)
  * 
