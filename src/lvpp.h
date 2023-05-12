@@ -161,6 +161,42 @@ protected:
     std::vector<lvppBase*> objects; ///< Data structure used to hold all of the object pointers.
 };
 
+/** @class lvppSwitch
+ * @brief On/Off switch widget
+ * 
+ * Switch which is either on or off and is either enabled or disabled.
+ * 
+ */
+class lvppSwitch : public lvppBase {
+public:
+/**
+ * @brief Construct a new lvpp Switch object with a friendly name and optionally a parent object.
+ * 
+ * @param fName friendly name
+ * @param parent The lv_obj_t parent (optional)
+ */
+    lvppSwitch(const char* fName, lv_obj_t* parent=nullptr);
+/**
+ * @brief Set the switch to be enabled or disabled
+ * 
+ * @param bEnable defaults to true. False makes it a disabled widget unable to be changed by the user.
+ */
+    void setEnabled(bool bEnable=true);
+/**
+ * @brief Set the Checked State either on or off.
+ * 
+ * @param bChecked defaults to true. False turns the switch 'off'. True turns it to 'on' position.
+ */
+    void setCheckedState(bool bChecked=true);
+/**
+ * @brief Get the Checked State of the switch
+ * 
+ * @return true if switch is in the 'on' position
+ * @return false if the switch is in the 'off' position
+ */
+    bool getCheckedState();
+};
+
 /** @class lvppButton
  * @brief Basic button class
  * 
