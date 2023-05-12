@@ -34,6 +34,9 @@
 lvppImage::lvppImage(const char* fName, lv_obj_t* parent) : lvppBase(fName, "IMAGE") {
     objParent = parent ? parent : lv_scr_act();
     createObj(lv_img_create(objParent));
+
+    pImage = nullptr;
+    deferred_h = deferred_w = -1;
 }
 
 lvppImage::~lvppImage() {
@@ -41,7 +44,51 @@ lvppImage::~lvppImage() {
 }
 
 void lvppImage::setImage(const lv_img_dsc_t* pImg) {
-    lv_img_set_src(obj, pImg);
+    pImage = pImg;
+    lv_img_set_src(obj, pImage);
+
+    // If the user calls setSize() _prior_ to setImage, we'll patch things up.
+    if (deferred_h != -1) {
+        setSize(deferred_w, deferred_h);
+        deferred_h = deferred_w = -1;
+    }
+}
+
+void lvppImage::setSize(lv_coord_t width, lv_coord_t height) {
+    if (pImage) {
+        if (width != pImage->header.w || height != pImage->header.h) {
+            // Need to zoom the image. 
+            // Let's figure out what % zoom this width and height are.
+            // Then we'll take the smallest % and use that for the zoom.
+            // Lastly - we can only zoom 200% so bound it there.
+            uint16_t w_fact, h_fact;
+            w_fact = h_fact = 100;  // Starting point
+
+            if (width != pImage->header.w) {
+                w_fact = 100 * width / pImage->header.w;
+                if (w_fact > 200)
+                    w_fact = 200;
+            }
+
+            if (height != pImage->header.h) {
+                h_fact = 100 * height / pImage->header.h;
+                if (h_fact > 200)
+                    h_fact = 200;
+            }
+
+            uint16_t zFactor = std::min(w_fact, h_fact) * 256 / 100;
+printf(":%s:lvppImage::setSize() - w_fact=%u, h_fact=%u, zFactor=%u\n", whoAmI(), w_fact, h_fact, zFactor);
+            lv_img_set_zoom(obj, zFactor);
+        }
+        else {
+           lvppBase::setSize(width, height);
+        }
+    }
+    else {
+        // Do the re-size once the user sets up an image to use for zoom.
+        deferred_w = width;
+        deferred_h = height;
+    }
 }
 
 void lvppImage::setRotation(int16_t rotTenthsOfDegrees) {

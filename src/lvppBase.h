@@ -131,7 +131,7 @@ public:
  * @param width New width of the widget.
  * @param height New height of the widget.
  */
-    void setSize(lv_coord_t width, lv_coord_t height);
+    virtual void setSize(lv_coord_t width, lv_coord_t height);
 /**
  * @brief Change the x/y location of the object.
  * 

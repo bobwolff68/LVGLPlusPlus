@@ -351,6 +351,14 @@ public:
  */
     void setImage(const lv_img_dsc_t* pImg);
 /**
+ * @brief Set the Size object. In the case of lvppImage, we need to
+ *        scale/zoom the image to match the size desired.
+ * 
+ * @param width New width of the widget.
+ * @param height New height of the widget.
+ */
+    virtual void setSize(lv_coord_t width, lv_coord_t height);
+/**
  * @brief Set the Rotation angle of the image about the setPivot point.
  * 
  * @param rotTenthsOfDegrees Given in tenths of degrees - so 0-3600 for 360 degrees.
@@ -362,6 +370,9 @@ public:
  * @param xPivot, yPivot The coordinates of the pivot point of the images.
  */
     void setPivotPoint(lv_coord_t xPivot, lv_coord_t yPivot);
+protected:
+    const lv_img_dsc_t* pImage;
+    int16_t deferred_w, deferred_h;
 };
 
 /**
