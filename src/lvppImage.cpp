@@ -40,7 +40,7 @@ lvppImage::~lvppImage() {
 
 }
 
-void lvppImage::setImage(lv_img_dsc_t* pImg) {
+void lvppImage::setImage(const lv_img_dsc_t* pImg) {
     lv_img_set_src(obj, pImg);
 }
 

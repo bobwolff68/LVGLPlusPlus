@@ -349,7 +349,7 @@ public:
  * 
  * @param img a pointer to an image descriptor. This is what the LVGL image converter tool produces in a .c file.
  */
-    void setImage(lv_img_dsc_t* pImg);
+    void setImage(const lv_img_dsc_t* pImg);
 /**
  * @brief Set the Rotation angle of the image about the setPivot point.
  * 

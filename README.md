@@ -16,9 +16,12 @@ C++ wrapper around the embedded graphics library, LVGL
   - [Threaded LVGLPlusPlus Sample Project](https://github.com/bobwolff68/LVGLPlusPlus-ThreadedSample)
   - [Non-Threaded LVGLPlusPlus Sample Project](https://github.com/bobwolff68/LVGLPlusPlus-NonThreadedSample)
 
-## Mid-range Game Plan
+## Short/Mid-range Game Plan
 
 First and foremost - please feel free to use this as is. I'd be happy to hear suggestions and even gain help from others to more fully connect LVGL features to the lvppPlusPlus library.
+
+- Continue to gain more homgeneneous consistency amongst the classes.
+- Add an animation co-class helper to give easy access to animations ala LVGL
 
 ## Needs/Wants
 
@@ -28,10 +31,6 @@ First and foremost - please feel free to use this as is. I'd be happy to hear su
 ## Contribution and Discussion
 
 Please do strike up a discussion if you have (constructive) ideas. I'm game to brainstorm with positive thinking folks on the structure and how it marches forward.
-
-## Looking for digital design and software engineering design services?
-
-- Shameless plug: As of Spring 2023 I'm open to contract work and happy to discuss projects. Get in touch - b o b dot w o l f f 6 8 at g m a i l dot c o m
 
 Thanks!
 Bob Wolff - aka roboBob
