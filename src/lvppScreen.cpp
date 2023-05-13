@@ -72,7 +72,7 @@ void lvppScreen::activatePriorScreen() {
 void lvppScreen::addObject(lvppBase* pObj) {
     assert(pObj);
     objects.push_back(pObj);
-    lv_obj_set_parent(pObj->getObj(), pScreen);
+    pObj->setNewParent(pScreen);
 }
 
 lvppBase* lvppScreen::findObj(const char* pName) {

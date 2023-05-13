@@ -39,44 +39,39 @@ lvppButton::lvppButton(const char* fName, const char* pText, lv_obj_t* parent) :
 //    lv_style_set_bg_color(&style_obj, lv_color_hex(0xf1f1f1));  // lv_color_hex(0xeeeeee));
     lv_obj_add_style(obj, &style_obj, 0);
 
-    label = lv_label_create(obj);
-
     if (pText) {
-        lv_label_set_text(label, pText);
+        setText(pText);
     }
 }
 
 
 lvppCycleButton::lvppCycleButton(const char* fName, lv_obj_t* parent) : lvppButton(fName, NULL, parent) {
-    options.clear();
-    currentIndex = 0;
-    quantity = 0;
+    clearOptions();
 }
 
 void lvppCycleButton::clearOptions(void) {
     options.clear();
-    quantity = 0;
-}
-
-void lvppCycleButton::addOptions(const char* pText) {
-    if (pText) {
-        options.push_back(pText);
-        quantity++;
-    }
-    setText(options[currentIndex].c_str());
-}
-
-void lvppCycleButton::addOptions(std::vector<std::string> &inOptions) {
-    options = inOptions;
     currentIndex = 0;
-    quantity = inOptions.size();
+}
 
-    setText(options[currentIndex].c_str());
+void lvppCycleButton::setOptions(const char* pText) {
+    if (pText) {
+        currentIndex = 0;
+        lvppOptions::setOptions(pText);
+    }
+    else {
+        clearOptions();
+    }
+}
+
+void lvppCycleButton::setOptions(std::vector<std::string> &inOptions) {
+    currentIndex = 0;
+    lvppOptions::setOptions(inOptions);
  }
 
 void lvppCycleButton::internalOnClicked() {
     currentIndex++;
-    if (currentIndex >= quantity)
+    if (currentIndex >= options.size())
         currentIndex = 0;
     
     setText(options[currentIndex].c_str());
@@ -159,4 +154,35 @@ void lvppFullImageToggleButton::setCheckedState(bool bSetChecked) {
         lv_img_set_src(pImage, &imgReleased);
         onButtonUnChecked();
     }
+}
+
+////////////////////////
+////////////////////////
+////////////////////////
+
+lvppSwitch::lvppSwitch(const char* fName, lv_obj_t* parent) : lvppBase(fName, "SWITCH") {
+    objParent = parent ? parent : lv_scr_act();
+    createObj(lv_switch_create(objParent));
+}
+
+void lvppSwitch::setEnabled(bool bEnable) {
+    if (bEnable) {
+        lv_obj_clear_state(obj, LV_STATE_DISABLED);
+    }
+    else {
+        lv_obj_add_state(obj, LV_STATE_DISABLED);
+    }
+}
+
+void lvppSwitch::setCheckedState(bool bChecked) {
+    if (bChecked) {
+        lv_obj_add_state(obj, LV_STATE_CHECKED);
+    }
+    else {
+        lv_obj_clear_state(obj, LV_STATE_CHECKED);
+    }
+}
+
+bool lvppSwitch::getCheckedState() {
+    return lv_obj_has_state(obj, LV_STATE_CHECKED);
 }

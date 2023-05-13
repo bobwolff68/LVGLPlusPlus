@@ -27,6 +27,8 @@
 //
 #include "lvppBase.h"
 
+#include <algorithm>
+
 /** @file lvppBase.cpp
  * @brief Implementation of the base class for the library - lvppBase.
 */
@@ -41,6 +43,10 @@
 //#define LOG_EVENTS
 
 bool lvppBase::bEventNamesInitComplete = false;
+
+const lv_font_t* lvppBase::pDefaultFont = nullptr;
+lv_color_t* lvppBase::pDefaultTextColor = nullptr;
+lv_color_t* lvppBase::pDefaultBGColor = nullptr;
 
 /**************************
  * 
@@ -84,6 +90,7 @@ void lvppBase::setFontSize(uint8_t points) {
             lv_style_set_text_font(&style_obj, &lv_font_montserrat_24);
             break;
         default:
+            LV_LOG_ERROR("lvppBase::setFontSize() - font size not available. Error.\n");
             throw;
             return;
     }
@@ -101,8 +108,28 @@ void lvppBase::setFont(const lv_font_t* pF) {
 */
 void lvppBase::setBGColor(lv_color_t color) {
     lv_style_set_bg_color(&style_obj, color);
-//    lv_style_set_bg_color(&style_status, lv_palette_main(LV_PALETTE_BLUE)); // lv_color_hex(0x115588));
+    lv_style_set_bg_opa(&style_obj, LV_OPA_100);
     lv_obj_add_style(obj, &style_obj, LV_PART_MAIN | LV_STATE_DEFAULT);
+    if (label) {
+//        printf(":%s:setVGColor - setting label background color now.\n", whoAmI());
+        lv_obj_set_style_bg_color(label, color, 0);
+        lv_obj_set_style_bg_opa(label, LV_OPA_100, 0);
+    }
+}
+
+void lvppBase::setColorGradient(lv_color_t col1, lv_color_t col2, lv_grad_dir_t direction) {
+    lv_style_selector_t sel;
+    std::string ot = getObjType();
+
+    if (ot=="BAR" || ot=="SLIDER" || ot=="ARC") {
+        sel = LV_PART_INDICATOR;
+    }
+    else {
+        sel = LV_PART_MAIN;
+    }
+    lv_obj_set_style_bg_color(obj, col1, sel);
+    lv_obj_set_style_bg_grad_color(obj, col2, sel);
+    lv_obj_set_style_bg_grad_dir(obj, direction, sel);
 }
 
 lvppBase::lvppBase(const char* fName, const char* oType) {
@@ -142,6 +169,72 @@ lvppBase::~lvppBase() {
       lv_obj_del_async(obj);
       obj = nullptr;
     }
+
+}
+
+void lvppBase::setDefaultFont(const lv_font_t* pFont) {
+    pDefaultFont = pFont;   // Sets regardless of whether pFont is nullptr or a valid pointer.
+}
+
+void lvppBase::setDefaultTextColor(lv_color_t col) {
+    if (!pDefaultTextColor) {
+        pDefaultTextColor = new lv_color_t;
+    }
+
+    *pDefaultTextColor = col;
+}
+
+void lvppBase::setDefaultBGColor(lv_color_t col) {
+    if (!pDefaultBGColor) {
+        pDefaultBGColor = new lv_color_t;
+    }
+
+    *pDefaultBGColor = col;
+}
+
+void lvppBase::removeDefaultBGColor() {
+    // Trying to get rid of the default by pasing nullptr in...
+    if (pDefaultBGColor) {
+        delete pDefaultBGColor;
+        pDefaultBGColor = nullptr;
+    }
+}
+
+void lvppBase::addDefaults() {
+//    printf(":%s:addDefaults - entry.\n", whoAmI());
+
+    if (pDefaultFont)
+        setFont(pDefaultFont);
+    if (pDefaultBGColor)
+        setBGColor(*pDefaultBGColor);
+    if (pDefaultTextColor)
+        setTextColor(*pDefaultTextColor);
+
+    if (adjLabel) {
+        if (pDefaultFont)
+            setAdjFont(pDefaultFont);
+        if (pDefaultBGColor)
+            setAdjBGColor(*pDefaultBGColor);
+        if (pDefaultTextColor)
+            setAdjTextColor(*pDefaultTextColor);
+    }
+}
+
+void lvppBase::createLabel() {
+//    printf(":%s:createLabel - entry.\n", whoAmI());
+
+    if (!label) {
+        label = lv_label_create(obj);
+//        printf(":%s:createLabel - label created. going to add defaults.\n", whoAmI());
+        addDefaults();
+    }
+}
+
+void lvppBase::createAdjLabel() {
+    if (!adjLabel) {
+        adjLabel = lv_label_create(objParent);
+        addDefaults();
+    }
 }
 
 void lvppBase::align(lv_align_t align, lv_coord_t x_ofs, lv_coord_t y_ofs)
@@ -150,9 +243,7 @@ void lvppBase::align(lv_align_t align, lv_coord_t x_ofs, lv_coord_t y_ofs)
 }
 
 void lvppBase::setText(const char* pText) {
-    if (!label) {
-        label = lv_label_create(obj);
-    }
+    createLabel();
     if (pText) {
         lv_label_set_text(label, pText);
     }
@@ -172,22 +263,22 @@ std::string lvppBase::getText() {
 
 void lvppBase::setTextAlign(lv_align_t align, lv_coord_t xoff, lv_coord_t yoff)
 {
-    if (!label) {
-        label = lv_label_create(obj);
-    }
+    createLabel();
     lv_obj_align(label, align, xoff, yoff);
 }
 
 void lvppBase::setTextColor(lv_color_t newColor) {
     if (label) {
+//        printf(":%s:setTextColor - setting label text color now.\n", whoAmI());
         lv_style_set_text_color(&style_obj, newColor);
         lv_obj_add_style(label, &style_obj, 0);
+        lv_obj_set_style_text_color(label, newColor, 0);
     }
 }
 
 void lvppBase::setLabelJustificationAlignment(lv_text_align_t _align) {
     if (label) {
-        lv_obj_set_style_text_align(label, LV_TEXT_ALIGN_CENTER, 0);
+        lv_obj_set_style_text_align(label, _align, 0);
     }
 }
 
@@ -198,9 +289,7 @@ void lvppBase::setLabelColorizationEnabled(bool bEnable) {
 }
 
 void lvppBase::setAdjText(const char* pText, lv_coord_t x_ofs, lv_coord_t y_ofs) {
-    if (!adjLabel) {
-        adjLabel = lv_label_create(objParent);
-    }
+    createAdjLabel();
     if (pText) {
         lv_label_set_text(adjLabel, pText);
     }
@@ -209,12 +298,38 @@ void lvppBase::setAdjText(const char* pText, lv_coord_t x_ofs, lv_coord_t y_ofs)
     }
 }
 
-// void lvppBase::setAdjTextColor(lv_color_t newColor) {
-//     if (adjLabel) {
-//         lv_style_set_text_color(&style_obj, newColor);
-//         lv_obj_add_style(adjLabel, &style_obj, 0);
-//     }
-// }
+void lvppBase::setAdjTextColor(lv_color_t newColor) {
+    if (adjLabel) {
+        lv_obj_set_style_text_color(adjLabel, newColor, 0);
+    }
+}
+
+void lvppBase::setAdjBGColor(lv_color_t color) {
+    if (adjLabel) {
+        lv_obj_set_style_bg_color(adjLabel, color, 0);
+        lv_obj_set_style_bg_opa(adjLabel, LV_OPA_100, 0);
+    }
+}
+
+void lvppBase::setAdjColorGradient(lv_color_t col1, lv_color_t col2, lv_grad_dir_t direction) {
+    if (adjLabel) {
+        lv_obj_set_style_bg_color(adjLabel, col1, LV_PART_MAIN);
+        lv_obj_set_style_bg_grad_color(adjLabel, col2, LV_PART_MAIN);
+        lv_obj_set_style_bg_grad_dir(adjLabel, direction, LV_PART_MAIN);
+    }
+}
+
+void lvppBase::setAdjFont(const lv_font_t* pF) {
+    if (adjLabel) {
+        lv_obj_set_style_text_font(adjLabel, pF, 0);
+    }
+}
+
+void lvppBase::setAdjJustificationAlignment(lv_text_align_t _align) {
+    if (adjLabel) {
+        lv_obj_set_style_text_align(adjLabel, _align, 0);
+    }
+}
 
 void lvppBase::createObj(lv_obj_t* o) {
     if (!o)
@@ -222,6 +337,8 @@ void lvppBase::createObj(lv_obj_t* o) {
     
     obj = o;
     lv_obj_add_style(obj, &style_obj, 0);
+
+    addDefaults();
 
     lv_obj_set_user_data(obj, this);
 
@@ -257,14 +374,14 @@ void lvppBase::baseEventHandler(lv_event_t* event) {
 
     switch(code) {
         case LV_EVENT_CLICKED:
-            printf("%s: CALLING onClicked()...\n", whoAmI());
+//            printf("%s: CALLING onClicked()...\n", whoAmI());
             internalOnClicked();
             onClicked();
             if (cbOnClicked)
                 cbOnClicked();
             break;
         case LV_EVENT_VALUE_CHANGED:
-            printf("%s: CALLING onValueChanged()...\n", whoAmI());
+//            printf("%s: CALLING onValueChanged()...\n", whoAmI());
             internalOnValueChanged();
             onValueChanged();
             if (cbOnValueChanged)
@@ -357,22 +474,53 @@ const char* lvppBase::getEventName(lv_event_code_t code) {
     return (const char*)eventNames[code].c_str();
 }
 
+void lvppBase::setNewParent(lv_obj_t* pNewParent) {
+    objParent = pNewParent;
+    // Main object needs this new pointer.
+    lv_obj_set_parent(obj, pNewParent);
+    // Label's parent is 'obj' so don't reset that.
+
+    // If adjlabel exists, set its parent here
+    // This is due to the fact that adjLabel's parent is not the main object
+    // so that it can be moved outside the boundaries of the main object.
+    if (adjLabel) {
+        lv_obj_set_parent(adjLabel, pNewParent);
+    }
+}
+
+//
+//
+// l v p p B a s e W i t h V a l u e
+//
+//
+
 lvppBaseWithValue::lvppBaseWithValue(const char* fName, const char* oType) : lvppBase(fName, oType) {
     valueLabel = nullptr;
     valueLabelFormat = "%d";
     curValue = 0;
-    lv_style_init(&style_value_obj);
 
     min=0;
     max=100;
 }
 
-void lvppBaseWithValue::enableValueLabel(lv_coord_t xoff, lv_coord_t yoff, lv_align_t alignment) {
+void lvppBaseWithValue::addDefaults() {
+    if (pDefaultFont)
+        setValueLabelFont(pDefaultFont);
+    if (pDefaultBGColor)
+        setValueLabelBGColor(*pDefaultBGColor);
+    if (pDefaultTextColor)
+        setValueLabelColor(*pDefaultTextColor);
+}
+
+void lvppBaseWithValue::createValueLabel() {
     if (!valueLabel) {
         valueLabel = lv_label_create(objParent);
-        lv_obj_add_style(valueLabel, &style_value_obj, 0);
+        addDefaults();
     }
+}
 
+void lvppBaseWithValue::enableValueLabel(lv_coord_t xoff, lv_coord_t yoff, lv_align_t alignment) {
+    createValueLabel();
     lv_obj_align_to(valueLabel, obj, alignment, xoff, yoff);
 }
 
@@ -381,7 +529,7 @@ void lvppBaseWithValue::setValueLabelFont(const lv_font_t* pF) {
         enableValueLabel(0,0);
     }
 
-    lv_style_set_text_font(&style_value_obj, pF);
+    lv_obj_set_style_text_font(valueLabel, pF, 0);
     lv_obj_invalidate(valueLabel);
 }
 
@@ -396,7 +544,36 @@ void lvppBaseWithValue::setValueLabelColor(lv_color_t newColor) {
         enableValueLabel(0,0);
     }
 
-    lv_style_set_text_color(&style_value_obj, newColor);
+    lv_obj_set_style_text_color(valueLabel, newColor, 0);
+    lv_obj_invalidate(valueLabel);
+}
+
+void lvppBaseWithValue::setValueLabelBGColor(lv_color_t newColor) {
+    if (!valueLabel) {
+        enableValueLabel(0,0);
+    }
+
+    lv_obj_set_style_bg_color(valueLabel, newColor, 0);
+    lv_obj_set_style_bg_opa(valueLabel, LV_OPA_100, 0);
+    lv_obj_invalidate(valueLabel);
+}
+
+void lvppBaseWithValue::setValueLabelColorGradient(lv_color_t col1, lv_color_t col2, lv_grad_dir_t direction) {
+    if (!valueLabel) {
+        enableValueLabel(0,0);
+    }
+
+    lv_obj_set_style_bg_color(valueLabel, col1, LV_PART_MAIN);
+    lv_obj_set_style_bg_grad_color(valueLabel, col2, LV_PART_MAIN);
+    lv_obj_set_style_bg_grad_dir(valueLabel, direction, LV_PART_MAIN);
+}
+
+void lvppBaseWithValue::setValueLabelJustificationAlignment(lv_text_align_t _align) {
+    if (!valueLabel) {
+        enableValueLabel(0,0);
+    }
+
+    lv_obj_set_style_text_align(valueLabel, _align, 0);
     lv_obj_invalidate(valueLabel);
 }
 
@@ -407,3 +584,126 @@ void lvppBaseWithValue::internalOnValueChanged() {
     }
 }
 
+void lvppBaseWithValue::setNewParent(lv_obj_t* pNewParent) {
+    // If valuelabel exists, set its parent
+    if (valueLabel) {
+        lv_obj_set_parent(valueLabel, pNewParent);
+    }
+
+    // Now call the parent.
+    lvppBase::setNewParent(pNewParent);
+}
+
+//
+//
+// l v p p O p t i o n s
+//
+//
+
+void lvppOptions::setOptions(const char* pOpts) {
+    std::string currentLine;
+    const char* currentChar = pOpts;
+
+    if (!pOpts) {
+        LV_LOG_WARN("lvppOptions::setOptions - argument is nullptr. Not setting.\n");
+        return;
+    }
+
+    clearOptions();
+
+    // Rip through the pOpts string and add strings ending in \n to options.
+    while (*currentChar != '\0') {
+        if (*currentChar == '\n') {
+            // When we get to a newline...put the current line in options.
+            options.push_back(currentLine);
+            currentLine.clear();
+        } else {
+            // Add character to the end of the current line until we get a newline
+            currentLine += *currentChar;
+        }
+        currentChar++;
+    }
+    
+    // Add the last line if it doesn't end with '\n'
+    if (!currentLine.empty()) {
+        options.push_back(currentLine);
+    }
+
+    // Set all of the ID values to the index value since they aren't being used otherwise here.
+    for (unsigned int i=0; i<options.size(); i++) {
+        idList.push_back((uint64_t)i);
+    }
+
+    lvOptionSetter(getNewlineSepOptions());
+}
+
+void lvppOptions::setOptionsWithIDs(std::vector<std::pair<std::string, uint64_t>>& valIDs) {
+    options.clear();
+    for (unsigned int i=0; i<valIDs.size(); i++) {
+        options.push_back(valIDs[i].first);
+        idList.push_back(valIDs[i].second);
+    }
+}
+
+void lvppOptions::setOptions(std::vector<std::string>& _opts) {
+    options = _opts;
+
+    // Set all of the ID values to the index value since they aren't being used otherwise here.
+    for (unsigned int i=0; i<options.size(); i++) {
+        idList.push_back((uint64_t)i);
+    }
+
+    lvOptionSetter(getNewlineSepOptions());
+}
+
+void lvppOptions::addOption(const char* pOpt) {
+    options.push_back(pOpt);
+    idList.push_back((uint64_t)(options.size()-1));
+
+    lvOptionSetter(getNewlineSepOptions());
+}
+
+void lvppOptions::addOption(std::string& _opt) {
+    options.push_back(_opt);
+    idList.push_back((uint64_t)(options.size()-1));
+
+    lvOptionSetter(getNewlineSepOptions());
+}
+
+void lvppOptions::addOptionWithID(const char* pOpt, uint64_t id) {
+    options.push_back(pOpt);
+    idList.push_back((uint64_t)id);
+
+    lvOptionSetter(getNewlineSepOptions());
+}
+
+void lvppOptions::addOptionWithID(std::string& _opt, uint64_t id) {
+    options.push_back(_opt);
+    idList.push_back((uint64_t)id);
+
+    lvOptionSetter(getNewlineSepOptions());
+}
+
+void lvppOptions::clearOptions() {
+    options.clear();
+    idList.clear();
+}
+
+uint64_t lvppOptions::getSelectedID() {
+    return idList[lvOptionGetIndex()];
+}
+
+const char* lvppOptions::getNewlineSepOptions() {
+    bool first=true;
+
+    for (const auto& it: options) {
+        // Prevents final entry from having \n concatenated.
+        if (!first) {
+            oneString += '\n';
+        }
+        oneString += it;
+        first = false;
+    }
+
+    return oneString.c_str();
+}

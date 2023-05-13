@@ -161,6 +161,42 @@ protected:
     std::vector<lvppBase*> objects; ///< Data structure used to hold all of the object pointers.
 };
 
+/** @class lvppSwitch
+ * @brief On/Off switch widget
+ * 
+ * Switch which is either on or off and is either enabled or disabled.
+ * 
+ */
+class lvppSwitch : public lvppBase {
+public:
+/**
+ * @brief Construct a new lvpp Switch object with a friendly name and optionally a parent object.
+ * 
+ * @param fName friendly name
+ * @param parent The lv_obj_t parent (optional)
+ */
+    lvppSwitch(const char* fName, lv_obj_t* parent=nullptr);
+/**
+ * @brief Set the switch to be enabled or disabled
+ * 
+ * @param bEnable defaults to true. False makes it a disabled widget unable to be changed by the user.
+ */
+    void setEnabled(bool bEnable=true);
+/**
+ * @brief Set the Checked State either on or off.
+ * 
+ * @param bChecked defaults to true. False turns the switch 'off'. True turns it to 'on' position.
+ */
+    void setCheckedState(bool bChecked=true);
+/**
+ * @brief Get the Checked State of the switch
+ * 
+ * @return true if switch is in the 'on' position
+ * @return false if the switch is in the 'off' position
+ */
+    bool getCheckedState();
+};
+
 /** @class lvppButton
  * @brief Basic button class
  * 
@@ -190,7 +226,7 @@ public:
  * Current index or value/text can be obtained at any time.
  * 
  */
-class lvppCycleButton : public lvppButton {
+class lvppCycleButton : public lvppButton, public lvppOptions {
 public:
 /**
  * @brief Construct a new lvpp Cycle Button object
@@ -209,30 +245,42 @@ public:
  * 
  * @param pOption Pointer to a character string of options separated by `\n`
  */
-    void addOptions(const char* pOption);
+    void setOptions(const char* pOption);
 /**
  * @brief Add button options using a vector of strings
  * 
  * @param inOptions Uses std::vector<std::string> reference to pass all the options.
  */
-    void addOptions(std::vector<std::string> &inOptions);
+    void setOptions(std::vector<std::string> &inOptions);
 /**
  * @brief Get the Current Index of which option is the active label on the button.
  * 
- * @return u_int16_t zero to n-1 value representing the current label/button state.
+ * @return uint16_t zero to n-1 value representing the current label/button state.
  */
-    u_int16_t getCurrentIndex() { return currentIndex; };
+    uint16_t getSelectedIndex() { return currentIndex; };
 /**
  * @brief Get the Current Text of the button label.
  * 
  * @return const char* current text of the label
  */
-    const char* getCurrentText() { return options[currentIndex].c_str(); };
+    const char* getSelectedText() { return options[currentIndex].c_str(); };
     void internalOnClicked();
 protected:
-    std::vector<std::string> options;   ///< Internal representation of the options for the cycling button.
+/**
+ * @brief This is the implementation of the pure virtual in lvppOptions. It is responsible
+ *        for doing the actual class-specific 'set' - in this case just setting the button text
+ *        to the option corresponding to the currentIndex.
+ * 
+ * @param pOpts newline-separated list of options. Unused for lvppCycleButton.
+ */
+    void lvOptionSetter(const char* pOpts) { setText(options[currentIndex].c_str()); };
+/**
+ * @brief This is the implementation of the pure virtual in lvppOptions. It is responsible
+ *        for doing the actual class-specific 'get' - in this case just the currentIndex.
+ * 
+ */
+    virtual uint16_t lvOptionGetIndex() { return currentIndex; };
     uint16_t currentIndex;              ///< Current value of which option is active on the button label.
-    uint16_t quantity;                  ///< Total number of options.
 };
 
 /** @class lvppFullImageToggleButton
@@ -299,9 +347,32 @@ public:
 /**
  * @brief Set the Image to be displayed. This is a pre-prepared lv_img_dsc_t directly from LVGL.
  * 
- * @param img 
+ * @param img a pointer to an image descriptor. This is what the LVGL image converter tool produces in a .c file.
  */
-    void setImage(lv_img_dsc_t img);
+    void setImage(const lv_img_dsc_t* pImg);
+/**
+ * @brief Set the Size object. In the case of lvppImage, we need to
+ *        scale/zoom the image to match the size desired.
+ * 
+ * @param width New width of the widget.
+ * @param height New height of the widget.
+ */
+    virtual void setSize(lv_coord_t width, lv_coord_t height);
+/**
+ * @brief Set the Rotation angle of the image about the setPivot point.
+ * 
+ * @param rotTenthsOfDegrees Given in tenths of degrees - so 0-3600 for 360 degrees.
+ */
+    void setRotation(int16_t rotTenthsOfDegrees);
+/**
+ * @brief Set the Pivot Point for the image. Rotations will happen about this point.
+ * 
+ * @param xPivot, yPivot The coordinates of the pivot point of the images.
+ */
+    void setPivotPoint(lv_coord_t xPivot, lv_coord_t yPivot);
+protected:
+    const lv_img_dsc_t* pImage;
+    int16_t deferred_w, deferred_h;
 };
 
 /**
@@ -452,9 +523,10 @@ public:
 
 /**
  * @brief Support for drop-down lists and choosing from a dropdown.
+ *        Utilizes multiple inheritance of lvppBase and lvppOptions.
  * 
  */
-class lvppDropdown : public lvppBase {
+class lvppDropdown : public lvppBase, lvppOptions {
 public:
 /**
  * @brief Construct a new lvpp Dropdown object and optionially give its starting options list.
@@ -489,33 +561,46 @@ public:
  */
     void setDropdownDirection(lv_dir_t dropDirection);
 /**
- * @brief Get the Current Index of the selected option.
+ * @brief Get the Index of the selected option.
  * 
- * @return u_int16_t Value from 0-(n-1) of the selected option.
+ * @return uint16_t Value from 0-(n-1) of the selected option.
  */
-    u_int16_t getCurrentIndex() { return lv_dropdown_get_selected(obj); };
+    uint16_t getSelectedIndex() { return (uint16_t)lv_dropdown_get_selected(obj); };
 /**
- * @brief Set the Current selected option manually/programmatically.
+ * @brief Set the selected option manually/programmatically.
  * 
  * @param curInd Value from 0-(n-1) of the desired option.
  */
-    void setCurrentIndex(uint16_t curInd);
+    void setSelectedIndex(uint16_t curInd);
 /**
- * @brief Get the Current Text value of the currently selected option
+ * @brief Get the Text value of the currently selected option
  * 
  * @param selStr A pointer to a string where the current option string will be copied.
  * @param selStrLen The size of the selStr location to ensure a long option value won't overrun selStr memory.
  *                  Be sure to use the size of selStr MINUS one here to ensure you can fit a null terminator.
  */
-    void getCurrentText(char* selStr, uint8_t selStrLen) { return lv_dropdown_get_selected_str(obj, selStr, selStrLen); };
+    void getSelectedText(char* selStr, uint8_t selStrLen) { lv_dropdown_get_selected_str(obj, selStr, selStrLen); };
 protected:
+/**
+ * @brief This is the implementation of the pure virtual in lvppOptions. It is responsible
+ *        for doing the actual class-specific 'set' - in this case lv_dropdown_set_options().
+ * 
+ * @param pOpts newline-separated list of options.
+ */
+    void lvOptionSetter(const char* pOpts);
+/**
+ * @brief This is the implementation of the pure virtual in lvppOptions. It is responsible
+ *        for doing the actual class-specific 'get' - in this case lv_dropdown_get_selected().
+ * 
+ */
+    virtual uint16_t lvOptionGetIndex();
 };
 
 /**
  * @brief Construct a roller list widget for option selection
  * 
  */
-class lvppRoller : public lvppBase {
+class lvppRoller : public lvppBase, lvppOptions {
 public:
 /**
  * @brief Construct a new lvpp Roller object
@@ -543,26 +628,39 @@ public:
  */
     void clearOptions(void);
 /**
- * @brief Get the Current Index of the selected option.
+ * @brief Get the Index of the currently selected option.
  * 
- * @return u_int16_t Value from 0-(n-1) of the selected option.
+ * @return uint16_t Value from 0-(n-1) of the selected option.
  */
-    u_int16_t getCurrentIndex() { return lv_roller_get_selected(obj); };
+    uint16_t getSelectedIndex() { return lv_roller_get_selected(obj); };
 /**
- * @brief Set the Current selected option manually/programmatically.
+ * @brief Set the selected option manually/programmatically.
  * 
  * @param curInd Value from 0-(n-1) of the desired option.
  */
-    void setCurrentIndex(uint16_t curInd);
+    void setSelectedIndex(uint16_t curInd);
 /**
- * @brief Get the Current Text value of the currently selected option
+ * @brief Get the Text value of the currently selected option
  * 
  * @param selStr A pointer to a string where the current option string will be copied.
  * @param selStrLen The size of the selStr location to ensure a long option value won't overrun selStr memory.
  *                  Be sure to use the size of selStr MINUS one here to ensure you can fit a null terminator.
  */
-    void getCurrentText(char* selStr, uint8_t selStrLen) { return lv_roller_get_selected_str(obj, selStr, selStrLen); };
+    void getSelectedText(char* selStr, uint8_t selStrLen) { lv_roller_get_selected_str(obj, selStr, selStrLen); };
 protected:
+/**
+ * @brief This is the implementation of the pure virtual in lvppOptions. It is responsible
+ *        for doing the actual class-specific 'set' - in this case lv_roller_set_options().
+ * 
+ * @param pOpts newline-separated list of options.
+ */
+    virtual void lvOptionSetter(const char* pOpts);
+/**
+ * @brief This is the implementation of the pure virtual in lvppOptions. It is responsible
+ *        for doing the actual class-specific 'get' - in this case lv_roller_get_selected().
+ * 
+ */
+    virtual uint16_t lvOptionGetIndex();
     // TODO: Add a vector of pair<int,string> and a map<int,int> indexToID and map<int,int> IDToIndex
     //       Then we can have a simple 'addOptions' where the user only can get the index or value out.
     //       But they can also addOptions(vector<pair<int,string>>) which then utilizes the map entries too.

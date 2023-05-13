@@ -54,12 +54,15 @@
  *   and yet also allows more advanced users access to the underlying object pointers, for instance.
  * - lvppBaseWithValues - A derived class from lvppBase which is useful for several LVGL widgets
  *   such as Bar, Arc, and Slider. 
- * - lvppButton - This handles the Button and a CycledButton concept.
+ * - lvppButton - This handles the Button and a lvppCycleButton concept.
  * - lvppFullImageToggleButton - Button who's state relates directly to a pair of images.
- * - lvppImage - supporting the placement of images on screen
+ * - lvppImage - supporting the placement and rotation of images on screen
  * - lvppLabel - supporting the placement and modification of labels
  * - lvppDropdown - A dropdown list manager widget
  * - lvppRoller - A widget for choosing amongst a list which scrolls or rolls on the display.
+ * - lvppOptions - A pure virtual base class that aids in consistency for lvppDropdown, lvppRoller, and
+ *   lvppCycleButton classes and their option capabilities.
+ * - lvppSwitch - The on/off switch supplied in LVGL (allows setting the state, checking the state, and disabling)
  * - lvppCanvasFullColor and lvppCanvasIndexed - these two classes support the canvas drawing
  *   functionality while hiding some of the more detailed descriptor typedefs/structs and 
  *   filling them out. Additionally, given that many smaller CPUs lack the memory to have their
@@ -74,7 +77,6 @@
  * Some prioritized widgets that will come sooner than later are:
  * - [Checkbox](https://docs.lvgl.io/8.3/widgets/core/checkbox.html)
  * - [Line](https://docs.lvgl.io/8.3/widgets/core/line.html)
- * - [Switch](https://docs.lvgl.io/8.3/widgets/core/switch.html)
  * - [Text Area](https://docs.lvgl.io/8.3/widgets/core/textarea.html)
  * 
  * Secondary priorities at this point include:
