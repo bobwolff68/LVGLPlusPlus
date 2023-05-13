@@ -373,6 +373,7 @@ public:
 protected:
     const lv_img_dsc_t* pImage;
     int16_t deferred_w, deferred_h;
+    bool noRotation;
 };
 
 /**

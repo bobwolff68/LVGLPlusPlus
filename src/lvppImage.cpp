@@ -37,6 +37,7 @@ lvppImage::lvppImage(const char* fName, lv_obj_t* parent) : lvppBase(fName, "IMA
 
     pImage = nullptr;
     deferred_h = deferred_w = -1;
+    noRotation = false;
 }
 
 lvppImage::~lvppImage() {
@@ -51,6 +52,13 @@ void lvppImage::setImage(const lv_img_dsc_t* pImg) {
     if (deferred_h != -1) {
         setSize(deferred_w, deferred_h);
         deferred_h = deferred_w = -1;
+    }
+
+    if (pImage->header.cf != LV_IMG_CF_TRUE_COLOR) {
+        noRotation = true;
+    }
+    else {
+        noRotation = false;
     }
 }
 
@@ -92,6 +100,11 @@ printf(":%s:lvppImage::setSize() - w_fact=%u, h_fact=%u, zFactor=%u\n", whoAmI()
 }
 
 void lvppImage::setRotation(int16_t rotTenthsOfDegrees) {
+    if (noRotation) {
+        LV_LOG_WARN("lvppImage::setRotation - not allowed for images which are not LV_IMG_CF_TRUE_COLOR\n");
+        return;
+    }
+
     lv_img_set_angle(obj, rotTenthsOfDegrees);
 }
 
