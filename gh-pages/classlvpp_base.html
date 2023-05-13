@@ -111,16 +111,17 @@ Inheritance diagram for lvppBase:</div>
 <div class="dyncontent">
 <div class="center"><img src="classlvpp_base__inherit__graph.png" border="0" usemap="#alvpp_base_inherit__map" alt="Inheritance graph"/></div>
 <map name="alvpp_base_inherit__map" id="alvpp_base_inherit__map">
-<area shape="rect" title="lvppBase is the root of the C++ library LVGLPlusPlus. It strives to create consistent ways to manipul..." alt="" coords="5,288,81,313"/>
+<area shape="rect" title="lvppBase is the root of the C++ library LVGLPlusPlus. It strives to create consistent ways to manipul..." alt="" coords="5,313,81,339"/>
 <area shape="rect" href="classlvpp_base_with_value.html" title="Derivation from lvppBase. Those widgets which have an inherant &#39;value&#39; to show are based on this slig..." alt="" coords="151,79,286,104"/>
 <area shape="rect" href="classlvpp_button.html" title="Basic button class." alt="" coords="177,140,261,165"/>
 <area shape="rect" href="classlvpp_canvas_full_color.html" title="Construct a canvas which uses FULL_COLOR rather than indexed color methods." alt="" coords="147,189,290,215"/>
 <area shape="rect" href="classlvpp_canvas_indexed.html" title="Construct a canvas which uses INDEXED color rather than FULL color methods." alt="" coords="150,239,287,264"/>
-<area shape="rect" href="classlvpp_dropdown.html" title="Support for drop&#45;down lists and choosing from a dropdown." alt="" coords="166,288,271,313"/>
+<area shape="rect" href="classlvpp_dropdown.html" title="Support for drop&#45;down lists and choosing from a dropdown. Utilizes multiple inheritance of lvppBase a..." alt="" coords="166,288,271,313"/>
 <area shape="rect" href="classlvpp_full_image_toggle_button.html" title="Button which is all image based and simply toggles on/off between the images." alt="" coords="129,337,308,363"/>
 <area shape="rect" href="classlvpp_image.html" title="Object for loading and displaying an image on a screen." alt="" coords="177,387,260,412"/>
 <area shape="rect" href="classlvpp_label.html" title="Enable the display of a text item." alt="" coords="180,436,257,461"/>
 <area shape="rect" href="classlvpp_roller.html" title="Construct a roller list widget for option selection." alt="" coords="179,485,259,511"/>
+<area shape="rect" href="classlvpp_switch.html" title="On/Off switch widget." alt="" coords="175,535,262,560"/>
 <area shape="rect" href="classlvpp_arc.html" title="Create an Arc widget &#45; also based on lvppBaseWithValue like Bar and Slider." alt="" coords="382,5,449,31"/>
 <area shape="rect" href="classlvpp_bar.html" title="Create a &#39;bar&#39; widget from LVGL and allow range and value to be used." alt="" coords="382,55,449,80"/>
 <area shape="rect" href="classlvpp_slider.html" title="Construct a new Slider widget (similar to a bar in LVGL parlance)." alt="" coords="376,104,455,129"/>
@@ -144,7 +145,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a487c9acd73a45a4cf2cf588a7d73d1a1"><td class="memItemLeft" align="right" valign="top">lv_obj_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlvpp_base.html#a487c9acd73a45a4cf2cf588a7d73d1a1">getLabelObj</a> (void)</td></tr>
 <tr class="memdesc:a487c9acd73a45a4cf2cf588a7d73d1a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the label object.  <br /></td></tr>
 <tr class="separator:a487c9acd73a45a4cf2cf588a7d73d1a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab6fd6d6a7c6afe22848610d044f83f43"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlvpp_base.html#ab6fd6d6a7c6afe22848610d044f83f43">setSize</a> (lv_coord_t width, lv_coord_t height)</td></tr>
+<tr class="memitem:ab6fd6d6a7c6afe22848610d044f83f43"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlvpp_base.html#ab6fd6d6a7c6afe22848610d044f83f43">setSize</a> (lv_coord_t width, lv_coord_t height)</td></tr>
 <tr class="memdesc:ab6fd6d6a7c6afe22848610d044f83f43"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the Size object. Most of the time, LVGL does a great job of setting a sane size, but manipulation of things like the text or the font size can cause this to no longer be a good size. It is a common use pattern to instantiate a widget and then use <a class="el" href="classlvpp_base.html#ab6fd6d6a7c6afe22848610d044f83f43" title="Set the Size object. Most of the time, LVGL does a great job of setting a sane size,...">setSize()</a> and <a class="el" href="classlvpp_base.html#a386e71a76182932f4f0f79f5c52cb115" title="Change the x/y location of the object.">align()</a> to place them in your user interface as needed.  <br /></td></tr>
 <tr class="separator:ab6fd6d6a7c6afe22848610d044f83f43"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a386e71a76182932f4f0f79f5c52cb115"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlvpp_base.html#a386e71a76182932f4f0f79f5c52cb115">align</a> (lv_align_t align, lv_coord_t x_ofs, lv_coord_t y_ofs)</td></tr>
@@ -159,6 +160,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ab0ff4ce043ad58b308dd9e1e2801ef13"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlvpp_base.html#ab0ff4ce043ad58b308dd9e1e2801ef13">setBGColor</a> (lv_color_t color)</td></tr>
 <tr class="memdesc:ab0ff4ce043ad58b308dd9e1e2801ef13"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the background color of the object.  <br /></td></tr>
 <tr class="separator:ab0ff4ce043ad58b308dd9e1e2801ef13"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad1ee35e72b922de42f55abfe631cea85"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlvpp_base.html#ad1ee35e72b922de42f55abfe631cea85">setColorGradient</a> (lv_color_t col1, lv_color_t col2, lv_grad_dir_t direction)</td></tr>
+<tr class="memdesc:ad1ee35e72b922de42f55abfe631cea85"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets a Color Gradient from col1 to col2 in a vertical or horizontal direction. The gradient is place on the indicator for <a class="el" href="classlvpp_bar.html" title="Create a &#39;bar&#39; widget from LVGL and allow range and value to be used.">lvppBar</a>, <a class="el" href="classlvpp_slider.html" title="Construct a new Slider widget (similar to a bar in LVGL parlance).">lvppSlider</a>, and <a class="el" href="classlvpp_arc.html" title="Create an Arc widget - also based on lvppBaseWithValue like Bar and Slider.">lvppArc</a>. The graident is placed on the 'main' area of all other objects.  <br /></td></tr>
+<tr class="separator:ad1ee35e72b922de42f55abfe631cea85"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af56992fa6244a52c0e55bbcc54d90ec7"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlvpp_base.html#af56992fa6244a52c0e55bbcc54d90ec7">setText</a> (const char *pText)</td></tr>
 <tr class="memdesc:af56992fa6244a52c0e55bbcc54d90ec7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the Text for the primary text label. For a button, for instance, this is the text on top of the button.  <br /></td></tr>
 <tr class="separator:af56992fa6244a52c0e55bbcc54d90ec7"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -180,6 +184,21 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ab9fe804b0a68870d9cc2a51a0fc58c86"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlvpp_base.html#ab9fe804b0a68870d9cc2a51a0fc58c86">setAdjText</a> (const char *pText, lv_coord_t x_ofs=-10000, lv_coord_t y_ofs=-10000)</td></tr>
 <tr class="memdesc:ab9fe804b0a68870d9cc2a51a0fc58c86"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the text for the adjacent text label. This label is not enabled by default. Setting this text will create and enable the adjacent label object. The label's position can be set, optionally, as well.  <br /></td></tr>
 <tr class="separator:ab9fe804b0a68870d9cc2a51a0fc58c86"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad132ce34a3d5b8718da39832921d28a7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlvpp_base.html#ad132ce34a3d5b8718da39832921d28a7">setAdjTextColor</a> (lv_color_t newColor)</td></tr>
+<tr class="memdesc:ad132ce34a3d5b8718da39832921d28a7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the Adjacent text color.  <br /></td></tr>
+<tr class="separator:ad132ce34a3d5b8718da39832921d28a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a931e5a1e9e551c9f5f06505beb2db0c2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlvpp_base.html#a931e5a1e9e551c9f5f06505beb2db0c2">setAdjBGColor</a> (lv_color_t color)</td></tr>
+<tr class="memdesc:a931e5a1e9e551c9f5f06505beb2db0c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">set the background color for the adjacent text  <br /></td></tr>
+<tr class="separator:a931e5a1e9e551c9f5f06505beb2db0c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab2c1355add28e326bd23c4d21a1ae596"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlvpp_base.html#ab2c1355add28e326bd23c4d21a1ae596">setAdjColorGradient</a> (lv_color_t col1, lv_color_t col2, lv_grad_dir_t direction)</td></tr>
+<tr class="memdesc:ab2c1355add28e326bd23c4d21a1ae596"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets a Color Gradient from col1 to col2 in a vertical or horizontal direction.  <br /></td></tr>
+<tr class="separator:ab2c1355add28e326bd23c4d21a1ae596"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6cb56c286487743641598210bc8e0aad"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlvpp_base.html#a6cb56c286487743641598210bc8e0aad">setAdjFont</a> (const lv_font_t *pF)</td></tr>
+<tr class="memdesc:a6cb56c286487743641598210bc8e0aad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the Font to be used for the adjacent text.  <br /></td></tr>
+<tr class="separator:a6cb56c286487743641598210bc8e0aad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad8030919b83f3d1059eada55dcc16a21"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlvpp_base.html#ad8030919b83f3d1059eada55dcc16a21">setAdjJustificationAlignment</a> (lv_text_align_t _align)</td></tr>
+<tr class="memdesc:ad8030919b83f3d1059eada55dcc16a21"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the <em>adjacent Label's</em> text alignment (left/right/center)  <br /></td></tr>
+<tr class="separator:ad8030919b83f3d1059eada55dcc16a21"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a66d66f7cf99a31bfb511cc4be6cf5c69"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlvpp_base.html#a66d66f7cf99a31bfb511cc4be6cf5c69">onClicked</a> ()</td></tr>
 <tr class="memdesc:a66d66f7cf99a31bfb511cc4be6cf5c69"><td class="mdescLeft">&#160;</td><td class="mdescRight">Callback that derived objects can use to get notification when the object is clicked.  <br /></td></tr>
 <tr class="separator:a66d66f7cf99a31bfb511cc4be6cf5c69"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -210,6 +229,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aa1a460e81104485388ebf798ef46d2b7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlvpp_base.html#aa1a460e81104485388ebf798ef46d2b7">setCallbackOnValueChanged</a> (std::function&lt; void()&gt; cbF)</td></tr>
 <tr class="memdesc:aa1a460e81104485388ebf798ef46d2b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Uses a lambda callback for when an object value changes.  <br /></td></tr>
 <tr class="separator:aa1a460e81104485388ebf798ef46d2b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac67541c6ac7ebaf4cfcd8f4f7a1564aa"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlvpp_base.html#ac67541c6ac7ebaf4cfcd8f4f7a1564aa">setNewParent</a> (lv_obj_t *pNewParent)</td></tr>
+<tr class="memdesc:ac67541c6ac7ebaf4cfcd8f4f7a1564aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Changes the parent object on the fly. Used primarily for <a class="el" href="classlvpp_screen.html#adeadaf0797842f6cdb158848ee229f7a" title="Add any lvppBase object pointer to the screen to keep track of.">lvppScreen::addObject()</a>. Sets parents of adjacent label, value label, and label appropriately.  <br /></td></tr>
+<tr class="separator:ac67541c6ac7ebaf4cfcd8f4f7a1564aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
@@ -219,6 +241,18 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a06301c57b8ae3b442ded904fc5995694"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlvpp_base.html#a06301c57b8ae3b442ded904fc5995694">isUnknownCode</a> (lv_event_code_t code)</td></tr>
 <tr class="memdesc:a06301c57b8ae3b442ded904fc5995694"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check to see if an event code is valid or not. Utility function.  <br /></td></tr>
 <tr class="separator:a06301c57b8ae3b442ded904fc5995694"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae41810dfbbcf2329e65ca8c5a018513b"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlvpp_base.html#ae41810dfbbcf2329e65ca8c5a018513b">setDefaultFont</a> (const lv_font_t *pFont)</td></tr>
+<tr class="memdesc:ae41810dfbbcf2329e65ca8c5a018513b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the Default Font to be used on all subsequent widget creations. Note - can be nullptr to effectively un-set the default.  <br /></td></tr>
+<tr class="separator:ae41810dfbbcf2329e65ca8c5a018513b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aff7de9e02dcad4cb00aec120e28ca7e8"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlvpp_base.html#aff7de9e02dcad4cb00aec120e28ca7e8">setDefaultTextColor</a> (lv_color_t col)</td></tr>
+<tr class="memdesc:aff7de9e02dcad4cb00aec120e28ca7e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the Default Text Color to be used on all subsequent widget creations or enabling of things like adjacent text or setting/resetting of text values.  <br /></td></tr>
+<tr class="separator:aff7de9e02dcad4cb00aec120e28ca7e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae91b73571d84b30ffcab9ec6df971b93"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlvpp_base.html#ae91b73571d84b30ffcab9ec6df971b93">setDefaultBGColor</a> (lv_color_t col)</td></tr>
+<tr class="memdesc:ae91b73571d84b30ffcab9ec6df971b93"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the Default Background Color to be used on all subsequent widget creations or enabling of things like adjacent text or setting/resetting of text values.  <br /></td></tr>
+<tr class="separator:ae91b73571d84b30ffcab9ec6df971b93"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af4f1b0b06649f389293f4a90a54e7fad"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlvpp_base.html#af4f1b0b06649f389293f4a90a54e7fad">removeDefaultBGColor</a> ()</td></tr>
+<tr class="memdesc:af4f1b0b06649f389293f4a90a54e7fad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes the default background color for subsequent widget creations. Part of the reson for this is that typically text backgrounds are an opacity of transparent and simply changing the background color to another color (like the screen or canvas color) won't affect the change desired. By using this method, you remove the internal usage of an opacity of 100 with the color.  <br /></td></tr>
+<tr class="separator:af4f1b0b06649f389293f4a90a54e7fad"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
@@ -230,6 +264,8 @@ Protected Member Functions</h2></td></tr>
 <tr class="memitem:ac86ee220fb144c27e28b537e90eb5b53"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlvpp_base.html#ac86ee220fb144c27e28b537e90eb5b53">eventHandler</a> (lv_event_t *event)</td></tr>
 <tr class="memdesc:ac86ee220fb144c27e28b537e90eb5b53"><td class="mdescLeft">&#160;</td><td class="mdescRight">Any events <em>not</em> handled by baseEventHandler come here. Can be overridden by a derived class.  <br /></td></tr>
 <tr class="separator:ac86ee220fb144c27e28b537e90eb5b53"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8dd898f6130b60d6c8b8bfdc21e59c25"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlvpp_base.html#a8dd898f6130b60d6c8b8bfdc21e59c25">addDefaults</a> ()</td></tr>
+<tr class="separator:a8dd898f6130b60d6c8b8bfdc21e59c25"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-static-methods" name="pro-static-methods"></a>
 Static Protected Member Functions</h2></td></tr>
@@ -273,6 +309,12 @@ Static Protected Attributes</h2></td></tr>
 <tr class="memitem:a8323f2e4fa33c634f15d8c3515a05a71"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlvpp_base.html#a8323f2e4fa33c634f15d8c3515a05a71">bEventNamesInitComplete</a> = false</td></tr>
 <tr class="memdesc:a8323f2e4fa33c634f15d8c3515a05a71"><td class="mdescLeft">&#160;</td><td class="mdescRight">Status of the event names table to avoid re-processing.  <br /></td></tr>
 <tr class="separator:a8323f2e4fa33c634f15d8c3515a05a71"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af040e67d56639f17ae0f898e3821accd"><td class="memItemLeft" align="right" valign="top">static const lv_font_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlvpp_base.html#af040e67d56639f17ae0f898e3821accd">pDefaultFont</a> = nullptr</td></tr>
+<tr class="separator:af040e67d56639f17ae0f898e3821accd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a41516375d9fb0b1e65c39ca71ad30802"><td class="memItemLeft" align="right" valign="top">static lv_color_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlvpp_base.html#a41516375d9fb0b1e65c39ca71ad30802">pDefaultTextColor</a> = nullptr</td></tr>
+<tr class="separator:a41516375d9fb0b1e65c39ca71ad30802"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a29aafe37cc76cad01c5e415819a729ea"><td class="memItemLeft" align="right" valign="top">static lv_color_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlvpp_base.html#a29aafe37cc76cad01c5e415819a729ea">pDefaultBGColor</a> = nullptr</td></tr>
+<tr class="separator:a29aafe37cc76cad01c5e415819a729ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p><a class="el" href="classlvpp_base.html" title="lvppBase is the root of the C++ library LVGLPlusPlus. It strives to create consistent ways to manipul...">lvppBase</a> is the root of the C++ library LVGLPlusPlus. It strives to create consistent ways to manipulate a variety of LVGL-based widgets in a consistent manner - hiding the details away from the user where possible. </p>
@@ -343,6 +385,31 @@ Static Protected Attributes</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="a8dd898f6130b60d6c8b8bfdc21e59c25" name="a8dd898f6130b60d6c8b8bfdc21e59c25"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8dd898f6130b60d6c8b8bfdc21e59c25">&#9670;&#160;</a></span>addDefaults()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void lvppBase::addDefaults </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a386e71a76182932f4f0f79f5c52cb115" name="a386e71a76182932f4f0f79f5c52cb115"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a386e71a76182932f4f0f79f5c52cb115">&#9670;&#160;</a></span>align()</h2>
 
@@ -862,6 +929,155 @@ Static Protected Attributes</h2></td></tr>
 
 </div>
 </div>
+<a id="af4f1b0b06649f389293f4a90a54e7fad" name="af4f1b0b06649f389293f4a90a54e7fad"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af4f1b0b06649f389293f4a90a54e7fad">&#9670;&#160;</a></span>removeDefaultBGColor()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void lvppBase::removeDefaultBGColor </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Removes the default background color for subsequent widget creations. Part of the reson for this is that typically text backgrounds are an opacity of transparent and simply changing the background color to another color (like the screen or canvas color) won't affect the change desired. By using this method, you remove the internal usage of an opacity of 100 with the color. </p>
+
+</div>
+</div>
+<a id="a931e5a1e9e551c9f5f06505beb2db0c2" name="a931e5a1e9e551c9f5f06505beb2db0c2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a931e5a1e9e551c9f5f06505beb2db0c2">&#9670;&#160;</a></span>setAdjBGColor()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void lvppBase::setAdjBGColor </td>
+          <td>(</td>
+          <td class="paramtype">lv_color_t&#160;</td>
+          <td class="paramname"><em>color</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>set the background color for the adjacent text </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">color</td><td>lv_color_t to describe the background color. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ab2c1355add28e326bd23c4d21a1ae596" name="ab2c1355add28e326bd23c4d21a1ae596"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab2c1355add28e326bd23c4d21a1ae596">&#9670;&#160;</a></span>setAdjColorGradient()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void lvppBase::setAdjColorGradient </td>
+          <td>(</td>
+          <td class="paramtype">lv_color_t&#160;</td>
+          <td class="paramname"><em>col1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">lv_color_t&#160;</td>
+          <td class="paramname"><em>col2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">lv_grad_dir_t&#160;</td>
+          <td class="paramname"><em>direction</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets a Color Gradient from col1 to col2 in a vertical or horizontal direction. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">col1</td><td>First lv_color_t color in the gradient </td></tr>
+    <tr><td class="paramname">col2</td><td>Second lv_color_t color in the gradient </td></tr>
+    <tr><td class="paramname">direction</td><td>gradient color runs col1-&gt;col2 either LV_GRAD_DIR_VER (top to bottom) or LV_GRAD_DIR_HOR (left to right) </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a6cb56c286487743641598210bc8e0aad" name="a6cb56c286487743641598210bc8e0aad"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6cb56c286487743641598210bc8e0aad">&#9670;&#160;</a></span>setAdjFont()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void lvppBase::setAdjFont </td>
+          <td>(</td>
+          <td class="paramtype">const lv_font_t *&#160;</td>
+          <td class="paramname"><em>pF</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set the Font to be used for the adjacent text. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pF</td><td>A pointer to a valid lv_font_t to be used for the object. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ad8030919b83f3d1059eada55dcc16a21" name="ad8030919b83f3d1059eada55dcc16a21"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad8030919b83f3d1059eada55dcc16a21">&#9670;&#160;</a></span>setAdjJustificationAlignment()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void lvppBase::setAdjJustificationAlignment </td>
+          <td>(</td>
+          <td class="paramtype">lv_text_align_t&#160;</td>
+          <td class="paramname"><em>_align</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set the <em>adjacent Label's</em> text alignment (left/right/center) </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">_align</td><td>an lv_text_align_t like LV_TEXT_ALIGN_CENTER </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="ab9fe804b0a68870d9cc2a51a0fc58c86" name="ab9fe804b0a68870d9cc2a51a0fc58c86"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ab9fe804b0a68870d9cc2a51a0fc58c86">&#9670;&#160;</a></span>setAdjText()</h2>
 
@@ -908,6 +1124,32 @@ Static Protected Attributes</h2></td></tr>
     <tr><td class="paramname">pText</td><td>Pointer to the text to use. </td></tr>
     <tr><td class="paramname">x_ofs</td><td>X offset from the center of the main object. </td></tr>
     <tr><td class="paramname">y_ofs</td><td>Y offset from the center of the main object. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ad132ce34a3d5b8718da39832921d28a7" name="ad132ce34a3d5b8718da39832921d28a7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad132ce34a3d5b8718da39832921d28a7">&#9670;&#160;</a></span>setAdjTextColor()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void lvppBase::setAdjTextColor </td>
+          <td>(</td>
+          <td class="paramtype">lv_color_t&#160;</td>
+          <td class="paramname"><em>newColor</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set the Adjacent text color. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">newColor</td><td>lv_color_t value for the new color of the adjacent text </td></tr>
   </table>
   </dd>
 </dl>
@@ -1005,6 +1247,152 @@ Static Protected Attributes</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">cbF</td><td>This is a std::function&lt;&gt; lambda defining the callback 'inline'. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ad1ee35e72b922de42f55abfe631cea85" name="ad1ee35e72b922de42f55abfe631cea85"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad1ee35e72b922de42f55abfe631cea85">&#9670;&#160;</a></span>setColorGradient()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void lvppBase::setColorGradient </td>
+          <td>(</td>
+          <td class="paramtype">lv_color_t&#160;</td>
+          <td class="paramname"><em>col1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">lv_color_t&#160;</td>
+          <td class="paramname"><em>col2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">lv_grad_dir_t&#160;</td>
+          <td class="paramname"><em>direction</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets a Color Gradient from col1 to col2 in a vertical or horizontal direction. The gradient is place on the indicator for <a class="el" href="classlvpp_bar.html" title="Create a &#39;bar&#39; widget from LVGL and allow range and value to be used.">lvppBar</a>, <a class="el" href="classlvpp_slider.html" title="Construct a new Slider widget (similar to a bar in LVGL parlance).">lvppSlider</a>, and <a class="el" href="classlvpp_arc.html" title="Create an Arc widget - also based on lvppBaseWithValue like Bar and Slider.">lvppArc</a>. The graident is placed on the 'main' area of all other objects. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">col1</td><td>First lv_color_t color in the gradient </td></tr>
+    <tr><td class="paramname">col2</td><td>Second lv_color_t color in the gradient </td></tr>
+    <tr><td class="paramname">direction</td><td>gradient color runs col1-&gt;col2 either LV_GRAD_DIR_VER (top to bottom) or LV_GRAD_DIR_HOR (left to right) </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ae91b73571d84b30ffcab9ec6df971b93" name="ae91b73571d84b30ffcab9ec6df971b93"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae91b73571d84b30ffcab9ec6df971b93">&#9670;&#160;</a></span>setDefaultBGColor()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void lvppBase::setDefaultBGColor </td>
+          <td>(</td>
+          <td class="paramtype">lv_color_t&#160;</td>
+          <td class="paramname"><em>col</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Set the Default Background Color to be used on all subsequent widget creations or enabling of things like adjacent text or setting/resetting of text values. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">col</td><td>lv_color_t value to use for default color </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ae41810dfbbcf2329e65ca8c5a018513b" name="ae41810dfbbcf2329e65ca8c5a018513b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae41810dfbbcf2329e65ca8c5a018513b">&#9670;&#160;</a></span>setDefaultFont()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void lvppBase::setDefaultFont </td>
+          <td>(</td>
+          <td class="paramtype">const lv_font_t *&#160;</td>
+          <td class="paramname"><em>pFont</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Set the Default Font to be used on all subsequent widget creations. Note - can be nullptr to effectively un-set the default. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pFont</td><td>pointer to a lv_font_t </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aff7de9e02dcad4cb00aec120e28ca7e8" name="aff7de9e02dcad4cb00aec120e28ca7e8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aff7de9e02dcad4cb00aec120e28ca7e8">&#9670;&#160;</a></span>setDefaultTextColor()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void lvppBase::setDefaultTextColor </td>
+          <td>(</td>
+          <td class="paramtype">lv_color_t&#160;</td>
+          <td class="paramname"><em>col</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Set the Default Text Color to be used on all subsequent widget creations or enabling of things like adjacent text or setting/resetting of text values. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">col</td><td>lv_color_t value to use for default color </td></tr>
   </table>
   </dd>
 </dl>
@@ -1143,6 +1531,42 @@ Static Protected Attributes</h2></td></tr>
 
 </div>
 </div>
+<a id="ac67541c6ac7ebaf4cfcd8f4f7a1564aa" name="ac67541c6ac7ebaf4cfcd8f4f7a1564aa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac67541c6ac7ebaf4cfcd8f4f7a1564aa">&#9670;&#160;</a></span>setNewParent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void lvppBase::setNewParent </td>
+          <td>(</td>
+          <td class="paramtype">lv_obj_t *&#160;</td>
+          <td class="paramname"><em>pNewParent</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Changes the parent object on the fly. Used primarily for <a class="el" href="classlvpp_screen.html#adeadaf0797842f6cdb158848ee229f7a" title="Add any lvppBase object pointer to the screen to keep track of.">lvppScreen::addObject()</a>. Sets parents of adjacent label, value label, and label appropriately. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pNewParent</td><td>pointer to the new parent. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Reimplemented in <a class="el" href="classlvpp_base_with_value.html#ac8af66f11ddc4abf964e5eeb5cd5d661">lvppBaseWithValue</a>.</p>
+
+</div>
+</div>
 <a id="a45acae809cf4ee643aca805b2550d34b" name="a45acae809cf4ee643aca805b2550d34b"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a45acae809cf4ee643aca805b2550d34b">&#9670;&#160;</a></span>setObjType()</h2>
 
@@ -1174,6 +1598,9 @@ Static Protected Attributes</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void lvppBase::setSize </td>
@@ -1193,6 +1620,11 @@ Static Protected Attributes</h2></td></tr>
           <td></td><td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 <p>Set the Size object. Most of the time, LVGL does a great job of setting a sane size, but manipulation of things like the text or the font size can cause this to no longer be a good size. It is a common use pattern to instantiate a widget and then use <a class="el" href="classlvpp_base.html#ab6fd6d6a7c6afe22848610d044f83f43" title="Set the Size object. Most of the time, LVGL does a great job of setting a sane size,...">setSize()</a> and <a class="el" href="classlvpp_base.html#a386e71a76182932f4f0f79f5c52cb115" title="Change the x/y location of the object.">align()</a> to place them in your user interface as needed. </p>
@@ -1203,6 +1635,8 @@ Static Protected Attributes</h2></td></tr>
   </table>
   </dd>
 </dl>
+
+<p>Reimplemented in <a class="el" href="classlvpp_image.html#a2bb3e5a62281f656b6f2ccd289eeb0ea">lvppImage</a>.</p>
 
 </div>
 </div>
@@ -1541,6 +1975,72 @@ Static Protected Attributes</h2></td></tr>
   </td>
   <td class="mlabels-right">
 <span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a29aafe37cc76cad01c5e415819a729ea" name="a29aafe37cc76cad01c5e415819a729ea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a29aafe37cc76cad01c5e415819a729ea">&#9670;&#160;</a></span>pDefaultBGColor</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">lv_color_t * lvppBase::pDefaultBGColor = nullptr</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af040e67d56639f17ae0f898e3821accd" name="af040e67d56639f17ae0f898e3821accd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af040e67d56639f17ae0f898e3821accd">&#9670;&#160;</a></span>pDefaultFont</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const lv_font_t * lvppBase::pDefaultFont = nullptr</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a41516375d9fb0b1e65c39ca71ad30802" name="a41516375d9fb0b1e65c39ca71ad30802"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a41516375d9fb0b1e65c39ca71ad30802">&#9670;&#160;</a></span>pDefaultTextColor</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">lv_color_t * lvppBase::pDefaultTextColor = nullptr</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">protected</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">

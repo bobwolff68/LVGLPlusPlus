@@ -102,6 +102,37 @@ General</h1>
 <h1><a class="anchor" id="autotoc_md8"></a>
 Release Notes Follow:</h1>
 <h2><a class="anchor" id="autotoc_md9"></a>
+Version 1.4.0 - Features, consistency, fixes</h2>
+<ul>
+<li><a class="el" href="classlvpp_screen.html" title="The lvppScreen is a non - lvppBase object for organizing the use of multiple screens in a project.">lvppScreen</a> - when doing 'addObj()', properly re-parents all objects to the screen.</li>
+<li><a href="https://bobwolff68.github.io/LVGLPlusPlus/gh-pages/classlvpp_options.html">lvppOptions</a> - widgets <a class="el" href="classlvpp_dropdown.html" title="Support for drop-down lists and choosing from a dropdown. Utilizes multiple inheritance of lvppBase a...">lvppDropdown</a>, <a class="el" href="classlvpp_roller.html" title="Construct a roller list widget for option selection.">lvppRoller</a>, and <a class="el" href="classlvpp_cycle_button.html" title="Derived from lvppButton, this is a button who&#39;s clicks cycle through a list of options.">lvppCycleButton</a> all inherit from <a class="el" href="classlvpp_options.html" title="Utility class to aid in consistent handling of all lv_ widgets which have a list of choices....">lvppOptions</a> now to gain total consistency on how options are added and managed in such widgets.</li>
+<li><a class="el" href="classlvpp_image.html" title="Object for loading and displaying an image on a screen.">lvppImage</a> gained features and testing in the ability to set rotation amounts (for full color images), ties in properly to setSize() which will auto-scale the image to your desired size, and even sets the size properly if the user calls setImage <em>after</em> calling setSize through a deferred width and height feature internally.</li>
+<li><a href="https://bobwolff68.github.io/LVGLPlusPlus/gh-pages/classlvpp_switch.html">lvppSwitch</a> - The On/Off click-switch UI element is now available. The user can setCheckedState(), getCheckedState, and setEnabled()</li>
+<li>Default items<ul>
+<li>setDefaultFont(), setDefaultBGColor(), setDefaultTextColor()</li>
+<li>These new methods are static methods to <a class="el" href="classlvpp_base.html" title="lvppBase is the root of the C++ library LVGLPlusPlus. It strives to create consistent ways to manipul...">lvppBase</a> and can be used to aid in setting up some default choices which will get utilized as default any time a widget lvpp* class is created from that point forward. The most impactful one, IMHO, is the font. This allows widgets to no longer need individualized settings but instead a single call in the beginning.</li>
+<li>These defaults caused a number of minor edits in <a class="el" href="classlvpp_base.html" title="lvppBase is the root of the C++ library LVGLPlusPlus. It strives to create consistent ways to manipul...">lvppBase</a> to support fully in object, label, adjacent label, and value labels.</li>
+</ul>
+</li>
+<li>Color Gradients<ul>
+<li><a class="el" href="classlvpp_base.html" title="lvppBase is the root of the C++ library LVGLPlusPlus. It strives to create consistent ways to manipul...">lvppBase</a> gained 3 variants for set*ColorGradient() which will paint a gradient between two colors at the 'ends' of the object. In the case of <a class="el" href="classlvpp_bar.html" title="Create a &#39;bar&#39; widget from LVGL and allow range and value to be used.">lvppBar</a>, <a class="el" href="classlvpp_slider.html" title="Construct a new Slider widget (similar to a bar in LVGL parlance).">lvppSlider</a>, and <a class="el" href="classlvpp_arc.html" title="Create an Arc widget - also based on lvppBaseWithValue like Bar and Slider.">lvppArc</a>, this means the <em>indicator</em> itself while in the case of buttons and labels it is the main background which receives the gradient treatment.</li>
+</ul>
+</li>
+<li>Consistency<ul>
+<li>addOptions, addOption, and setOptions are not consistently utilized</li>
+<li>getCurrent* becomes getSelected* as <em>current</em> isn't very descriptive, but <em>selected</em> is about the user interface.</li>
+<li>Arguments to methods were sometimes not <em>const</em> and should have been. This will likely be more of these changes.</li>
+<li><a class="el" href="classlvpp_base.html" title="lvppBase is the root of the C++ library LVGLPlusPlus. It strives to create consistent ways to manipul...">lvppBase</a><ul>
+<li>Setting attributes is now consistent amongst object, label, adjacent label, and value label.</li>
+<li>Text, TextColor, BGColor, Font, and JustificationAlignment are all suffixes for each of the types of items. For instance setTextColor(), setAdjTextColor(), and setValueLabelTextColor() all exist now.</li>
+<li>JusitifcationAlignment allows centered, left-placed, or right-placed text labels. Super handy.</li>
+<li>Getting consistent on using local styles for labels. Might make one more pass at this to use local styles on the main object itself, but that might defeat eventually granting users access to bring in their own styles or copy out a style.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md10"></a>
 Version 1.3.5 - Adding a few quick feature items</h2>
 <ul>
 <li><a class="el" href="classlvpp_screen.html#a9624baf0786732617897180a5e02eaaa" title="If you&#39;ve activated this screen via activateScreen(), then this method will activate the screen which...">lvppScreen::activatePriorScreen()</a> - After using activateScreen, the user can "pop" to the prior screen with this method.</li>
@@ -120,14 +151,14 @@ Version 1.3.5 - Adding a few quick feature items</h2>
 </ul>
 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md10"></a>
+<h2><a class="anchor" id="autotoc_md11"></a>
 Version 1.3.0 - First Public version documented and released</h2>
 <ul>
 <li>April 18, 2023 - released as public repo.</li>
 <li>Fairly complete library as described at <a href="https://bobwolff68.github.io/LVGLPlusPlus">LVGLPlusPlus Github Pages</a></li>
 <li>Pre-test-jig state.</li>
 </ul>
-<h3><a class="anchor" id="autotoc_md11"></a>
+<h3><a class="anchor" id="autotoc_md12"></a>
 Pre-Version 1.3.0 - All internal and getting things squared up for public release.</h3>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->

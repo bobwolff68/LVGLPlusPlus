@@ -92,6 +92,7 @@ $(document).ready(function(){initNavTree('classlvpp_cycle_button.html',''); init
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="classlvpp_cycle_button-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">lvppCycleButton Class Reference</div></div>
@@ -107,9 +108,10 @@ Inheritance diagram for lvppCycleButton:</div>
 <div class="dyncontent">
 <div class="center"><img src="classlvpp_cycle_button__inherit__graph.png" border="0" usemap="#alvpp_cycle_button_inherit__map" alt="Inheritance graph"/></div>
 <map name="alvpp_cycle_button_inherit__map" id="alvpp_cycle_button_inherit__map">
-<area shape="rect" title="Derived from lvppButton, this is a button who&#39;s clicks cycle through a list of options." alt="" coords="5,152,124,177"/>
-<area shape="rect" href="classlvpp_button.html" title="Basic button class." alt="" coords="23,79,107,104"/>
-<area shape="rect" href="classlvpp_base.html" title="lvppBase is the root of the C++ library LVGLPlusPlus. It strives to create consistent ways to manipul..." alt="" coords="27,5,103,31"/>
+<area shape="rect" title="Derived from lvppButton, this is a button who&#39;s clicks cycle through a list of options." alt="" coords="44,152,163,177"/>
+<area shape="rect" href="classlvpp_button.html" title="Basic button class." alt="" coords="5,79,89,104"/>
+<area shape="rect" href="classlvpp_base.html" title="lvppBase is the root of the C++ library LVGLPlusPlus. It strives to create consistent ways to manipul..." alt="" coords="9,5,85,31"/>
+<area shape="rect" href="classlvpp_options.html" title="Utility class to aid in consistent handling of all lv_ widgets which have a list of choices...." alt="" coords="114,79,205,104"/>
 </map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <div class="dynheader">
@@ -117,9 +119,10 @@ Collaboration diagram for lvppCycleButton:</div>
 <div class="dyncontent">
 <div class="center"><img src="classlvpp_cycle_button__coll__graph.png" border="0" usemap="#alvpp_cycle_button_coll__map" alt="Collaboration graph"/></div>
 <map name="alvpp_cycle_button_coll__map" id="alvpp_cycle_button_coll__map">
-<area shape="rect" title="Derived from lvppButton, this is a button who&#39;s clicks cycle through a list of options." alt="" coords="5,152,124,177"/>
-<area shape="rect" href="classlvpp_button.html" title="Basic button class." alt="" coords="23,79,107,104"/>
-<area shape="rect" href="classlvpp_base.html" title="lvppBase is the root of the C++ library LVGLPlusPlus. It strives to create consistent ways to manipul..." alt="" coords="27,5,103,31"/>
+<area shape="rect" title="Derived from lvppButton, this is a button who&#39;s clicks cycle through a list of options." alt="" coords="44,152,163,177"/>
+<area shape="rect" href="classlvpp_button.html" title="Basic button class." alt="" coords="5,79,89,104"/>
+<area shape="rect" href="classlvpp_base.html" title="lvppBase is the root of the C++ library LVGLPlusPlus. It strives to create consistent ways to manipul..." alt="" coords="9,5,85,31"/>
+<area shape="rect" href="classlvpp_options.html" title="Utility class to aid in consistent handling of all lv_ widgets which have a list of choices...." alt="" coords="114,79,205,104"/>
 </map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
@@ -131,18 +134,18 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a538423809eb9402f359d0c8a4217876c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlvpp_cycle_button.html#a538423809eb9402f359d0c8a4217876c">clearOptions</a> (void)</td></tr>
 <tr class="memdesc:a538423809eb9402f359d0c8a4217876c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove all options from the current options list.  <br /></td></tr>
 <tr class="separator:a538423809eb9402f359d0c8a4217876c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4cb06514a2bd4ea3723b663bce017666"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlvpp_cycle_button.html#a4cb06514a2bd4ea3723b663bce017666">addOptions</a> (const char *pOption)</td></tr>
-<tr class="memdesc:a4cb06514a2bd4ea3723b663bce017666"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add button options using a single char* with options separated by <code>\n</code>  <br /></td></tr>
-<tr class="separator:a4cb06514a2bd4ea3723b663bce017666"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aebb4699366370f426aa877dde13b534f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlvpp_cycle_button.html#aebb4699366370f426aa877dde13b534f">addOptions</a> (std::vector&lt; std::string &gt; &amp;inOptions)</td></tr>
-<tr class="memdesc:aebb4699366370f426aa877dde13b534f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add button options using a vector of strings.  <br /></td></tr>
-<tr class="separator:aebb4699366370f426aa877dde13b534f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aeaa4909df9fc83045489b22407deb590"><td class="memItemLeft" align="right" valign="top">u_int16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlvpp_cycle_button.html#aeaa4909df9fc83045489b22407deb590">getCurrentIndex</a> ()</td></tr>
-<tr class="memdesc:aeaa4909df9fc83045489b22407deb590"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the Current Index of which option is the active label on the button.  <br /></td></tr>
-<tr class="separator:aeaa4909df9fc83045489b22407deb590"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abf98ce670e455a1347dc909e4e6f7178"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlvpp_cycle_button.html#abf98ce670e455a1347dc909e4e6f7178">getCurrentText</a> ()</td></tr>
-<tr class="memdesc:abf98ce670e455a1347dc909e4e6f7178"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the Current Text of the button label.  <br /></td></tr>
-<tr class="separator:abf98ce670e455a1347dc909e4e6f7178"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a211588dc8b6a4226d00d998bb8180de9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlvpp_cycle_button.html#a211588dc8b6a4226d00d998bb8180de9">setOptions</a> (const char *pOption)</td></tr>
+<tr class="memdesc:a211588dc8b6a4226d00d998bb8180de9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add button options using a single char* with options separated by <code>\n</code>  <br /></td></tr>
+<tr class="separator:a211588dc8b6a4226d00d998bb8180de9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6aa3bd6bdc868db76ed5359bffa4b78a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlvpp_cycle_button.html#a6aa3bd6bdc868db76ed5359bffa4b78a">setOptions</a> (std::vector&lt; std::string &gt; &amp;inOptions)</td></tr>
+<tr class="memdesc:a6aa3bd6bdc868db76ed5359bffa4b78a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add button options using a vector of strings.  <br /></td></tr>
+<tr class="separator:a6aa3bd6bdc868db76ed5359bffa4b78a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a692270675ec5a17eabc4d099ad9dc2b1"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlvpp_cycle_button.html#a692270675ec5a17eabc4d099ad9dc2b1">getSelectedIndex</a> ()</td></tr>
+<tr class="memdesc:a692270675ec5a17eabc4d099ad9dc2b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the Current Index of which option is the active label on the button.  <br /></td></tr>
+<tr class="separator:a692270675ec5a17eabc4d099ad9dc2b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a29d5e81303286a46fae3cc2906f8f99a"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlvpp_cycle_button.html#a29d5e81303286a46fae3cc2906f8f99a">getSelectedText</a> ()</td></tr>
+<tr class="memdesc:a29d5e81303286a46fae3cc2906f8f99a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the Current Text of the button label.  <br /></td></tr>
+<tr class="separator:a29d5e81303286a46fae3cc2906f8f99a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab49de1bf2b7bd28827a012f58ebc7faa"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlvpp_cycle_button.html#ab49de1bf2b7bd28827a012f58ebc7faa">internalOnClicked</a> ()</td></tr>
 <tr class="memdesc:ab49de1bf2b7bd28827a012f58ebc7faa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Internal version of the <a class="el" href="classlvpp_base.html#a66d66f7cf99a31bfb511cc4be6cf5c69" title="Callback that derived objects can use to get notification when the object is clicked.">onClicked()</a> callback which is used for other derived internal objects in the library.  <br /></td></tr>
 <tr class="separator:ab49de1bf2b7bd28827a012f58ebc7faa"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -165,7 +168,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a487c9acd73a45a4cf2cf588a7d73d1a1 inherit pub_methods_classlvpp_base"><td class="memItemLeft" align="right" valign="top">lv_obj_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlvpp_base.html#a487c9acd73a45a4cf2cf588a7d73d1a1">getLabelObj</a> (void)</td></tr>
 <tr class="memdesc:a487c9acd73a45a4cf2cf588a7d73d1a1 inherit pub_methods_classlvpp_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the label object.  <br /></td></tr>
 <tr class="separator:a487c9acd73a45a4cf2cf588a7d73d1a1 inherit pub_methods_classlvpp_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab6fd6d6a7c6afe22848610d044f83f43 inherit pub_methods_classlvpp_base"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlvpp_base.html#ab6fd6d6a7c6afe22848610d044f83f43">setSize</a> (lv_coord_t width, lv_coord_t height)</td></tr>
+<tr class="memitem:ab6fd6d6a7c6afe22848610d044f83f43 inherit pub_methods_classlvpp_base"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlvpp_base.html#ab6fd6d6a7c6afe22848610d044f83f43">setSize</a> (lv_coord_t width, lv_coord_t height)</td></tr>
 <tr class="memdesc:ab6fd6d6a7c6afe22848610d044f83f43 inherit pub_methods_classlvpp_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the Size object. Most of the time, LVGL does a great job of setting a sane size, but manipulation of things like the text or the font size can cause this to no longer be a good size. It is a common use pattern to instantiate a widget and then use <a class="el" href="classlvpp_base.html#ab6fd6d6a7c6afe22848610d044f83f43" title="Set the Size object. Most of the time, LVGL does a great job of setting a sane size,...">setSize()</a> and <a class="el" href="classlvpp_base.html#a386e71a76182932f4f0f79f5c52cb115" title="Change the x/y location of the object.">align()</a> to place them in your user interface as needed.  <br /></td></tr>
 <tr class="separator:ab6fd6d6a7c6afe22848610d044f83f43 inherit pub_methods_classlvpp_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a386e71a76182932f4f0f79f5c52cb115 inherit pub_methods_classlvpp_base"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlvpp_base.html#a386e71a76182932f4f0f79f5c52cb115">align</a> (lv_align_t align, lv_coord_t x_ofs, lv_coord_t y_ofs)</td></tr>
@@ -180,6 +183,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ab0ff4ce043ad58b308dd9e1e2801ef13 inherit pub_methods_classlvpp_base"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlvpp_base.html#ab0ff4ce043ad58b308dd9e1e2801ef13">setBGColor</a> (lv_color_t color)</td></tr>
 <tr class="memdesc:ab0ff4ce043ad58b308dd9e1e2801ef13 inherit pub_methods_classlvpp_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the background color of the object.  <br /></td></tr>
 <tr class="separator:ab0ff4ce043ad58b308dd9e1e2801ef13 inherit pub_methods_classlvpp_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad1ee35e72b922de42f55abfe631cea85 inherit pub_methods_classlvpp_base"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlvpp_base.html#ad1ee35e72b922de42f55abfe631cea85">setColorGradient</a> (lv_color_t col1, lv_color_t col2, lv_grad_dir_t direction)</td></tr>
+<tr class="memdesc:ad1ee35e72b922de42f55abfe631cea85 inherit pub_methods_classlvpp_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets a Color Gradient from col1 to col2 in a vertical or horizontal direction. The gradient is place on the indicator for <a class="el" href="classlvpp_bar.html" title="Create a &#39;bar&#39; widget from LVGL and allow range and value to be used.">lvppBar</a>, <a class="el" href="classlvpp_slider.html" title="Construct a new Slider widget (similar to a bar in LVGL parlance).">lvppSlider</a>, and <a class="el" href="classlvpp_arc.html" title="Create an Arc widget - also based on lvppBaseWithValue like Bar and Slider.">lvppArc</a>. The graident is placed on the 'main' area of all other objects.  <br /></td></tr>
+<tr class="separator:ad1ee35e72b922de42f55abfe631cea85 inherit pub_methods_classlvpp_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af56992fa6244a52c0e55bbcc54d90ec7 inherit pub_methods_classlvpp_base"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlvpp_base.html#af56992fa6244a52c0e55bbcc54d90ec7">setText</a> (const char *pText)</td></tr>
 <tr class="memdesc:af56992fa6244a52c0e55bbcc54d90ec7 inherit pub_methods_classlvpp_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the Text for the primary text label. For a button, for instance, this is the text on top of the button.  <br /></td></tr>
 <tr class="separator:af56992fa6244a52c0e55bbcc54d90ec7 inherit pub_methods_classlvpp_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -201,6 +207,21 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ab9fe804b0a68870d9cc2a51a0fc58c86 inherit pub_methods_classlvpp_base"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlvpp_base.html#ab9fe804b0a68870d9cc2a51a0fc58c86">setAdjText</a> (const char *pText, lv_coord_t x_ofs=-10000, lv_coord_t y_ofs=-10000)</td></tr>
 <tr class="memdesc:ab9fe804b0a68870d9cc2a51a0fc58c86 inherit pub_methods_classlvpp_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the text for the adjacent text label. This label is not enabled by default. Setting this text will create and enable the adjacent label object. The label's position can be set, optionally, as well.  <br /></td></tr>
 <tr class="separator:ab9fe804b0a68870d9cc2a51a0fc58c86 inherit pub_methods_classlvpp_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad132ce34a3d5b8718da39832921d28a7 inherit pub_methods_classlvpp_base"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlvpp_base.html#ad132ce34a3d5b8718da39832921d28a7">setAdjTextColor</a> (lv_color_t newColor)</td></tr>
+<tr class="memdesc:ad132ce34a3d5b8718da39832921d28a7 inherit pub_methods_classlvpp_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the Adjacent text color.  <br /></td></tr>
+<tr class="separator:ad132ce34a3d5b8718da39832921d28a7 inherit pub_methods_classlvpp_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a931e5a1e9e551c9f5f06505beb2db0c2 inherit pub_methods_classlvpp_base"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlvpp_base.html#a931e5a1e9e551c9f5f06505beb2db0c2">setAdjBGColor</a> (lv_color_t color)</td></tr>
+<tr class="memdesc:a931e5a1e9e551c9f5f06505beb2db0c2 inherit pub_methods_classlvpp_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">set the background color for the adjacent text  <br /></td></tr>
+<tr class="separator:a931e5a1e9e551c9f5f06505beb2db0c2 inherit pub_methods_classlvpp_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab2c1355add28e326bd23c4d21a1ae596 inherit pub_methods_classlvpp_base"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlvpp_base.html#ab2c1355add28e326bd23c4d21a1ae596">setAdjColorGradient</a> (lv_color_t col1, lv_color_t col2, lv_grad_dir_t direction)</td></tr>
+<tr class="memdesc:ab2c1355add28e326bd23c4d21a1ae596 inherit pub_methods_classlvpp_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets a Color Gradient from col1 to col2 in a vertical or horizontal direction.  <br /></td></tr>
+<tr class="separator:ab2c1355add28e326bd23c4d21a1ae596 inherit pub_methods_classlvpp_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6cb56c286487743641598210bc8e0aad inherit pub_methods_classlvpp_base"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlvpp_base.html#a6cb56c286487743641598210bc8e0aad">setAdjFont</a> (const lv_font_t *pF)</td></tr>
+<tr class="memdesc:a6cb56c286487743641598210bc8e0aad inherit pub_methods_classlvpp_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the Font to be used for the adjacent text.  <br /></td></tr>
+<tr class="separator:a6cb56c286487743641598210bc8e0aad inherit pub_methods_classlvpp_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad8030919b83f3d1059eada55dcc16a21 inherit pub_methods_classlvpp_base"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlvpp_base.html#ad8030919b83f3d1059eada55dcc16a21">setAdjJustificationAlignment</a> (lv_text_align_t _align)</td></tr>
+<tr class="memdesc:ad8030919b83f3d1059eada55dcc16a21 inherit pub_methods_classlvpp_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the <em>adjacent Label's</em> text alignment (left/right/center)  <br /></td></tr>
+<tr class="separator:ad8030919b83f3d1059eada55dcc16a21 inherit pub_methods_classlvpp_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a66d66f7cf99a31bfb511cc4be6cf5c69 inherit pub_methods_classlvpp_base"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlvpp_base.html#a66d66f7cf99a31bfb511cc4be6cf5c69">onClicked</a> ()</td></tr>
 <tr class="memdesc:a66d66f7cf99a31bfb511cc4be6cf5c69 inherit pub_methods_classlvpp_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">Callback that derived objects can use to get notification when the object is clicked.  <br /></td></tr>
 <tr class="separator:a66d66f7cf99a31bfb511cc4be6cf5c69 inherit pub_methods_classlvpp_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -231,18 +252,73 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aa1a460e81104485388ebf798ef46d2b7 inherit pub_methods_classlvpp_base"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlvpp_base.html#aa1a460e81104485388ebf798ef46d2b7">setCallbackOnValueChanged</a> (std::function&lt; void()&gt; cbF)</td></tr>
 <tr class="memdesc:aa1a460e81104485388ebf798ef46d2b7 inherit pub_methods_classlvpp_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">Uses a lambda callback for when an object value changes.  <br /></td></tr>
 <tr class="separator:aa1a460e81104485388ebf798ef46d2b7 inherit pub_methods_classlvpp_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac67541c6ac7ebaf4cfcd8f4f7a1564aa inherit pub_methods_classlvpp_base"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlvpp_base.html#ac67541c6ac7ebaf4cfcd8f4f7a1564aa">setNewParent</a> (lv_obj_t *pNewParent)</td></tr>
+<tr class="memdesc:ac67541c6ac7ebaf4cfcd8f4f7a1564aa inherit pub_methods_classlvpp_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">Changes the parent object on the fly. Used primarily for <a class="el" href="classlvpp_screen.html#adeadaf0797842f6cdb158848ee229f7a" title="Add any lvppBase object pointer to the screen to keep track of.">lvppScreen::addObject()</a>. Sets parents of adjacent label, value label, and label appropriately.  <br /></td></tr>
+<tr class="separator:ac67541c6ac7ebaf4cfcd8f4f7a1564aa inherit pub_methods_classlvpp_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classlvpp_options"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classlvpp_options')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classlvpp_options.html">lvppOptions</a></td></tr>
+<tr class="memitem:ac6df591fac8620ce13ae027393002a08 inherit pub_methods_classlvpp_options"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlvpp_options.html#ac6df591fac8620ce13ae027393002a08">setOptions</a> (const char *pOpts)</td></tr>
+<tr class="memdesc:ac6df591fac8620ce13ae027393002a08 inherit pub_methods_classlvpp_options"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the Options all in one shot from a const char*.  <br /></td></tr>
+<tr class="separator:ac6df591fac8620ce13ae027393002a08 inherit pub_methods_classlvpp_options"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a861cbccafd48d26a58645d2620a49bfa inherit pub_methods_classlvpp_options"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlvpp_options.html#a861cbccafd48d26a58645d2620a49bfa">setOptions</a> (std::vector&lt; std::string &gt; &amp;_opts)</td></tr>
+<tr class="memdesc:a861cbccafd48d26a58645d2620a49bfa inherit pub_methods_classlvpp_options"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the Options using a vector of strings.  <br /></td></tr>
+<tr class="separator:a861cbccafd48d26a58645d2620a49bfa inherit pub_methods_classlvpp_options"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3fa92ed6c357985239bd57223065534c inherit pub_methods_classlvpp_options"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlvpp_options.html#a3fa92ed6c357985239bd57223065534c">setOptionsWithIDs</a> (std::vector&lt; std::pair&lt; std::string, uint64_t &gt; &gt; &amp;valIDs)</td></tr>
+<tr class="memdesc:a3fa92ed6c357985239bd57223065534c inherit pub_methods_classlvpp_options"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the Options along with a related ID. This is intended to give the user a more meaningful item to 'get' than text or index of what has been selected. Used in conjunction with getCurrentID()  <br /></td></tr>
+<tr class="separator:a3fa92ed6c357985239bd57223065534c inherit pub_methods_classlvpp_options"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a34ca726dde27c00d44dcb7664b88d366 inherit pub_methods_classlvpp_options"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlvpp_options.html#a34ca726dde27c00d44dcb7664b88d366">addOption</a> (const char *pOpt)</td></tr>
+<tr class="memdesc:a34ca726dde27c00d44dcb7664b88d366 inherit pub_methods_classlvpp_options"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a single option to the options list.  <br /></td></tr>
+<tr class="separator:a34ca726dde27c00d44dcb7664b88d366 inherit pub_methods_classlvpp_options"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abe8aef3dfc74388389052a7b94fb6b5b inherit pub_methods_classlvpp_options"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlvpp_options.html#abe8aef3dfc74388389052a7b94fb6b5b">addOptionWithID</a> (const char *pOpt, uint64_t id)</td></tr>
+<tr class="memdesc:abe8aef3dfc74388389052a7b94fb6b5b inherit pub_methods_classlvpp_options"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a single option to the options list and pair it with a meaningful ID. To be used in conjunction with <a class="el" href="classlvpp_options.html#a767d0716a672876bfce2e77aa7aeff1a" title="Get the ID associated with the currently selected item. Using this method only makes sense if the lis...">getSelectedID()</a>.  <br /></td></tr>
+<tr class="separator:abe8aef3dfc74388389052a7b94fb6b5b inherit pub_methods_classlvpp_options"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a44d6b8f401ff458cdbac270e03151ab0 inherit pub_methods_classlvpp_options"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlvpp_options.html#a44d6b8f401ff458cdbac270e03151ab0">addOption</a> (std::string &amp;_opt)</td></tr>
+<tr class="memdesc:a44d6b8f401ff458cdbac270e03151ab0 inherit pub_methods_classlvpp_options"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a single option to the options list.  <br /></td></tr>
+<tr class="separator:a44d6b8f401ff458cdbac270e03151ab0 inherit pub_methods_classlvpp_options"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6dd4535aa0dee352194954e600565cf5 inherit pub_methods_classlvpp_options"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlvpp_options.html#a6dd4535aa0dee352194954e600565cf5">addOptionWithID</a> (std::string &amp;_opt, uint64_t id)</td></tr>
+<tr class="memdesc:a6dd4535aa0dee352194954e600565cf5 inherit pub_methods_classlvpp_options"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a single option to the options list and pair it with a meaningful ID. To be used in conjunction with <a class="el" href="classlvpp_options.html#a767d0716a672876bfce2e77aa7aeff1a" title="Get the ID associated with the currently selected item. Using this method only makes sense if the lis...">getSelectedID()</a>.  <br /></td></tr>
+<tr class="separator:a6dd4535aa0dee352194954e600565cf5 inherit pub_methods_classlvpp_options"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab6abdfb51a9cf729252934ad3b679d3c inherit pub_methods_classlvpp_options"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlvpp_options.html#ab6abdfb51a9cf729252934ad3b679d3c">clearOptions</a> ()</td></tr>
+<tr class="memdesc:ab6abdfb51a9cf729252934ad3b679d3c inherit pub_methods_classlvpp_options"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes all entries from the options list. NOTE: Method does not clear the LVGL widget. User should declare their own <a class="el" href="classlvpp_options.html#ab6abdfb51a9cf729252934ad3b679d3c" title="Removes all entries from the options list. NOTE: Method does not clear the LVGL widget....">clearOptions()</a> method and make a call to the base object for clearing the options list prior to the user clearing the widget's actual list visually.  <br /></td></tr>
+<tr class="separator:ab6abdfb51a9cf729252934ad3b679d3c inherit pub_methods_classlvpp_options"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a767d0716a672876bfce2e77aa7aeff1a inherit pub_methods_classlvpp_options"><td class="memItemLeft" align="right" valign="top">virtual uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlvpp_options.html#a767d0716a672876bfce2e77aa7aeff1a">getSelectedID</a> ()</td></tr>
+<tr class="memdesc:a767d0716a672876bfce2e77aa7aeff1a inherit pub_methods_classlvpp_options"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the ID associated with the currently selected item. Using this method only makes sense if the list of options was built using <a class="el" href="classlvpp_options.html#a3fa92ed6c357985239bd57223065534c" title="Set the Options along with a related ID. This is intended to give the user a more meaningful item to ...">setOptionsWithIDs()</a> and/or <a class="el" href="classlvpp_options.html#abe8aef3dfc74388389052a7b94fb6b5b" title="Add a single option to the options list and pair it with a meaningful ID. To be used in conjunction w...">addOptionWithID()</a>.  <br /></td></tr>
+<tr class="separator:a767d0716a672876bfce2e77aa7aeff1a inherit pub_methods_classlvpp_options"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
+Protected Member Functions</h2></td></tr>
+<tr class="memitem:a097567be2664ec0a841c6db3f1e56507"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlvpp_cycle_button.html#a097567be2664ec0a841c6db3f1e56507">lvOptionSetter</a> (const char *pOpts)</td></tr>
+<tr class="memdesc:a097567be2664ec0a841c6db3f1e56507"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is the implementation of the pure virtual in <a class="el" href="classlvpp_options.html" title="Utility class to aid in consistent handling of all lv_ widgets which have a list of choices....">lvppOptions</a>. It is responsible for doing the actual class-specific 'set' - in this case just setting the button text to the option corresponding to the currentIndex.  <br /></td></tr>
+<tr class="separator:a097567be2664ec0a841c6db3f1e56507"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab43a51eaaf895764a980a205c95151f7"><td class="memItemLeft" align="right" valign="top">virtual uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlvpp_cycle_button.html#ab43a51eaaf895764a980a205c95151f7">lvOptionGetIndex</a> ()</td></tr>
+<tr class="memdesc:ab43a51eaaf895764a980a205c95151f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is the implementation of the pure virtual in <a class="el" href="classlvpp_options.html" title="Utility class to aid in consistent handling of all lv_ widgets which have a list of choices....">lvppOptions</a>. It is responsible for doing the actual class-specific 'get' - in this case just the currentIndex.  <br /></td></tr>
+<tr class="separator:ab43a51eaaf895764a980a205c95151f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_methods_classlvpp_base"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_classlvpp_base')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="classlvpp_base.html">lvppBase</a></td></tr>
+<tr class="memitem:a45acae809cf4ee643aca805b2550d34b inherit pro_methods_classlvpp_base"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlvpp_base.html#a45acae809cf4ee643aca805b2550d34b">setObjType</a> (const char *pType)</td></tr>
+<tr class="separator:a45acae809cf4ee643aca805b2550d34b inherit pro_methods_classlvpp_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af9c4facd7f122ed198342caf01894e55 inherit pro_methods_classlvpp_base"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlvpp_base.html#af9c4facd7f122ed198342caf01894e55">baseEventHandler</a> (lv_event_t *event)</td></tr>
+<tr class="memdesc:af9c4facd7f122ed198342caf01894e55 inherit pro_methods_classlvpp_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">Main event handler loop for all events. This handler makes calls for <a class="el" href="classlvpp_base.html#a66d66f7cf99a31bfb511cc4be6cf5c69" title="Callback that derived objects can use to get notification when the object is clicked.">onClicked()</a> and <a class="el" href="classlvpp_base.html#a0097e005ee93c8235a61d7be979d8b58" title="Callback that derived objects can use to get notification when the value changes of an object.">onValueChanged()</a>  <br /></td></tr>
+<tr class="separator:af9c4facd7f122ed198342caf01894e55 inherit pro_methods_classlvpp_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac86ee220fb144c27e28b537e90eb5b53 inherit pro_methods_classlvpp_base"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlvpp_base.html#ac86ee220fb144c27e28b537e90eb5b53">eventHandler</a> (lv_event_t *event)</td></tr>
+<tr class="memdesc:ac86ee220fb144c27e28b537e90eb5b53 inherit pro_methods_classlvpp_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">Any events <em>not</em> handled by baseEventHandler come here. Can be overridden by a derived class.  <br /></td></tr>
+<tr class="separator:ac86ee220fb144c27e28b537e90eb5b53 inherit pro_methods_classlvpp_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8dd898f6130b60d6c8b8bfdc21e59c25 inherit pro_methods_classlvpp_base"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlvpp_base.html#a8dd898f6130b60d6c8b8bfdc21e59c25">addDefaults</a> ()</td></tr>
+<tr class="separator:a8dd898f6130b60d6c8b8bfdc21e59c25 inherit pro_methods_classlvpp_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_methods_classlvpp_options"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_classlvpp_options')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="classlvpp_options.html">lvppOptions</a></td></tr>
+<tr class="memitem:a75189e94e1b35a924b77ff1f98991ada inherit pro_methods_classlvpp_options"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlvpp_options.html#a75189e94e1b35a924b77ff1f98991ada">lvOptionSetter</a> (const char *pOpts)=0</td></tr>
+<tr class="memdesc:a75189e94e1b35a924b77ff1f98991ada inherit pro_methods_classlvpp_options"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is the pure virtual which must be implemented by any class that utilizes <a class="el" href="classlvpp_options.html" title="Utility class to aid in consistent handling of all lv_ widgets which have a list of choices....">lvppOptions</a>. It is called by the 'set' functions to do the actual setting. Since <a class="el" href="classlvpp_options.html" title="Utility class to aid in consistent handling of all lv_ widgets which have a list of choices....">lvppOptions</a> is just a <em>utility class</em>, it must rely on the the child to do the actual appropriate set function.  <br /></td></tr>
+<tr class="separator:a75189e94e1b35a924b77ff1f98991ada inherit pro_methods_classlvpp_options"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a70e3fcb82820649001cd7c4b9848563e inherit pro_methods_classlvpp_options"><td class="memItemLeft" align="right" valign="top">virtual uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlvpp_options.html#a70e3fcb82820649001cd7c4b9848563e">lvOptionGetIndex</a> ()=0</td></tr>
+<tr class="memdesc:a70e3fcb82820649001cd7c4b9848563e inherit pro_methods_classlvpp_options"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is the pure virtual method which must be implemented by any class that utilizes <a class="el" href="classlvpp_options.html" title="Utility class to aid in consistent handling of all lv_ widgets which have a list of choices....">lvppOptions</a>. The implementation should return the index of the currently selected value in the list. The specific function will vary based on what the child's widget type is.  <br /></td></tr>
+<tr class="separator:a70e3fcb82820649001cd7c4b9848563e inherit pro_methods_classlvpp_options"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4f3bc1d7c1be46060cc5b649bad34c5d inherit pro_methods_classlvpp_options"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlvpp_options.html#a4f3bc1d7c1be46060cc5b649bad34c5d">getNewlineSepOptions</a> ()</td></tr>
+<tr class="memdesc:a4f3bc1d7c1be46060cc5b649bad34c5d inherit pro_methods_classlvpp_options"><td class="mdescLeft">&#160;</td><td class="mdescRight">Packs all the option strings into a single newline separated pointer.  <br /></td></tr>
+<tr class="separator:a4f3bc1d7c1be46060cc5b649bad34c5d inherit pro_methods_classlvpp_options"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr class="memitem:a4649aa84508e7d5e3ab762adc0a41721"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlvpp_cycle_button.html#a4649aa84508e7d5e3ab762adc0a41721">options</a></td></tr>
-<tr class="memdesc:a4649aa84508e7d5e3ab762adc0a41721"><td class="mdescLeft">&#160;</td><td class="mdescRight">Internal representation of the options for the cycling button.  <br /></td></tr>
-<tr class="separator:a4649aa84508e7d5e3ab762adc0a41721"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6cdf9aa257f3d478327a853cb6ac1a64"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlvpp_cycle_button.html#a6cdf9aa257f3d478327a853cb6ac1a64">currentIndex</a></td></tr>
 <tr class="memdesc:a6cdf9aa257f3d478327a853cb6ac1a64"><td class="mdescLeft">&#160;</td><td class="mdescRight">Current value of which option is active on the button label.  <br /></td></tr>
 <tr class="separator:a6cdf9aa257f3d478327a853cb6ac1a64"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3fc8f5453dd0e7a4a57d14faf5939261"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlvpp_cycle_button.html#a3fc8f5453dd0e7a4a57d14faf5939261">quantity</a></td></tr>
-<tr class="memdesc:a3fc8f5453dd0e7a4a57d14faf5939261"><td class="mdescLeft">&#160;</td><td class="mdescRight">Total number of options.  <br /></td></tr>
-<tr class="separator:a3fc8f5453dd0e7a4a57d14faf5939261"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_attribs_classlvpp_base"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classlvpp_base')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="classlvpp_base.html">lvppBase</a></td></tr>
 <tr class="memitem:a67e8adba61466af3ba7f65e34377d7df inherit pro_attribs_classlvpp_base"><td class="memItemLeft" align="right" valign="top">lv_obj_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlvpp_base.html#a67e8adba61466af3ba7f65e34377d7df">label</a></td></tr>
 <tr class="memdesc:a67e8adba61466af3ba7f65e34377d7df inherit pro_attribs_classlvpp_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">Primary label.  <br /></td></tr>
@@ -269,6 +345,16 @@ Protected Attributes</h2></td></tr>
 <tr class="memitem:aeb1dc2263f429e39fd66ebbf922a0445 inherit pro_attribs_classlvpp_base"><td class="memItemLeft" align="right" valign="top">lv_style_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlvpp_base.html#aeb1dc2263f429e39fd66ebbf922a0445">style_obj</a></td></tr>
 <tr class="memdesc:aeb1dc2263f429e39fd66ebbf922a0445 inherit pro_attribs_classlvpp_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">Main style object - unsure if I'm handling all of the style bit correctly.  <br /></td></tr>
 <tr class="separator:aeb1dc2263f429e39fd66ebbf922a0445 inherit pro_attribs_classlvpp_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_attribs_classlvpp_options"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classlvpp_options')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="classlvpp_options.html">lvppOptions</a></td></tr>
+<tr class="memitem:a9875ed91853ec5b52c66cad5b7bdd6b8 inherit pro_attribs_classlvpp_options"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlvpp_options.html#a9875ed91853ec5b52c66cad5b7bdd6b8">oneString</a></td></tr>
+<tr class="memdesc:a9875ed91853ec5b52c66cad5b7bdd6b8 inherit pro_attribs_classlvpp_options"><td class="mdescLeft">&#160;</td><td class="mdescRight">Temp area for <a class="el" href="classlvpp_options.html#a4f3bc1d7c1be46060cc5b649bad34c5d" title="Packs all the option strings into a single newline separated pointer.">getNewlineSepOptions()</a>  <br /></td></tr>
+<tr class="separator:a9875ed91853ec5b52c66cad5b7bdd6b8 inherit pro_attribs_classlvpp_options"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a80032604bbf45d41ae5b784d20567d2b inherit pro_attribs_classlvpp_options"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlvpp_options.html#a80032604bbf45d41ae5b784d20567d2b">options</a></td></tr>
+<tr class="memdesc:a80032604bbf45d41ae5b784d20567d2b inherit pro_attribs_classlvpp_options"><td class="mdescLeft">&#160;</td><td class="mdescRight">The vector of options kept locally.  <br /></td></tr>
+<tr class="separator:a80032604bbf45d41ae5b784d20567d2b inherit pro_attribs_classlvpp_options"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a349c9ccef97ae191619661e97f26b244 inherit pro_attribs_classlvpp_options"><td class="memItemLeft" align="right" valign="top">std::vector&lt; uint64_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlvpp_options.html#a349c9ccef97ae191619661e97f26b244">idList</a></td></tr>
+<tr class="memdesc:a349c9ccef97ae191619661e97f26b244 inherit pro_attribs_classlvpp_options"><td class="mdescLeft">&#160;</td><td class="mdescRight">The vector of associated ID values (if used)  <br /></td></tr>
+<tr class="separator:a349c9ccef97ae191619661e97f26b244 inherit pro_attribs_classlvpp_options"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
@@ -279,15 +365,18 @@ Additional Inherited Members</h2></td></tr>
 <tr class="memitem:a06301c57b8ae3b442ded904fc5995694 inherit pub_static_methods_classlvpp_base"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlvpp_base.html#a06301c57b8ae3b442ded904fc5995694">isUnknownCode</a> (lv_event_code_t code)</td></tr>
 <tr class="memdesc:a06301c57b8ae3b442ded904fc5995694 inherit pub_static_methods_classlvpp_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check to see if an event code is valid or not. Utility function.  <br /></td></tr>
 <tr class="separator:a06301c57b8ae3b442ded904fc5995694 inherit pub_static_methods_classlvpp_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="inherit_header pro_methods_classlvpp_base"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_classlvpp_base')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="classlvpp_base.html">lvppBase</a></td></tr>
-<tr class="memitem:a45acae809cf4ee643aca805b2550d34b inherit pro_methods_classlvpp_base"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlvpp_base.html#a45acae809cf4ee643aca805b2550d34b">setObjType</a> (const char *pType)</td></tr>
-<tr class="separator:a45acae809cf4ee643aca805b2550d34b inherit pro_methods_classlvpp_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af9c4facd7f122ed198342caf01894e55 inherit pro_methods_classlvpp_base"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlvpp_base.html#af9c4facd7f122ed198342caf01894e55">baseEventHandler</a> (lv_event_t *event)</td></tr>
-<tr class="memdesc:af9c4facd7f122ed198342caf01894e55 inherit pro_methods_classlvpp_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">Main event handler loop for all events. This handler makes calls for <a class="el" href="classlvpp_base.html#a66d66f7cf99a31bfb511cc4be6cf5c69" title="Callback that derived objects can use to get notification when the object is clicked.">onClicked()</a> and <a class="el" href="classlvpp_base.html#a0097e005ee93c8235a61d7be979d8b58" title="Callback that derived objects can use to get notification when the value changes of an object.">onValueChanged()</a>  <br /></td></tr>
-<tr class="separator:af9c4facd7f122ed198342caf01894e55 inherit pro_methods_classlvpp_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac86ee220fb144c27e28b537e90eb5b53 inherit pro_methods_classlvpp_base"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlvpp_base.html#ac86ee220fb144c27e28b537e90eb5b53">eventHandler</a> (lv_event_t *event)</td></tr>
-<tr class="memdesc:ac86ee220fb144c27e28b537e90eb5b53 inherit pro_methods_classlvpp_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">Any events <em>not</em> handled by baseEventHandler come here. Can be overridden by a derived class.  <br /></td></tr>
-<tr class="separator:ac86ee220fb144c27e28b537e90eb5b53 inherit pro_methods_classlvpp_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae41810dfbbcf2329e65ca8c5a018513b inherit pub_static_methods_classlvpp_base"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlvpp_base.html#ae41810dfbbcf2329e65ca8c5a018513b">setDefaultFont</a> (const lv_font_t *pFont)</td></tr>
+<tr class="memdesc:ae41810dfbbcf2329e65ca8c5a018513b inherit pub_static_methods_classlvpp_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the Default Font to be used on all subsequent widget creations. Note - can be nullptr to effectively un-set the default.  <br /></td></tr>
+<tr class="separator:ae41810dfbbcf2329e65ca8c5a018513b inherit pub_static_methods_classlvpp_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aff7de9e02dcad4cb00aec120e28ca7e8 inherit pub_static_methods_classlvpp_base"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlvpp_base.html#aff7de9e02dcad4cb00aec120e28ca7e8">setDefaultTextColor</a> (lv_color_t col)</td></tr>
+<tr class="memdesc:aff7de9e02dcad4cb00aec120e28ca7e8 inherit pub_static_methods_classlvpp_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the Default Text Color to be used on all subsequent widget creations or enabling of things like adjacent text or setting/resetting of text values.  <br /></td></tr>
+<tr class="separator:aff7de9e02dcad4cb00aec120e28ca7e8 inherit pub_static_methods_classlvpp_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae91b73571d84b30ffcab9ec6df971b93 inherit pub_static_methods_classlvpp_base"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlvpp_base.html#ae91b73571d84b30ffcab9ec6df971b93">setDefaultBGColor</a> (lv_color_t col)</td></tr>
+<tr class="memdesc:ae91b73571d84b30ffcab9ec6df971b93 inherit pub_static_methods_classlvpp_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the Default Background Color to be used on all subsequent widget creations or enabling of things like adjacent text or setting/resetting of text values.  <br /></td></tr>
+<tr class="separator:ae91b73571d84b30ffcab9ec6df971b93 inherit pub_static_methods_classlvpp_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af4f1b0b06649f389293f4a90a54e7fad inherit pub_static_methods_classlvpp_base"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlvpp_base.html#af4f1b0b06649f389293f4a90a54e7fad">removeDefaultBGColor</a> ()</td></tr>
+<tr class="memdesc:af4f1b0b06649f389293f4a90a54e7fad inherit pub_static_methods_classlvpp_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes the default background color for subsequent widget creations. Part of the reson for this is that typically text backgrounds are an opacity of transparent and simply changing the background color to another color (like the screen or canvas color) won't affect the change desired. By using this method, you remove the internal usage of an opacity of 100 with the color.  <br /></td></tr>
+<tr class="separator:af4f1b0b06649f389293f4a90a54e7fad inherit pub_static_methods_classlvpp_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_static_methods_classlvpp_base"><td colspan="2" onclick="javascript:toggleInherit('pro_static_methods_classlvpp_base')"><img src="closed.png" alt="-"/>&#160;Static Protected Member Functions inherited from <a class="el" href="classlvpp_base.html">lvppBase</a></td></tr>
 <tr class="memitem:ad543c941463c19023bd14c9c7a6b89a7 inherit pro_static_methods_classlvpp_base"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlvpp_base.html#ad543c941463c19023bd14c9c7a6b89a7">lvCallback</a> (lv_event_t *event)</td></tr>
 <tr class="memdesc:ad543c941463c19023bd14c9c7a6b89a7 inherit pro_static_methods_classlvpp_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">Static member to handle all inbound callback events. Used to "route" event handling to the appropriate C++ object.  <br /></td></tr>
@@ -299,6 +388,12 @@ Additional Inherited Members</h2></td></tr>
 <tr class="memitem:a8323f2e4fa33c634f15d8c3515a05a71 inherit pro_static_attribs_classlvpp_base"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlvpp_base.html#a8323f2e4fa33c634f15d8c3515a05a71">bEventNamesInitComplete</a> = false</td></tr>
 <tr class="memdesc:a8323f2e4fa33c634f15d8c3515a05a71 inherit pro_static_attribs_classlvpp_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">Status of the event names table to avoid re-processing.  <br /></td></tr>
 <tr class="separator:a8323f2e4fa33c634f15d8c3515a05a71 inherit pro_static_attribs_classlvpp_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af040e67d56639f17ae0f898e3821accd inherit pro_static_attribs_classlvpp_base"><td class="memItemLeft" align="right" valign="top">static const lv_font_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlvpp_base.html#af040e67d56639f17ae0f898e3821accd">pDefaultFont</a> = nullptr</td></tr>
+<tr class="separator:af040e67d56639f17ae0f898e3821accd inherit pro_static_attribs_classlvpp_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a41516375d9fb0b1e65c39ca71ad30802 inherit pro_static_attribs_classlvpp_base"><td class="memItemLeft" align="right" valign="top">static lv_color_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlvpp_base.html#a41516375d9fb0b1e65c39ca71ad30802">pDefaultTextColor</a> = nullptr</td></tr>
+<tr class="separator:a41516375d9fb0b1e65c39ca71ad30802 inherit pro_static_attribs_classlvpp_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a29aafe37cc76cad01c5e415819a729ea inherit pro_static_attribs_classlvpp_base"><td class="memItemLeft" align="right" valign="top">static lv_color_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlvpp_base.html#a29aafe37cc76cad01c5e415819a729ea">pDefaultBGColor</a> = nullptr</td></tr>
+<tr class="separator:a29aafe37cc76cad01c5e415819a729ea inherit pro_static_attribs_classlvpp_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Derived from <a class="el" href="classlvpp_button.html" title="Basic button class.">lvppButton</a>, this is a button who's clicks cycle through a list of options. </p>
@@ -342,63 +437,14 @@ Additional Inherited Members</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a4cb06514a2bd4ea3723b663bce017666" name="a4cb06514a2bd4ea3723b663bce017666"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4cb06514a2bd4ea3723b663bce017666">&#9670;&#160;</a></span>addOptions() <span class="overload">[1/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void lvppCycleButton::addOptions </td>
-          <td>(</td>
-          <td class="paramtype">const char *&#160;</td>
-          <td class="paramname"><em>pOption</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Add button options using a single char* with options separated by <code>\n</code> </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">pOption</td><td>Pointer to a character string of options separated by <code>\n</code> </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="aebb4699366370f426aa877dde13b534f" name="aebb4699366370f426aa877dde13b534f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aebb4699366370f426aa877dde13b534f">&#9670;&#160;</a></span>addOptions() <span class="overload">[2/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void lvppCycleButton::addOptions </td>
-          <td>(</td>
-          <td class="paramtype">std::vector&lt; std::string &gt; &amp;&#160;</td>
-          <td class="paramname"><em>inOptions</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Add button options using a vector of strings. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">inOptions</td><td>Uses std::vector&lt;std::string&gt; reference to pass all the options. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
 <a id="a538423809eb9402f359d0c8a4217876c" name="a538423809eb9402f359d0c8a4217876c"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a538423809eb9402f359d0c8a4217876c">&#9670;&#160;</a></span>clearOptions()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void lvppCycleButton::clearOptions </td>
@@ -408,14 +454,21 @@ Additional Inherited Members</h2></td></tr>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 <p>Remove all options from the current options list. </p>
 
+<p>Reimplemented from <a class="el" href="classlvpp_options.html#ab6abdfb51a9cf729252934ad3b679d3c">lvppOptions</a>.</p>
+
 </div>
 </div>
-<a id="aeaa4909df9fc83045489b22407deb590" name="aeaa4909df9fc83045489b22407deb590"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aeaa4909df9fc83045489b22407deb590">&#9670;&#160;</a></span>getCurrentIndex()</h2>
+<a id="a692270675ec5a17eabc4d099ad9dc2b1" name="a692270675ec5a17eabc4d099ad9dc2b1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a692270675ec5a17eabc4d099ad9dc2b1">&#9670;&#160;</a></span>getSelectedIndex()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -424,7 +477,7 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">u_int16_t lvppCycleButton::getCurrentIndex </td>
+          <td class="memname">uint16_t lvppCycleButton::getSelectedIndex </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -438,12 +491,12 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Get the Current Index of which option is the active label on the button. </p>
-<dl class="section return"><dt>Returns</dt><dd>u_int16_t zero to n-1 value representing the current label/button state. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>uint16_t zero to n-1 value representing the current label/button state. </dd></dl>
 
 </div>
 </div>
-<a id="abf98ce670e455a1347dc909e4e6f7178" name="abf98ce670e455a1347dc909e4e6f7178"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abf98ce670e455a1347dc909e4e6f7178">&#9670;&#160;</a></span>getCurrentText()</h2>
+<a id="a29d5e81303286a46fae3cc2906f8f99a" name="a29d5e81303286a46fae3cc2906f8f99a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a29d5e81303286a46fae3cc2906f8f99a">&#9670;&#160;</a></span>getSelectedText()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -452,7 +505,7 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">const char * lvppCycleButton::getCurrentText </td>
+          <td class="memname">const char * lvppCycleButton::getSelectedText </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -499,6 +552,143 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
+<a id="ab43a51eaaf895764a980a205c95151f7" name="ab43a51eaaf895764a980a205c95151f7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab43a51eaaf895764a980a205c95151f7">&#9670;&#160;</a></span>lvOptionGetIndex()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual uint16_t lvppCycleButton::lvOptionGetIndex </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>This is the implementation of the pure virtual in <a class="el" href="classlvpp_options.html" title="Utility class to aid in consistent handling of all lv_ widgets which have a list of choices....">lvppOptions</a>. It is responsible for doing the actual class-specific 'get' - in this case just the currentIndex. </p>
+
+<p>Implements <a class="el" href="classlvpp_options.html#a70e3fcb82820649001cd7c4b9848563e">lvppOptions</a>.</p>
+
+</div>
+</div>
+<a id="a097567be2664ec0a841c6db3f1e56507" name="a097567be2664ec0a841c6db3f1e56507"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a097567be2664ec0a841c6db3f1e56507">&#9670;&#160;</a></span>lvOptionSetter()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void lvppCycleButton::lvOptionSetter </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>pOpts</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>This is the implementation of the pure virtual in <a class="el" href="classlvpp_options.html" title="Utility class to aid in consistent handling of all lv_ widgets which have a list of choices....">lvppOptions</a>. It is responsible for doing the actual class-specific 'set' - in this case just setting the button text to the option corresponding to the currentIndex. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pOpts</td><td>newline-separated list of options. Unused for <a class="el" href="classlvpp_cycle_button.html" title="Derived from lvppButton, this is a button who&#39;s clicks cycle through a list of options.">lvppCycleButton</a>. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Implements <a class="el" href="classlvpp_options.html#a75189e94e1b35a924b77ff1f98991ada">lvppOptions</a>.</p>
+
+</div>
+</div>
+<a id="a211588dc8b6a4226d00d998bb8180de9" name="a211588dc8b6a4226d00d998bb8180de9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a211588dc8b6a4226d00d998bb8180de9">&#9670;&#160;</a></span>setOptions() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void lvppCycleButton::setOptions </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>pOption</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Add button options using a single char* with options separated by <code>\n</code> </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pOption</td><td>Pointer to a character string of options separated by <code>\n</code> </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Reimplemented from <a class="el" href="classlvpp_options.html#ac6df591fac8620ce13ae027393002a08">lvppOptions</a>.</p>
+
+</div>
+</div>
+<a id="a6aa3bd6bdc868db76ed5359bffa4b78a" name="a6aa3bd6bdc868db76ed5359bffa4b78a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6aa3bd6bdc868db76ed5359bffa4b78a">&#9670;&#160;</a></span>setOptions() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void lvppCycleButton::setOptions </td>
+          <td>(</td>
+          <td class="paramtype">std::vector&lt; std::string &gt; &amp;&#160;</td>
+          <td class="paramname"><em>inOptions</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Add button options using a vector of strings. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">inOptions</td><td>Uses std::vector&lt;std::string&gt; reference to pass all the options. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Reimplemented from <a class="el" href="classlvpp_options.html#a861cbccafd48d26a58645d2620a49bfa">lvppOptions</a>.</p>
+
+</div>
+</div>
 <h2 class="groupheader">Member Data Documentation</h2>
 <a id="a6cdf9aa257f3d478327a853cb6ac1a64" name="a6cdf9aa257f3d478327a853cb6ac1a64"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a6cdf9aa257f3d478327a853cb6ac1a64">&#9670;&#160;</a></span>currentIndex</h2>
@@ -521,54 +711,6 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Current value of which option is active on the button label. </p>
-
-</div>
-</div>
-<a id="a4649aa84508e7d5e3ab762adc0a41721" name="a4649aa84508e7d5e3ab762adc0a41721"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4649aa84508e7d5e3ab762adc0a41721">&#9670;&#160;</a></span>options</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::vector&lt;std::string&gt; lvppCycleButton::options</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Internal representation of the options for the cycling button. </p>
-
-</div>
-</div>
-<a id="a3fc8f5453dd0e7a4a57d14faf5939261" name="a3fc8f5453dd0e7a4a57d14faf5939261"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3fc8f5453dd0e7a4a57d14faf5939261">&#9670;&#160;</a></span>quantity</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">uint16_t lvppCycleButton::quantity</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Total number of options. </p>
 
 </div>
 </div>

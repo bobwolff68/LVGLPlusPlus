@@ -17,6 +17,12 @@ var hierarchy =
       [ "lvppFullImageToggleButton", "classlvpp_full_image_toggle_button.html", null ],
       [ "lvppImage", "classlvpp_image.html", null ],
       [ "lvppLabel", "classlvpp_label.html", null ],
+      [ "lvppRoller", "classlvpp_roller.html", null ],
+      [ "lvppSwitch", "classlvpp_switch.html", null ]
+    ] ],
+    [ "lvppOptions", "classlvpp_options.html", [
+      [ "lvppCycleButton", "classlvpp_cycle_button.html", null ],
+      [ "lvppDropdown", "classlvpp_dropdown.html", null ],
       [ "lvppRoller", "classlvpp_roller.html", null ]
     ] ],
     [ "lvppScreen", "classlvpp_screen.html", null ]

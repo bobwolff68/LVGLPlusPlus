@@ -1,4 +1,5 @@
 <map id="lvppRoller" name="lvppRoller">
-<area shape="rect" id="node1" title="Construct a roller list widget for option selection." alt="" coords="5,79,85,104"/>
-<area shape="rect" id="node2" href="$classlvpp_base.html" title="lvppBase is the root of the C++ library LVGLPlusPlus. It strives to create consistent ways to manipul..." alt="" coords="7,5,83,31"/>
+<area shape="rect" id="node1" title="Construct a roller list widget for option selection." alt="" coords="57,79,137,104"/>
+<area shape="rect" id="node2" href="$classlvpp_base.html" title="lvppBase is the root of the C++ library LVGLPlusPlus. It strives to create consistent ways to manipul..." alt="" coords="5,5,81,31"/>
+<area shape="rect" id="node3" href="$classlvpp_options.html" title="Utility class to aid in consistent handling of all lv_ widgets which have a list of choices...." alt="" coords="106,5,197,31"/>
 </map>

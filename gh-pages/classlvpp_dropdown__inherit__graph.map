@@ -1,4 +1,5 @@
 <map id="lvppDropdown" name="lvppDropdown">
-<area shape="rect" id="node1" title="Support for drop&#45;down lists and choosing from a dropdown." alt="" coords="5,79,111,104"/>
-<area shape="rect" id="node2" href="$classlvpp_base.html" title="lvppBase is the root of the C++ library LVGLPlusPlus. It strives to create consistent ways to manipul..." alt="" coords="20,5,96,31"/>
+<area shape="rect" id="node1" title="Support for drop&#45;down lists and choosing from a dropdown. Utilizes multiple inheritance of lvppBase a..." alt="" coords="44,79,149,104"/>
+<area shape="rect" id="node2" href="$classlvpp_base.html" title="lvppBase is the root of the C++ library LVGLPlusPlus. It strives to create consistent ways to manipul..." alt="" coords="5,5,81,31"/>
+<area shape="rect" id="node3" href="$classlvpp_options.html" title="Utility class to aid in consistent handling of all lv_ widgets which have a list of choices...." alt="" coords="106,5,197,31"/>
 </map>

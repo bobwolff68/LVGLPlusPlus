@@ -1,5 +1,8 @@
 var searchData=
 [
-  ['imgpressed_0',['imgPressed',['../classlvpp_full_image_toggle_button.html#ad9a59ebf4c902eb4091a79c9f239de74',1,'lvppFullImageToggleButton']]],
-  ['imgreleased_1',['imgReleased',['../classlvpp_full_image_toggle_button.html#aa6447cb3e91ee278d36019328bd4f4e1',1,'lvppFullImageToggleButton']]]
+  ['heapfree_0',['heapFree',['../structesp_rec.html#afaf4cb6cebcd0d1e1ee0dceecadbfdec',1,'espRec']]],
+  ['heaplargestblock_1',['heapLargestBlock',['../structesp_rec.html#a638112c7f1dfe6212d2970f35816ac8e',1,'espRec']]],
+  ['heaplowwatermark_2',['heapLowWaterMark',['../structesp_rec.html#a01301ecbe8b8388846fe5a4b74b84ff9',1,'espRec']]],
+  ['heapsize_3',['heapSize',['../structesp_rec.html#a595c005e3bbac11eb2f0fda8bd0e0fa5',1,'espRec']]],
+  ['height_4',['height',['../classlvpp_canvas_full_color.html#af797c022f7578aa1f1588eb17b1f36ac',1,'lvppCanvasFullColor::height()'],['../classlvpp_canvas_indexed.html#a01520b0f72dc6dda6350ce7517221253',1,'lvppCanvasIndexed::height()']]]
 ];

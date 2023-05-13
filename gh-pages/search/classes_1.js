@@ -12,7 +12,9 @@ var searchData=
   ['lvppfullimagetogglebutton_9',['lvppFullImageToggleButton',['../classlvpp_full_image_toggle_button.html',1,'']]],
   ['lvppimage_10',['lvppImage',['../classlvpp_image.html',1,'']]],
   ['lvpplabel_11',['lvppLabel',['../classlvpp_label.html',1,'']]],
-  ['lvpproller_12',['lvppRoller',['../classlvpp_roller.html',1,'']]],
-  ['lvppscreen_13',['lvppScreen',['../classlvpp_screen.html',1,'']]],
-  ['lvppslider_14',['lvppSlider',['../classlvpp_slider.html',1,'']]]
+  ['lvppoptions_12',['lvppOptions',['../classlvpp_options.html',1,'']]],
+  ['lvpproller_13',['lvppRoller',['../classlvpp_roller.html',1,'']]],
+  ['lvppscreen_14',['lvppScreen',['../classlvpp_screen.html',1,'']]],
+  ['lvppslider_15',['lvppSlider',['../classlvpp_slider.html',1,'']]],
+  ['lvppswitch_16',['lvppSwitch',['../classlvpp_switch.html',1,'']]]
 ];

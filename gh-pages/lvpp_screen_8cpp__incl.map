@@ -1,10 +1,11 @@
 <map id="src/lvppScreen.cpp" name="src/lvppScreen.cpp">
-<area shape="rect" id="node1" title="Implementation of lvppScreen class." alt="" coords="161,5,295,31"/>
-<area shape="rect" id="node2" href="$lvpp_8h.html" title="All derived classes for LVGL based class/widgets. This is the file you want to include." alt="" coords="199,79,257,104"/>
+<area shape="rect" id="node1" title="Implementation of lvppScreen class." alt="" coords="158,5,293,31"/>
+<area shape="rect" id="node2" href="$lvpp_8h.html" title="All derived classes for LVGL based class/widgets. This is the file you want to include." alt="" coords="197,79,254,104"/>
 <area shape="rect" id="node3" title=" " alt="" coords="5,225,83,251"/>
-<area shape="rect" id="node4" href="$lvpp_base_8h.html" title="Base class for LVGLPlusPlus widgets (lvppBase)" alt="" coords="103,152,190,177"/>
-<area shape="rect" id="node5" title=" " alt="" coords="210,225,265,251"/>
-<area shape="rect" id="node7" title=" " alt="" coords="265,152,324,177"/>
-<area shape="rect" id="node8" title=" " alt="" coords="349,152,395,177"/>
-<area shape="rect" id="node6" title=" " alt="" coords="107,225,186,251"/>
+<area shape="rect" id="node4" href="$lvpp_base_8h.html" title="Base class for LVGLPlusPlus widgets (lvppBase)" alt="" coords="182,152,269,177"/>
+<area shape="rect" id="node5" title=" " alt="" coords="107,225,165,251"/>
+<area shape="rect" id="node7" title=" " alt="" coords="371,225,426,251"/>
+<area shape="rect" id="node9" title=" " alt="" coords="345,152,391,177"/>
+<area shape="rect" id="node6" title=" " alt="" coords="293,225,347,251"/>
+<area shape="rect" id="node8" title=" " alt="" coords="190,225,269,251"/>
 </map>

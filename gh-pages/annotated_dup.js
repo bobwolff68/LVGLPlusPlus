@@ -14,7 +14,9 @@ var annotated_dup =
     [ "lvppFullImageToggleButton", "classlvpp_full_image_toggle_button.html", "classlvpp_full_image_toggle_button" ],
     [ "lvppImage", "classlvpp_image.html", "classlvpp_image" ],
     [ "lvppLabel", "classlvpp_label.html", "classlvpp_label" ],
+    [ "lvppOptions", "classlvpp_options.html", "classlvpp_options" ],
     [ "lvppRoller", "classlvpp_roller.html", "classlvpp_roller" ],
     [ "lvppScreen", "classlvpp_screen.html", "classlvpp_screen" ],
-    [ "lvppSlider", "classlvpp_slider.html", "classlvpp_slider" ]
+    [ "lvppSlider", "classlvpp_slider.html", "classlvpp_slider" ],
+    [ "lvppSwitch", "classlvpp_switch.html", "classlvpp_switch" ]
 ];

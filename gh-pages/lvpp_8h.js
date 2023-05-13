@@ -1,6 +1,7 @@
 var lvpp_8h =
 [
     [ "lvppScreen", "classlvpp_screen.html", "classlvpp_screen" ],
+    [ "lvppSwitch", "classlvpp_switch.html", "classlvpp_switch" ],
     [ "lvppButton", "classlvpp_button.html", "classlvpp_button" ],
     [ "lvppCycleButton", "classlvpp_cycle_button.html", "classlvpp_cycle_button" ],
     [ "lvppFullImageToggleButton", "classlvpp_full_image_toggle_button.html", "classlvpp_full_image_toggle_button" ],

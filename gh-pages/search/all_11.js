@@ -1,8 +1,5 @@
 var searchData=
 [
-  ['takesample_0',['takeSample',['../classesp_systats.html#a5043333dbede2b0614ed97c9827e7479',1,'espSystats']]],
-  ['takesampleandgetresults_1',['takeSampleAndGetResults',['../classesp_systats.html#a7f2e6991b735a6c161e28b51ca211f92',1,'espSystats']]],
-  ['takesampleandprintresults_2',['takeSampleAndPrintResults',['../classesp_systats.html#a2b6c7d445208669bfdd2a438044fbaab',1,'espSystats']]],
-  ['todo_20list_3',['Todo List',['../todo.html',1,'']]],
-  ['twopoints_4',['twoPoints',['../classlvpp_canvas_full_color.html#a7d8a64b72a22fddb2605ca495427550d',1,'lvppCanvasFullColor']]]
+  ['whoami_0',['whoAmI',['../classlvpp_base.html#a191fa74ccece21513a74d1d21c03a04b',1,'lvppBase']]],
+  ['width_1',['width',['../classlvpp_canvas_full_color.html#a4bc9a973fa944450debdd78dfb59113a',1,'lvppCanvasFullColor::width()'],['../classlvpp_canvas_indexed.html#a6a3d0296eba6e232b10dbde5df5519b2',1,'lvppCanvasIndexed::width()']]]
 ];
