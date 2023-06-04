@@ -43,13 +43,12 @@ lvppArc::lvppArc(const char* fName, lv_obj_t* parent) : lvppBaseWithValue(fName,
     setValue(50);
 }
 
-void lvppArc::setValue(int16_t value, bool animate)
-{
-    if (value >= min && value <= max) {
-        curValue = value;
-        lv_arc_set_value(obj, value);
-        lv_event_send(obj, LV_EVENT_VALUE_CHANGED, NULL);
-    }
+int16_t lvppArc::baseGetter() {
+    return lv_arc_get_value(obj);
+}
+
+void lvppArc::baseSetter(int16_t nVal, bool animate) {
+    lv_arc_set_value(obj, nVal);
 }
 
 void lvppArc::setArcColor(lv_color_t newColor) {

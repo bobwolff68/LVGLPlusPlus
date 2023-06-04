@@ -39,13 +39,12 @@ lvppBar::lvppBar(const char* fName, lv_obj_t* parent) : lvppBaseWithValue(fName,
     setValue(0);
 }
 
-void lvppBar::setValue(int16_t value, bool animate)
-{
-    if (value >= min && value <= max) {
-        curValue = value;
-        lv_bar_set_value(obj, value, animate ? LV_ANIM_ON : LV_ANIM_OFF);
-        lv_event_send(obj, LV_EVENT_VALUE_CHANGED, NULL);
-    }
+int16_t lvppBar::baseGetter() {
+    return lv_bar_get_value(obj);
+}
+
+void lvppBar::baseSetter(int16_t nVal, bool animate) {
+    lv_bar_set_value(obj, nVal, animate ? LV_ANIM_ON : LV_ANIM_OFF);
 }
 
 void lvppBar::setRange(int16_t range_min, int16_t range_max)
@@ -70,13 +69,12 @@ lvppSlider::lvppSlider(const char* fName, lv_obj_t* parent) : lvppBaseWithValue(
     setValue(0);
 }
 
-void lvppSlider::setValue(int16_t value, bool animate)
-{
-    if (value >= min && value <= max) {
-        curValue = value;
-        lv_bar_set_value(obj, value, animate ? LV_ANIM_ON : LV_ANIM_OFF);
-        lv_event_send(obj, LV_EVENT_VALUE_CHANGED, NULL);
-    }
+int16_t lvppSlider::baseGetter() {
+    return lv_slider_get_value(obj);
+}
+
+void lvppSlider::baseSetter(int16_t nVal, bool animate) {
+    lv_slider_set_value(obj, nVal, animate ? LV_ANIM_ON : LV_ANIM_OFF);
 }
 
 void lvppSlider::setRange(int16_t range_min, int16_t range_max)

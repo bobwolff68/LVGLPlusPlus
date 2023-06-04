@@ -44,10 +44,6 @@
 
 bool lvppBase::bEventNamesInitComplete = false;
 
-const lv_font_t* lvppBase::pDefaultFont = nullptr;
-lv_color_t* lvppBase::pDefaultTextColor = nullptr;
-lv_color_t* lvppBase::pDefaultBGColor = nullptr;
-
 /**************************
  * 
  * Available point sizes are dictated by the LV_FONT* items which are enabled at compile-time.
@@ -172,68 +168,17 @@ lvppBase::~lvppBase() {
 
 }
 
-void lvppBase::setDefaultFont(const lv_font_t* pFont) {
-    pDefaultFont = pFont;   // Sets regardless of whether pFont is nullptr or a valid pointer.
-}
-
-void lvppBase::setDefaultTextColor(lv_color_t col) {
-    if (!pDefaultTextColor) {
-        pDefaultTextColor = new lv_color_t;
-    }
-
-    *pDefaultTextColor = col;
-}
-
-void lvppBase::setDefaultBGColor(lv_color_t col) {
-    if (!pDefaultBGColor) {
-        pDefaultBGColor = new lv_color_t;
-    }
-
-    *pDefaultBGColor = col;
-}
-
-void lvppBase::removeDefaultBGColor() {
-    // Trying to get rid of the default by pasing nullptr in...
-    if (pDefaultBGColor) {
-        delete pDefaultBGColor;
-        pDefaultBGColor = nullptr;
-    }
-}
-
-void lvppBase::addDefaults() {
-//    printf(":%s:addDefaults - entry.\n", whoAmI());
-
-    if (pDefaultFont)
-        setFont(pDefaultFont);
-    if (pDefaultBGColor)
-        setBGColor(*pDefaultBGColor);
-    if (pDefaultTextColor)
-        setTextColor(*pDefaultTextColor);
-
-    if (adjLabel) {
-        if (pDefaultFont)
-            setAdjFont(pDefaultFont);
-        if (pDefaultBGColor)
-            setAdjBGColor(*pDefaultBGColor);
-        if (pDefaultTextColor)
-            setAdjTextColor(*pDefaultTextColor);
-    }
-}
-
 void lvppBase::createLabel() {
 //    printf(":%s:createLabel - entry.\n", whoAmI());
 
     if (!label) {
         label = lv_label_create(obj);
-//        printf(":%s:createLabel - label created. going to add defaults.\n", whoAmI());
-        addDefaults();
     }
 }
 
 void lvppBase::createAdjLabel() {
     if (!adjLabel) {
         adjLabel = lv_label_create(objParent);
-        addDefaults();
     }
 }
 
@@ -269,7 +214,6 @@ void lvppBase::setTextAlign(lv_align_t align, lv_coord_t xoff, lv_coord_t yoff)
 
 void lvppBase::setTextColor(lv_color_t newColor) {
     if (label) {
-//        printf(":%s:setTextColor - setting label text color now.\n", whoAmI());
         lv_style_set_text_color(&style_obj, newColor);
         lv_obj_add_style(label, &style_obj, 0);
         lv_obj_set_style_text_color(label, newColor, 0);
@@ -338,8 +282,6 @@ void lvppBase::createObj(lv_obj_t* o) {
     obj = o;
     lv_obj_add_style(obj, &style_obj, 0);
 
-    addDefaults();
-
     lv_obj_set_user_data(obj, this);
 
     // Handle all event callbacks
@@ -396,7 +338,7 @@ void lvppBase::baseEventHandler(lv_event_t* event) {
 
 void lvppBase::setSize(lv_coord_t width, lv_coord_t height) {
     lv_obj_set_size(obj, width, height);
-    if (label) {
+    if (label && getObjType()!="LABEL") {
         lv_obj_align(label, LV_ALIGN_CENTER, 0, 0);  // If the size of the object changed, the text will be wrong - so let's just center it as default.
     }
 }
@@ -503,19 +445,22 @@ lvppBaseWithValue::lvppBaseWithValue(const char* fName, const char* oType) : lvp
     max=100;
 }
 
-void lvppBaseWithValue::addDefaults() {
-    if (pDefaultFont)
-        setValueLabelFont(pDefaultFont);
-    if (pDefaultBGColor)
-        setValueLabelBGColor(*pDefaultBGColor);
-    if (pDefaultTextColor)
-        setValueLabelColor(*pDefaultTextColor);
+/** @todo TECHDEBT - should allow values outside range, but UI only shows inside range.
+ *        However, this will impact the 'percentage' function too and likely needs to become getUIPercentage
+ * 
+*/
+void lvppBaseWithValue::setValue(int16_t value, bool animate)
+{
+    if (value >= min && value <= max) {
+        curValue = value;
+        baseSetter(value, animate);
+        lv_event_send(obj, LV_EVENT_VALUE_CHANGED, NULL);
+    }
 }
 
 void lvppBaseWithValue::createValueLabel() {
     if (!valueLabel) {
         valueLabel = lv_label_create(objParent);
-        addDefaults();
     }
 }
 
@@ -578,6 +523,8 @@ void lvppBaseWithValue::setValueLabelJustificationAlignment(lv_text_align_t _ali
 }
 
 void lvppBaseWithValue::internalOnValueChanged() {
+    curValue = baseGetter();
+
     if (valueLabel) {
         lv_label_set_text_fmt(valueLabel, valueLabelFormat.c_str(), curValue);
         lv_obj_invalidate(valueLabel);

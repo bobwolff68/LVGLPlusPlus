@@ -427,13 +427,21 @@ public:
  * @param range_max Maximum value for the bar
  */
     void setRange(int16_t range_min, int16_t range_max);
+protected:
 /**
- * @brief Set the Value of your bar
+ * @brief Implementation of getting the value _from_ the widget
  * 
- * @param value New value for the bar widget
- * @param animate Whether or not to animate from current to new position. Default is true.
+ * @return int16_t Current value coming from the widget.
  */
-    void setValue(int16_t value, bool animate=true);
+    int16_t baseGetter();
+/**
+ * @brief Implementation which sets the current value of
+ *        the widget itself. This function generally gets called by setValue()
+ * 
+ * @param nVal int16_t which is the value the widget shall be set to at this time.
+ * @param animate If widget supports it, animation to value.
+ */
+    void baseSetter(int16_t nVal, bool animate=true);
 };
 
 /**
@@ -456,13 +464,21 @@ public:
  * @param range_max Maximum value for the slider
  */
     void setRange(int16_t range_min, int16_t range_max);
+protected:
 /**
- * @brief Set the Value of your slider
+ * @brief Implementation of getting the value _from_ the widget
  * 
- * @param value New value for the slider widget
- * @param animate Whether or not to animate from current to new position. Default is true.
+ * @return int16_t Current value coming from the widget.
  */
-    void setValue(int16_t value, bool animate=true);
+    int16_t baseGetter();
+/**
+ * @brief Implementation which sets the current value of
+ *        the widget itself. This function generally gets called by setValue()
+ * 
+ * @param nVal int16_t which is the value the widget shall be set to at this time.
+ * @param animate If widget supports it, animation to value.
+ */
+    void baseSetter(int16_t nVal, bool animate=true);
 };
 
 /**
@@ -485,19 +501,18 @@ public:
  */
     void setArcColor(lv_color_t newColor);
 /**
+ * @brief Set the Arc's _indicator_ Color - can be useful for custom values/ranges corresponding to different visual representations.
+ * 
+ * @param newColor The new color to use represented in LVGP lv_color_t typedef.
+ */
+    void setArcIndicatorColor(lv_color_t newColor);
+/**
  * @brief Set the Range of your new arc widget
  * 
  * @param range_min Minimum value for the arc
  * @param range_max Maximum value for the arc
  */
     void setRange(int16_t range_min, int16_t range_max);
-/**
- * @brief Set the Value of your arc
- * 
- * @param value New value for the arc widget
- * @param animate Whether or not to animate from current to new position. Default is true.
- */
-    void setValue(int16_t value, bool animate=true);
 /**
  * @brief Set the Arc Rotation And Sweep amounts.
  * 
@@ -520,6 +535,23 @@ public:
  * @param endAngle Sweep of the arc should end at this angle offset from the rotation amount.
  */
     void setArcRotationAndSweep(uint16_t rot, uint16_t startAngle=361, uint16_t endAngle=361);
+protected:
+/**
+ * @brief Implementation of getting the value _from_ the widget
+ * 
+ * @return int16_t Current value coming from the widget.
+ */
+    int16_t baseGetter();
+/**
+ * @brief Implementation which sets the current value of
+ *        the widget itself. This function generally gets called by setValue()
+ * 
+ * @param nVal int16_t which is the value the widget shall be set to at this time.
+ * @param animate If widget supports it, animation to value.
+ */
+    void baseSetter(int16_t nVal, bool animate=true);
+    lv_style_t style_ind;
+    lv_style_t style_pressed_color;
 };
 
 /**
