@@ -53,8 +53,8 @@ void lvppImage::setImage(const lv_img_dsc_t* pImg) {
         setSize(deferred_w, deferred_h);
         deferred_h = deferred_w = -1;
     }
-
-    if (pImage->header.cf != LV_IMG_CF_TRUE_COLOR) {
+    
+    if (pImage->header.cf != LV_IMG_CF_TRUE_COLOR && pImage->header.cf != LV_IMG_CF_TRUE_COLOR_CHROMA_KEYED) {
         noRotation = true;
     }
     else {
