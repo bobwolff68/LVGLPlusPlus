@@ -559,7 +559,7 @@ protected:
  *        Utilizes multiple inheritance of lvppBase and lvppOptions.
  * 
  */
-class lvppDropdown : public lvppBase, lvppOptions {
+class lvppDropdown : public lvppBase, public lvppOptions {
 public:
 /**
  * @brief Construct a new lvpp Dropdown object and optionially give its starting options list.
@@ -633,7 +633,7 @@ protected:
  * @brief Construct a roller list widget for option selection
  * 
  */
-class lvppRoller : public lvppBase, lvppOptions {
+class lvppRoller : public lvppBase, public lvppOptions {
 public:
 /**
  * @brief Construct a new lvpp Roller object
