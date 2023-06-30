@@ -6,6 +6,14 @@ Release Notes  {#release_notes}
 
 ## Release Notes Follow:
 
+### Version 1.4.1
+• Image rotation allowed for true color and true color with chroma. Warning issued for attempting rotation otherwise.
+• Removed ‘defaults’ feature. Not well thought out enough. Too many unexpected consequences in current form.
+• lvppBaseWithValue::
+•   Added baseGetter() and baseSetter()
+•   Added getValuePercentage() which adheres to min/max range.
+• Fix: lvppOptions was not ‘public’ as base to lvppDropdown and lvppRoller
+
 ### Version 1.4.0 - Features, consistency, fixes
 - lvppScreen - when doing 'addObj()', properly re-parents all objects to the screen.
 - [lvppOptions](https://bobwolff68.github.io/LVGLPlusPlus/gh-pages/classlvpp_options.html) - widgets lvppDropdown, lvppRoller, and lvppCycleButton all inherit from lvppOptions now to gain total consistency on how options are added and managed in such widgets.

@@ -351,35 +351,6 @@ public:
  * @param pNewParent pointer to the new parent.
  */
     virtual void setNewParent(lv_obj_t* pNewParent);
-/**
- * @brief Set the Default Font to be used on all subsequent widget creations. Note - can be nullptr to
- *        effectively un-set the default.
- * 
- * @param pFont pointer to a lv_font_t
- */
-    static void setDefaultFont(const lv_font_t* pFont);
-/**
- * @brief Set the Default Text Color to be used on all subsequent widget creations or enabling of things like
- *        adjacent text or setting/resetting of text values.
- * 
- * @param col lv_color_t value to use for default color
- */
-    static void setDefaultTextColor(lv_color_t col);
-/**
- * @brief Set the Default Background Color to be used on all subsequent widget creations or enabling of things like
- *        adjacent text or setting/resetting of text values.
- * 
- * @param col lv_color_t value to use for default color
- */
-    static void setDefaultBGColor(lv_color_t col);
-/**
- * @brief Removes the default background color for subsequent widget creations. Part of the reson for this is
- *        that typically text backgrounds are an opacity of transparent and simply changing the background color
- *        to another color (like the screen or canvas color) won't affect the change desired. By using this
- *        method, you remove the internal usage of an opacity of 100 with the color.
- * 
- */
-    static void removeDefaultBGColor();
 protected:
     lv_obj_t* label;    ///< Primary label.
     lv_obj_t* adjLabel; ///< For items that have a label 'nearby' (adjacent label)
@@ -418,11 +389,6 @@ protected:
     static void initEventNames(void);
 
     static bool bEventNamesInitComplete;    ///< Status of the event names table to avoid re-processing.
-
-    static const lv_font_t* pDefaultFont;
-    static lv_color_t* pDefaultTextColor;
-    static lv_color_t* pDefaultBGColor;
-    void addDefaults();
 private:
     void createLabel();
     void createAdjLabel();
@@ -467,13 +433,20 @@ public:
  * @param value The integer value to be set.
  * @param animate If there is animation involved, we decide it in this parameter.
  */
-    virtual void setValue(int16_t value, bool animate) = 0;
+    virtual void setValue(int16_t value, bool animate=true);
 /**
- * @brief Get the Value from the object.
+ * @brief Get the Value from the object. 
  * 
  * @return int16_t The current value is returned.
  */
     int16_t getValue(void) { return curValue; };
+/**
+ * @brief Get the 'percentage' Value from the object. This is the percentage represented from min to max
+ *        of the current value. It is bounded by min/max and returned as 0-100 as an integer value.
+ * 
+ * @return uint16_t The current percentage along the way between min and max that value represents.
+ */
+    uint16_t getValuePercentage(void) { return 100 * (curValue-min) / (max-min); };
 /**
  * @brief In the case where a label is desired to be shown for the value, enable it and align it here.
  * 
@@ -538,6 +511,21 @@ public:
  */
     virtual void setNewParent(lv_obj_t* pNewParent);
 protected:
+/**
+ * @brief Derived classes must implement this pure virtual by getting the current value from
+ *        the widget itself. This function generally gets called by getValue()
+ * 
+ * @return int16_t The value retrieved from the widget at this time.
+ */
+    virtual int16_t baseGetter() = 0;
+/**
+ * @brief Derived classes must implement this pure virtual which sets the current value of
+ *        the widget itself. This function generally gets called by setValue()
+ * 
+ * @param nVal int16_t which is the value the widget shall be set to at this time.
+ * @param animate If widget supports it, animation to value.
+ */
+    virtual void baseSetter(int16_t nVal, bool animate=true) = 0;
     void internalOnValueChanged();  ///< Internal handler for value change. Does the formatting as well.
     int16_t curValue;               ///< The value we're keeping and handling in this class.
     lv_obj_t* valueLabel;           ///< The label that receives the formatted value if the label is enabled.
@@ -545,7 +533,6 @@ protected:
     int16_t min, max;               ///< The allowable range of the value.
 private:
     void createValueLabel();
-    void addDefaults();
 };
 
 /** @class lvppOptions

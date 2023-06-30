@@ -45,9 +45,6 @@ lvppLabel::lvppLabel(const char* fName, const char* pText, lv_obj_t* parent) : l
     /// 'label' which is itself... this is primarily about getLabelObj()
     /// doing the 'smart thing'.
     label = obj;
-    // And because we're altering the flow of things here, we must
-    // also manually call addDefaults() or the label text color will be ignored.
-    addDefaults();
 
 }
 
