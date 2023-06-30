@@ -1,11 +1,11 @@
 <map id="src/lvppDropdown.cpp" name="src/lvppDropdown.cpp">
-<area shape="rect" id="node1" title="Implementation of both lvppDropdown and lvppRoller due to their similarities." alt="" coords="85,5,237,31"/>
-<area shape="rect" id="node2" href="$lvpp_8h.html" title="All derived classes for LVGL based class/widgets. This is the file you want to include." alt="" coords="133,79,190,104"/>
-<area shape="rect" id="node5" title=" " alt="" coords="5,225,64,251"/>
-<area shape="rect" id="node7" title=" " alt="" coords="370,225,425,251"/>
-<area shape="rect" id="node3" title=" " alt="" coords="88,225,165,251"/>
-<area shape="rect" id="node4" href="$lvpp_base_8h.html" title="Base class for LVGLPlusPlus widgets (lvppBase)" alt="" coords="199,152,286,177"/>
-<area shape="rect" id="node9" title=" " alt="" coords="77,152,123,177"/>
-<area shape="rect" id="node6" title=" " alt="" coords="189,225,243,251"/>
-<area shape="rect" id="node8" title=" " alt="" coords="267,225,346,251"/>
+<area shape="rect" id="node1" title="Implementation of both lvppDropdown and lvppRoller due to their similarities." alt="" coords="82,5,234,31"/>
+<area shape="rect" id="node2" href="$lvpp_8h.html" title="All derived classes for LVGL based class/widgets. This is the file you want to include." alt="" coords="130,79,186,105"/>
+<area shape="rect" id="node5" title=" " alt="" coords="5,226,63,252"/>
+<area shape="rect" id="node7" title=" " alt="" coords="365,226,418,252"/>
+<area shape="rect" id="node3" title=" " alt="" coords="87,226,163,252"/>
+<area shape="rect" id="node4" href="$lvpp_base_8h.html" title="Base class for LVGLPlusPlus widgets (lvppBase)" alt="" coords="195,153,281,178"/>
+<area shape="rect" id="node9" title=" " alt="" coords="75,153,121,178"/>
+<area shape="rect" id="node6" title=" " alt="" coords="187,226,239,252"/>
+<area shape="rect" id="node8" title=" " alt="" coords="263,226,341,252"/>
 </map>

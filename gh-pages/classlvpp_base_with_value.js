@@ -1,11 +1,14 @@
 var classlvpp_base_with_value =
 [
     [ "lvppBaseWithValue", "classlvpp_base_with_value.html#aa10481ae00272f8faefa94ed8d15e582", null ],
+    [ "baseGetter", "classlvpp_base_with_value.html#a2da7f96a62a648e30eba1d7b23f15e1f", null ],
+    [ "baseSetter", "classlvpp_base_with_value.html#a41ba9bef3c3876f6688e947493197193", null ],
     [ "enableValueLabel", "classlvpp_base_with_value.html#a9c20e58c7366b4651742da6b3d00214e", null ],
     [ "getValue", "classlvpp_base_with_value.html#a76c694da1c7638739d526105a054830c", null ],
+    [ "getValuePercentage", "classlvpp_base_with_value.html#a56e3cc40f3ddb0c827a6174a2b959540", null ],
     [ "internalOnValueChanged", "classlvpp_base_with_value.html#abf95888fd7af019dde0b19ec8be417f6", null ],
     [ "setNewParent", "classlvpp_base_with_value.html#ac8af66f11ddc4abf964e5eeb5cd5d661", null ],
-    [ "setValue", "classlvpp_base_with_value.html#a0f693085f3c4dac7e1eb1bb47d580e74", null ],
+    [ "setValue", "classlvpp_base_with_value.html#a263f26217b6463df1d9acdbbd7b1e08d", null ],
     [ "setValueLabelBGColor", "classlvpp_base_with_value.html#ab664975ec1c9228af4c5ee83df9429b2", null ],
     [ "setValueLabelColor", "classlvpp_base_with_value.html#afd90a6e22d85d961434d22f8e777741d", null ],
     [ "setValueLabelColorGradient", "classlvpp_base_with_value.html#aec58db29e253885e7c7d639183d7a991", null ],

@@ -1,8 +1,10 @@
 var searchData=
 [
-  ['samplename_0',['sampleName',['../structesp_rec.html#a476dc555725ef8a2cb3aa7f2fbea39ca',1,'espRec']]],
-  ['samples_1',['samples',['../classesp_systats.html#a60142e455aed752a6c2c4fcd1b27300c',1,'espSystats']]],
-  ['sketchfreespace_2',['sketchFreeSpace',['../classesp_systats.html#a5aa9ddb5ae383dc7bbc124de761b803d',1,'espSystats']]],
-  ['sketchsize_3',['sketchSize',['../classesp_systats.html#ad1cf8cbb9f910ed748c2e93e24cd07c1',1,'espSystats']]],
-  ['style_5fobj_4',['style_obj',['../classlvpp_base.html#aeb1dc2263f429e39fd66ebbf922a0445',1,'lvppBase']]]
+  ['pbuffer_0',['pBuffer',['../classlvpp_canvas_full_color.html#a89182beea013670994c251d081652771',1,'lvppCanvasFullColor::pBuffer()'],['../classlvpp_canvas_indexed.html#a0aa1000182b39108e872251b730cdfb4',1,'lvppCanvasIndexed::pBuffer()']]],
+  ['pdsclabel_1',['pDscLabel',['../classlvpp_canvas_full_color.html#abccbe4a7908bacc18ea9da0b68fcf436',1,'lvppCanvasFullColor']]],
+  ['pdscline_2',['pDscLine',['../classlvpp_canvas_full_color.html#aeb4cb4506cffa441d8988c0e993abe4c',1,'lvppCanvasFullColor']]],
+  ['pdscrect_3',['pDscRect',['../classlvpp_canvas_full_color.html#a45593188cc351c50b83b2a2b23b57679',1,'lvppCanvasFullColor']]],
+  ['pimage_4',['pImage',['../classlvpp_full_image_toggle_button.html#afe97a3a32154e529dbf478eb634b66eb',1,'lvppFullImageToggleButton::pImage()'],['../classlvpp_image.html#adcc08870e28b6b387a6bff8314a349b7',1,'lvppImage::pImage()']]],
+  ['ppriorscreen_5',['pPriorScreen',['../classlvpp_screen.html#a06e9b56e1337c67f65f2cfe99f8b4150',1,'lvppScreen']]],
+  ['pscreen_6',['pScreen',['../classlvpp_screen.html#a100c13d212918c57b7eef769b46a1a4c',1,'lvppScreen']]]
 ];

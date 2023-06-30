@@ -1,11 +1,11 @@
 <map id="src/lvpp.h" name="src/lvpp.h">
-<area shape="rect" id="node1" title="All derived classes for LVGL based class/widgets. This is the file you want to include." alt="" coords="548,5,627,31"/>
-<area shape="rect" id="node2" href="$lvpp_arc_8cpp.html" title="Implementation of the LVGL Arc widget." alt="" coords="5,79,119,104"/>
-<area shape="rect" id="node3" href="$lvpp_bar_8cpp.html" title="Implementation for Bar and Bar&#45;like widgets (Bar and Slider)" alt="" coords="143,79,255,104"/>
-<area shape="rect" id="node4" href="$lvpp_button_8cpp.html" title="All button related lvpp class implementations." alt="" coords="279,79,410,104"/>
-<area shape="rect" id="node5" href="$lvpp_canvas_8cpp.html" title="Implementation of both Canvas types &#45; full color and indexed color." alt="" coords="434,79,573,104"/>
-<area shape="rect" id="node6" href="$lvpp_dropdown_8cpp.html" title="Implementation of both lvppDropdown and lvppRoller due to their similarities." alt="" coords="597,79,749,104"/>
-<area shape="rect" id="node7" href="$lvpp_image_8cpp.html" title="Implementation for supporting display of an image via the lv_img_dsc_t typedef from LVGL." alt="" coords="773,79,903,104"/>
-<area shape="rect" id="node8" href="$lvpp_label_8cpp.html" title="Implementation of the label support for displaying text." alt="" coords="927,79,1051,104"/>
-<area shape="rect" id="node9" href="$lvpp_screen_8cpp.html" title="Implementation of lvppScreen class." alt="" coords="1075,79,1209,104"/>
+<area shape="rect" id="node1" title="All derived classes for LVGL based class/widgets. This is the file you want to include." alt="" coords="545,5,623,31"/>
+<area shape="rect" id="node2" href="$lvpp_arc_8cpp.html" title="Implementation of the LVGL Arc widget." alt="" coords="5,79,118,105"/>
+<area shape="rect" id="node3" href="$lvpp_bar_8cpp.html" title="Implementation for Bar and Bar&#45;like widgets (Bar and Slider)" alt="" coords="142,79,253,105"/>
+<area shape="rect" id="node4" href="$lvpp_button_8cpp.html" title="All button related lvpp class implementations." alt="" coords="278,79,408,105"/>
+<area shape="rect" id="node5" href="$lvpp_canvas_8cpp.html" title="Implementation of both Canvas types &#45; full color and indexed color." alt="" coords="432,79,569,105"/>
+<area shape="rect" id="node6" href="$lvpp_dropdown_8cpp.html" title="Implementation of both lvppDropdown and lvppRoller due to their similarities." alt="" coords="593,79,744,105"/>
+<area shape="rect" id="node7" href="$lvpp_image_8cpp.html" title="Implementation for supporting display of an image via the lv_img_dsc_t typedef from LVGL." alt="" coords="768,79,896,105"/>
+<area shape="rect" id="node8" href="$lvpp_label_8cpp.html" title="Implementation of the label support for displaying text." alt="" coords="920,79,1043,105"/>
+<area shape="rect" id="node9" href="$lvpp_screen_8cpp.html" title="Implementation of lvppScreen class." alt="" coords="1067,79,1200,105"/>
 </map>

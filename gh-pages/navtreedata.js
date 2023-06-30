@@ -29,10 +29,11 @@ var NAVTREE =
     [ "Release Notes", "release_notes.html", [
       [ "General", "release_notes.html#autotoc_md7", null ],
       [ "Release Notes Follow:", "release_notes.html#autotoc_md8", [
-        [ "Version 1.4.0 - Features, consistency, fixes", "release_notes.html#autotoc_md9", null ],
-        [ "Version 1.3.5 - Adding a few quick feature items", "release_notes.html#autotoc_md10", null ],
-        [ "Version 1.3.0 - First Public version documented and released", "release_notes.html#autotoc_md11", [
-          [ "Pre-Version 1.3.0 - All internal and getting things squared up for public release.", "release_notes.html#autotoc_md12", null ]
+        [ "Version 1.4.1", "release_notes.html#autotoc_md9", null ],
+        [ "Version 1.4.0 - Features, consistency, fixes", "release_notes.html#autotoc_md10", null ],
+        [ "Version 1.3.5 - Adding a few quick feature items", "release_notes.html#autotoc_md11", null ],
+        [ "Version 1.3.0 - First Public version documented and released", "release_notes.html#autotoc_md12", [
+          [ "Pre-Version 1.3.0 - All internal and getting things squared up for public release.", "release_notes.html#autotoc_md13", null ]
         ] ]
       ] ]
     ] ],
@@ -63,7 +64,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"functions_d.html"
+"classlvpp_switch.html#a5be34b89845cb2fe643107aaff8b1d51"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

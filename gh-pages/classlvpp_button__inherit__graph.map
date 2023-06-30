@@ -1,5 +1,5 @@
 <map id="lvppButton" name="lvppButton">
-<area shape="rect" id="node1" title="Basic button class." alt="" coords="23,79,107,104"/>
-<area shape="rect" id="node3" href="$classlvpp_cycle_button.html" title="Derived from lvppButton, this is a button who&#39;s clicks cycle through a list of options." alt="" coords="5,152,124,177"/>
-<area shape="rect" id="node2" href="$classlvpp_base.html" title="lvppBase is the root of the C++ library LVGLPlusPlus. It strives to create consistent ways to manipul..." alt="" coords="27,5,103,31"/>
+<area shape="rect" id="node1" title="Basic button class." alt="" coords="22,79,106,105"/>
+<area shape="rect" id="node3" href="$classlvpp_cycle_button.html" title="Derived from lvppButton, this is a button who&#39;s clicks cycle through a list of options." alt="" coords="5,153,123,178"/>
+<area shape="rect" id="node2" href="$classlvpp_base.html" title="lvppBase is the root of the C++ library LVGLPlusPlus. It strives to create consistent ways to manipul..." alt="" coords="26,5,102,31"/>
 </map>

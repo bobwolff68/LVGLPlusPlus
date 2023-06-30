@@ -8,5 +8,6 @@ var classlvpp_image =
     [ "setSize", "classlvpp_image.html#a2bb3e5a62281f656b6f2ccd289eeb0ea", null ],
     [ "deferred_h", "classlvpp_image.html#a49d9ee61fa2952eff732d3b93e1ddc0a", null ],
     [ "deferred_w", "classlvpp_image.html#a3f8a168216765f2685715e3b66e08e60", null ],
+    [ "noRotation", "classlvpp_image.html#a0cac0a64e4f9d824edf63ac624cdc9d6", null ],
     [ "pImage", "classlvpp_image.html#adcc08870e28b6b387a6bff8314a349b7", null ]
 ];

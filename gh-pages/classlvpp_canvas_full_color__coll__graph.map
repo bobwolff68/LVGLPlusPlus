@@ -1,4 +1,4 @@
 <map id="lvppCanvasFullColor" name="lvppCanvasFullColor">
-<area shape="rect" id="node1" title="Construct a canvas which uses FULL_COLOR rather than indexed color methods." alt="" coords="5,79,148,104"/>
-<area shape="rect" id="node2" href="$classlvpp_base.html" title="lvppBase is the root of the C++ library LVGLPlusPlus. It strives to create consistent ways to manipul..." alt="" coords="39,5,115,31"/>
+<area shape="rect" id="node1" title="Construct a canvas which uses FULL_COLOR rather than indexed color methods." alt="" coords="5,79,148,105"/>
+<area shape="rect" id="node2" href="$classlvpp_base.html" title="lvppBase is the root of the C++ library LVGLPlusPlus. It strives to create consistent ways to manipul..." alt="" coords="39,5,114,31"/>
 </map>

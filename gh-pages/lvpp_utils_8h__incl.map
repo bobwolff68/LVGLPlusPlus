@@ -1,7 +1,7 @@
 <map id="src/lvppUtils.h" name="src/lvppUtils.h">
-<area shape="rect" id="node1" title="A few useful items for ESP32 use." alt="" coords="105,5,212,31"/>
-<area shape="rect" id="node2" title=" " alt="" coords="5,79,64,104"/>
-<area shape="rect" id="node3" title=" " alt="" coords="89,79,143,104"/>
-<area shape="rect" id="node4" title=" " alt="" coords="168,79,237,104"/>
-<area shape="rect" id="node5" title=" " alt="" coords="261,79,328,104"/>
+<area shape="rect" id="node1" title="A few useful items for ESP32 use." alt="" coords="104,5,209,31"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,79,63,105"/>
+<area shape="rect" id="node3" title=" " alt="" coords="87,79,141,105"/>
+<area shape="rect" id="node4" title=" " alt="" coords="165,79,234,105"/>
+<area shape="rect" id="node5" title=" " alt="" coords="258,79,325,105"/>
 </map>

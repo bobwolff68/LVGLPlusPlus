@@ -97,13 +97,15 @@ $(document).ready(function(){initNavTree('todo.html',''); initResizable(); });
 <dt>Member <a class="el" href="classlvpp_base.html#ab0ff4ce043ad58b308dd9e1e2801ef13">lvppBase::setBGColor</a>  (lv_color_t color)</dt>
 <dd><a class="anchor" id="_todo000005"></a>I think this add_style needs to go away and an 'invalidate' should be used instead. </dd>
 <dt>Member <a class="el" href="classlvpp_base.html#a68a5b25ed4ef5edde11101a138ca83a4">lvppBase::setFontSize</a>  (uint8_t points)</dt>
-<dd><a class="anchor" id="_todo000006"></a>Possibly return a bool for errant point values or for requests of point sizes that weren't compiled in? </dd>
+<dd><a class="anchor" id="_todo000007"></a>Possibly return a bool for errant point values or for requests of point sizes that weren't compiled in? </dd>
+<dt>Member <a class="el" href="classlvpp_base_with_value.html#a263f26217b6463df1d9acdbbd7b1e08d">lvppBaseWithValue::setValue</a>  (int16_t value, bool animate=true)</dt>
+<dd><a class="anchor" id="_todo000006"></a>TECHDEBT - should allow values outside range, but UI only shows inside range. However, this will impact the 'percentage' function too and likely needs to become getUIPercentage </dd>
 <dt>Member <a class="el" href="classlvpp_canvas_full_color.html#a93c94317b59cc0c74c462d614d90b4cd">lvppCanvasFullColor::drawLabel</a>  (lv_coord_t x, lv_coord_t y, lv_coord_t maxW, lv_color_t color, const char *pText)</dt>
 <dd><a class="anchor" id="_todo000003"></a>This likely needs more thought. It takes no account for font sizes at a minimum. Not enough consideration has been given to <em>how</em> this would be used quite yet.  </dd>
 <dt>Member <a class="el" href="classlvpp_canvas_indexed.html#a0aa1000182b39108e872251b730cdfb4">lvppCanvasIndexed::pBuffer</a>  </dt>
 <dd><a class="anchor" id="_todo000004"></a>This use of LV_COLOR_DEPTH is believed to be correct at least for 8 and 16, but is this <em>complete</em> ?  </dd>
 <dt>Member <a class="el" href="classlvpp_label.html#a5e3b6d385fcc6a51aec6da17df8f5bee">lvppLabel::setTextColor</a>  (lv_color_t newColor)</dt>
-<dd><a class="anchor" id="_todo000007"></a>I think this add_style needs to go away and an 'invalidate' should be used instead. </dd>
+<dd><a class="anchor" id="_todo000008"></a>I think this add_style needs to go away and an 'invalidate' should be used instead. </dd>
 <dt>Class <a class="el" href="classlvpp_screen.html">lvppScreen</a>  </dt>
 <dd><p class="startdd"><a class="anchor" id="_todo000001"></a>Add full compliment of object types to setObjValue </p>
 <p class="interdd"></p>
@@ -112,7 +114,7 @@ $(document).ready(function(){initNavTree('todo.html',''); initResizable(); });
 <dt>Member <a class="el" href="classlvpp_screen.html#afd18e91817200bdf6743b11ff245c6f9">lvppScreen::setObjText</a>  (std::string str)</dt>
 <dd><a class="anchor" id="_todo000002"></a>Function incomplete and needs implementation. </dd>
 <dt>Member <a class="el" href="classlvpp_screen.html#a0aa1b2bf7d9d0d56e02c030b84d244ab">lvppScreen::setObjValue</a>  (const char *objName, int16_t val)</dt>
-<dd><p class="startdd"><a class="anchor" id="_todo000008"></a>Support more than just bar and slider for value setting. Get clear on what widgets should bet settable. </p>
+<dd><p class="startdd"><a class="anchor" id="_todo000009"></a>Support more than just bar and slider for value setting. Get clear on what widgets should bet settable. </p>
 <p class="interdd"></p>
 <p class="interdd">Create a 'getter' version as well. </p>
 <p class="interdd"></p>

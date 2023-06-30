@@ -15,5 +15,6 @@ var searchData=
   ['getselectedtext_12',['getSelectedText',['../classlvpp_cycle_button.html#a29d5e81303286a46fae3cc2906f8f99a',1,'lvppCycleButton::getSelectedText()'],['../classlvpp_dropdown.html#a7e02e177935d0dff21c205aca4bedadb',1,'lvppDropdown::getSelectedText()'],['../classlvpp_roller.html#ad92273155707c0b31f90460530044894',1,'lvppRoller::getSelectedText()']]],
   ['getstaticstats_13',['getStaticStats',['../classesp_systats.html#a483f81d17fdeccf1b335b1ad4ab52f51',1,'espSystats']]],
   ['gettext_14',['getText',['../classlvpp_base.html#a1c651957e716eca7b87528d37278b94c',1,'lvppBase']]],
-  ['getvalue_15',['getValue',['../classlvpp_base_with_value.html#a76c694da1c7638739d526105a054830c',1,'lvppBaseWithValue']]]
+  ['getvalue_15',['getValue',['../classlvpp_base_with_value.html#a76c694da1c7638739d526105a054830c',1,'lvppBaseWithValue']]],
+  ['getvaluepercentage_16',['getValuePercentage',['../classlvpp_base_with_value.html#a56e3cc40f3ddb0c827a6174a2b959540',1,'lvppBaseWithValue']]]
 ];

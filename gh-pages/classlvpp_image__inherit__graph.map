@@ -1,4 +1,4 @@
 <map id="lvppImage" name="lvppImage">
-<area shape="rect" id="node1" title="Object for loading and displaying an image on a screen." alt="" coords="5,79,88,104"/>
-<area shape="rect" id="node2" href="$classlvpp_base.html" title="lvppBase is the root of the C++ library LVGLPlusPlus. It strives to create consistent ways to manipul..." alt="" coords="9,5,85,31"/>
+<area shape="rect" id="node1" title="Object for loading and displaying an image on a screen." alt="" coords="5,79,87,105"/>
+<area shape="rect" id="node2" href="$classlvpp_base.html" title="lvppBase is the root of the C++ library LVGLPlusPlus. It strives to create consistent ways to manipul..." alt="" coords="8,5,84,31"/>
 </map>

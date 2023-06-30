@@ -1,17 +1,17 @@
 <map id="lvppBase" name="lvppBase">
 <area shape="rect" id="node1" title="lvppBase is the root of the C++ library LVGLPlusPlus. It strives to create consistent ways to manipul..." alt="" coords="5,313,81,339"/>
-<area shape="rect" id="node2" href="$classlvpp_base_with_value.html" title="Derivation from lvppBase. Those widgets which have an inherant &#39;value&#39; to show are based on this slig..." alt="" coords="151,79,286,104"/>
-<area shape="rect" id="node6" href="$classlvpp_button.html" title="Basic button class." alt="" coords="177,140,261,165"/>
-<area shape="rect" id="node8" href="$classlvpp_canvas_full_color.html" title="Construct a canvas which uses FULL_COLOR rather than indexed color methods." alt="" coords="147,189,290,215"/>
-<area shape="rect" id="node9" href="$classlvpp_canvas_indexed.html" title="Construct a canvas which uses INDEXED color rather than FULL color methods." alt="" coords="150,239,287,264"/>
-<area shape="rect" id="node10" href="$classlvpp_dropdown.html" title="Support for drop&#45;down lists and choosing from a dropdown. Utilizes multiple inheritance of lvppBase a..." alt="" coords="166,288,271,313"/>
-<area shape="rect" id="node11" href="$classlvpp_full_image_toggle_button.html" title="Button which is all image based and simply toggles on/off between the images." alt="" coords="129,337,308,363"/>
-<area shape="rect" id="node12" href="$classlvpp_image.html" title="Object for loading and displaying an image on a screen." alt="" coords="177,387,260,412"/>
-<area shape="rect" id="node13" href="$classlvpp_label.html" title="Enable the display of a text item." alt="" coords="180,436,257,461"/>
-<area shape="rect" id="node14" href="$classlvpp_roller.html" title="Construct a roller list widget for option selection." alt="" coords="179,485,259,511"/>
-<area shape="rect" id="node15" href="$classlvpp_switch.html" title="On/Off switch widget." alt="" coords="175,535,262,560"/>
-<area shape="rect" id="node3" href="$classlvpp_arc.html" title="Create an Arc widget &#45; also based on lvppBaseWithValue like Bar and Slider." alt="" coords="382,5,449,31"/>
-<area shape="rect" id="node4" href="$classlvpp_bar.html" title="Create a &#39;bar&#39; widget from LVGL and allow range and value to be used." alt="" coords="382,55,449,80"/>
-<area shape="rect" id="node5" href="$classlvpp_slider.html" title="Construct a new Slider widget (similar to a bar in LVGL parlance)." alt="" coords="376,104,455,129"/>
-<area shape="rect" id="node7" href="$classlvpp_cycle_button.html" title="Derived from lvppButton, this is a button who&#39;s clicks cycle through a list of options." alt="" coords="356,153,475,179"/>
+<area shape="rect" id="node2" href="$classlvpp_base_with_value.html" title="Derivation from lvppBase. Those widgets which have an inherant &#39;value&#39; to show are based on this slig..." alt="" coords="151,79,285,104"/>
+<area shape="rect" id="node6" href="$classlvpp_button.html" title="Basic button class." alt="" coords="176,140,260,166"/>
+<area shape="rect" id="node8" href="$classlvpp_canvas_full_color.html" title="Construct a canvas which uses FULL_COLOR rather than indexed color methods." alt="" coords="147,189,289,215"/>
+<area shape="rect" id="node9" href="$classlvpp_canvas_indexed.html" title="Construct a canvas which uses INDEXED color rather than FULL color methods." alt="" coords="150,239,286,264"/>
+<area shape="rect" id="node10" href="$classlvpp_dropdown.html" title="Support for drop&#45;down lists and choosing from a dropdown. Utilizes multiple inheritance of lvppBase a..." alt="" coords="166,288,270,314"/>
+<area shape="rect" id="node11" href="$classlvpp_full_image_toggle_button.html" title="Button which is all image based and simply toggles on/off between the images." alt="" coords="129,337,307,363"/>
+<area shape="rect" id="node12" href="$classlvpp_image.html" title="Object for loading and displaying an image on a screen." alt="" coords="177,387,259,412"/>
+<area shape="rect" id="node13" href="$classlvpp_label.html" title="Enable the display of a text item." alt="" coords="180,436,256,462"/>
+<area shape="rect" id="node14" href="$classlvpp_roller.html" title="Construct a roller list widget for option selection." alt="" coords="178,485,258,511"/>
+<area shape="rect" id="node15" href="$classlvpp_switch.html" title="On/Off switch widget." alt="" coords="175,535,261,560"/>
+<area shape="rect" id="node3" href="$classlvpp_arc.html" title="Create an Arc widget &#45; also based on lvppBaseWithValue like Bar and Slider." alt="" coords="381,5,446,31"/>
+<area shape="rect" id="node4" href="$classlvpp_bar.html" title="Create a &#39;bar&#39; widget from LVGL and allow range and value to be used." alt="" coords="381,55,446,80"/>
+<area shape="rect" id="node5" href="$classlvpp_slider.html" title="Construct a new Slider widget (similar to a bar in LVGL parlance)." alt="" coords="375,104,453,130"/>
+<area shape="rect" id="node7" href="$classlvpp_cycle_button.html" title="Derived from lvppButton, this is a button who&#39;s clicks cycle through a list of options." alt="" coords="355,153,472,179"/>
 </map>

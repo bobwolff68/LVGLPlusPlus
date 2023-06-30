@@ -1,5 +1,5 @@
 <map id="lvppSlider" name="lvppSlider">
-<area shape="rect" id="node1" title="Construct a new Slider widget (similar to a bar in LVGL parlance)." alt="" coords="33,152,112,177"/>
-<area shape="rect" id="node2" href="$classlvpp_base_with_value.html" title="Derivation from lvppBase. Those widgets which have an inherant &#39;value&#39; to show are based on this slig..." alt="" coords="5,79,140,104"/>
-<area shape="rect" id="node3" href="$classlvpp_base.html" title="lvppBase is the root of the C++ library LVGLPlusPlus. It strives to create consistent ways to manipul..." alt="" coords="35,5,111,31"/>
+<area shape="rect" id="node1" title="Construct a new Slider widget (similar to a bar in LVGL parlance)." alt="" coords="33,153,112,178"/>
+<area shape="rect" id="node2" href="$classlvpp_base_with_value.html" title="Derivation from lvppBase. Those widgets which have an inherant &#39;value&#39; to show are based on this slig..." alt="" coords="5,79,140,105"/>
+<area shape="rect" id="node3" href="$classlvpp_base.html" title="lvppBase is the root of the C++ library LVGLPlusPlus. It strives to create consistent ways to manipul..." alt="" coords="35,5,110,31"/>
 </map>

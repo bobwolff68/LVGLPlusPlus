@@ -2,7 +2,6 @@ var classlvpp_base =
 [
     [ "lvppBase", "classlvpp_base.html#a7c2cba33943421d92bf6c29c0c14c05e", null ],
     [ "~lvppBase", "classlvpp_base.html#af19cecdac78a0376a20dddd2cfe5b424", null ],
-    [ "addDefaults", "classlvpp_base.html#a8dd898f6130b60d6c8b8bfdc21e59c25", null ],
     [ "align", "classlvpp_base.html#a386e71a76182932f4f0f79f5c52cb115", null ],
     [ "baseEventHandler", "classlvpp_base.html#af9c4facd7f122ed198342caf01894e55", null ],
     [ "createObj", "classlvpp_base.html#ad05bcd0e19e2a7ac645eee9779b556ef", null ],
