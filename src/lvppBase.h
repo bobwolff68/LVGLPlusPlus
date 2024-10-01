@@ -28,6 +28,7 @@
 #ifndef _LVPPBASE_H
 #define _LVPPBASE_H
 
+#include <assert.h>
 #include <vector>
 #include <utility> // For std::pair
 #include <string>
