@@ -78,6 +78,9 @@ lvppCanvasIndexed::lvppCanvasIndexed(const char* fName, lv_coord_t x, lv_coord_t
     }
     else {
         pBuffer = (lv_color_t*)malloc(bufSize);
+        if (!pBuffer)
+            printf("ERROR: Unable to allocate lvppCanvas buffer of size: %d\n", bufSize);
+            
         assert(pBuffer);
 
         lv_canvas_set_buffer(obj, pBuffer, w, h, cfType);

@@ -124,6 +124,14 @@ public:
  */
     lv_obj_t* getLabelObj(void) { return label; };
 /**
+ * @brief Get the adjacent label object
+ * 
+ * @return lv_obj_t* Returns the LVGL lv_obj_t for the actual adjacent label object. 
+ *         Great for more advanced users who may wish to manipulate the adjacent label
+ *         more fully outside of the lvpp* class library.
+ */
+    lv_obj_t* getAdjLabelObj(void) { return adjLabel; };
+/**
  * @brief Set the Size object. Most of the time, LVGL does a great job of setting a sane size,
  *        but manipulation of things like the text or the font size can cause this to no longer
  *        be a good size. It is a common use pattern to instantiate a widget and then use
@@ -436,6 +444,14 @@ public:
  */
     virtual void setValue(int16_t value, bool animate=true);
 /**
+ * @brief Get the value label object
+ * 
+ * @return lv_obj_t* Returns the LVGL lv_obj_t for the actual value label object. 
+ *         Great for more advanced users who may wish to manipulate the value label
+ *         more fully outside of the lvpp* class library.
+ */
+    lv_obj_t* getValueLabelObj(void) { return valueLabel; };
+/**
  * @brief Get the Value from the object. 
  * 
  * @return int16_t The current value is returned.
@@ -610,6 +626,13 @@ public:
  * @return uint64_t the pre-set ID associated with this current selected value/index.
  */
     virtual uint64_t getSelectedID();
+/**
+ * @brief Set the ID associated with the currently selected item. Using this method only makes
+ *        sense if the list of options was built using setOptionsWithIDs() and/or addOptionWithID().
+ * 
+ * @return true = success ; false = failed due to not finding an entry with the _val value.
+ */
+    virtual bool setSelectedID(uint64_t _val);
 protected:
 /**
  * @brief This is the pure virtual which must be implemented by any class that utilizes
@@ -629,6 +652,8 @@ protected:
  * @return uint16_t The index of the currently selected / displayed value. This is zero-based.
  */
     virtual uint16_t lvOptionGetIndex() = 0;
+    void printList(void);
+    virtual void lvOptionSetIndex(uint16_t _ind) = 0;
     std::string oneString;              ///< Temp area for getNewlineSepOptions()
     std::vector<std::string> options;   ///< The vector of options kept locally.
     std::vector<uint64_t> idList;       ///< The vector of associated ID values (if used)

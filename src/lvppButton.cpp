@@ -77,6 +77,14 @@ void lvppCycleButton::internalOnClicked() {
     setText(options[currentIndex].c_str());
 }
 
+void lvppCycleButton::lvOptionSetIndex(uint16_t _val) {
+    currentIndex = _val;
+    if (currentIndex >= options.size())
+        currentIndex = 0;
+    
+    setText(options[currentIndex].c_str());
+}
+
 ////////////////////////
 ////////////////////////
 ////////////////////////

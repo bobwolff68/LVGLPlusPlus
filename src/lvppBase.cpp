@@ -103,9 +103,10 @@ void lvppBase::setFont(const lv_font_t* pF) {
  * 
 */
 void lvppBase::setBGColor(lv_color_t color) {
-    lv_style_set_bg_color(&style_obj, color);
-    lv_style_set_bg_opa(&style_obj, LV_OPA_100);
-    lv_obj_add_style(obj, &style_obj, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_bg_color(obj, color, LV_PART_MAIN);
+//    lv_style_set_bg_color(&style_obj, color);
+//    lv_style_set_bg_opa(&style_obj, LV_OPA_100);
+//    lv_obj_add_style(obj, &style_obj, LV_PART_MAIN | LV_STATE_DEFAULT);
     if (label) {
 //        printf(":%s:setVGColor - setting label background color now.\n", whoAmI());
         lv_obj_set_style_bg_color(label, color, 0);
@@ -243,12 +244,14 @@ void lvppBase::setAdjText(const char* pText, lv_coord_t x_ofs, lv_coord_t y_ofs)
 }
 
 void lvppBase::setAdjTextColor(lv_color_t newColor) {
+    createAdjLabel();
     if (adjLabel) {
         lv_obj_set_style_text_color(adjLabel, newColor, 0);
     }
 }
 
 void lvppBase::setAdjBGColor(lv_color_t color) {
+    createAdjLabel();
     if (adjLabel) {
         lv_obj_set_style_bg_color(adjLabel, color, 0);
         lv_obj_set_style_bg_opa(adjLabel, LV_OPA_100, 0);
@@ -256,6 +259,7 @@ void lvppBase::setAdjBGColor(lv_color_t color) {
 }
 
 void lvppBase::setAdjColorGradient(lv_color_t col1, lv_color_t col2, lv_grad_dir_t direction) {
+    createAdjLabel();
     if (adjLabel) {
         lv_obj_set_style_bg_color(adjLabel, col1, LV_PART_MAIN);
         lv_obj_set_style_bg_grad_color(adjLabel, col2, LV_PART_MAIN);
@@ -264,12 +268,14 @@ void lvppBase::setAdjColorGradient(lv_color_t col1, lv_color_t col2, lv_grad_dir
 }
 
 void lvppBase::setAdjFont(const lv_font_t* pF) {
+    createAdjLabel();
     if (adjLabel) {
         lv_obj_set_style_text_font(adjLabel, pF, 0);
     }
 }
 
 void lvppBase::setAdjJustificationAlignment(lv_text_align_t _align) {
+    createAdjLabel();
     if (adjLabel) {
         lv_obj_set_style_text_align(adjLabel, _align, 0);
     }
@@ -586,10 +592,15 @@ void lvppOptions::setOptions(const char* pOpts) {
 
 void lvppOptions::setOptionsWithIDs(std::vector<std::pair<std::string, uint64_t>>& valIDs) {
     options.clear();
+//    printf("setOptionsWithIDs: Pair-size inbound: %lu\n", valIDs.size());
     for (unsigned int i=0; i<valIDs.size(); i++) {
         options.push_back(valIDs[i].first);
         idList.push_back(valIDs[i].second);
+//        printf("  Adding: [%llu] : %s\n", idList[i], options[i].c_str());
     }
+//    printf("setOptionsWithIDs after add:\n");
+//    printList();
+    lvOptionSetter(getNewlineSepOptions());
 }
 
 void lvppOptions::setOptions(std::vector<std::string>& _opts) {
@@ -624,6 +635,14 @@ void lvppOptions::addOptionWithID(const char* pOpt, uint64_t id) {
     lvOptionSetter(getNewlineSepOptions());
 }
 
+void lvppOptions::printList(void) {
+    printf("options list has %lu entries. idList has %lu entries.\n", options.size(), idList.size());
+    for (unsigned int i=0;i<options.size();i++) {
+        bool useID = idList.size() > i;
+        printf("  [%lld] : %s\n", useID ? (int64_t)idList[i] : -1, options[i].c_str());
+    }
+}
+
 void lvppOptions::addOptionWithID(std::string& _opt, uint64_t id) {
     options.push_back(_opt);
     idList.push_back((uint64_t)id);
@@ -638,6 +657,17 @@ void lvppOptions::clearOptions() {
 
 uint64_t lvppOptions::getSelectedID() {
     return idList[lvOptionGetIndex()];
+}
+
+bool lvppOptions::setSelectedID(uint64_t _val) {
+    // Need to find the index of the input _val
+    auto it = std::find(idList.begin(), idList.end(), _val);
+    if (it == idList.end())
+        return false;
+    
+    uint16_t ind = it - idList.begin();
+    lvOptionSetIndex(ind);
+    return true;
 }
 
 const char* lvppOptions::getNewlineSepOptions() {

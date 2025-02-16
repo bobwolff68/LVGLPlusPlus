@@ -38,6 +38,8 @@
 ///
 ///
 
+lvppKeyboard* lvppScreen::pKB = nullptr;
+
 lvppScreen::lvppScreen(lv_obj_t* _pInitScreen) {
     if (!_pInitScreen)
         pScreen = lv_obj_create(NULL); 
@@ -45,6 +47,9 @@ lvppScreen::lvppScreen(lv_obj_t* _pInitScreen) {
         pScreen = _pInitScreen;
     assert(pScreen);
 
+    if (!pKB) {
+        pKB = new lvppKeyboard("KB", pScreen);
+    }
     pPriorScreen=nullptr;
 }
 
@@ -73,6 +78,14 @@ void lvppScreen::addObject(lvppBase* pObj) {
     assert(pObj);
     objects.push_back(pObj);
     pObj->setNewParent(pScreen);
+
+    if (pObj->getObjType()=="TEXTAREA") {
+        lvppTextarea* pTA = (lvppTextarea*)pObj;
+        if (!pTA)
+            throw std::bad_cast();
+        else
+            pTA->setKeyboard(pKB);
+    }
 }
 
 lvppBase* lvppScreen::findObj(const char* pName) {

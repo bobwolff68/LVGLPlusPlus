@@ -47,6 +47,13 @@
  * @brief All derived classes for LVGL based class/widgets. This is the file you want to include.
 */
 
+class lvppKeyboard : public lvppBase {
+public:
+    lvppKeyboard(const char* fName, lv_obj_t* parent=nullptr);
+    void enableKeyboard(bool bEnable=true);
+    virtual void eventHandler(lv_event_t* event);
+};
+
 /**
  * @class lvppScreen
  * @brief The lvppScreen is a non - lvppBase object for organizing the use of multiple 
@@ -156,6 +163,7 @@ public:
  */
     void setObjText(std::string str);
 protected:
+    static lvppKeyboard* pKB;       ///< Keyboard object for the screen.
     lv_obj_t* pScreen=nullptr; ///< The actual underlying LVGL screen pointer.
     lv_obj_t* pPriorScreen;     ///< Holder for prior screen when activateScreen() is called. Used in activatePriorScreen()
     std::vector<lvppBase*> objects; ///< Data structure used to hold all of the object pointers.
@@ -280,6 +288,13 @@ protected:
  * 
  */
     virtual uint16_t lvOptionGetIndex() { return currentIndex; };
+/**
+ * @brief This is the implementation of the pure virtual in lvppOptions. It is responsible
+ *        for doing the actual class-specific 'set'.
+ * 
+ * @param _val is the index to use when setting the object 'value'
+ */
+    virtual void lvOptionSetIndex(uint16_t _val);
     uint16_t currentIndex;              ///< Current value of which option is active on the button label.
 };
 
@@ -403,6 +418,44 @@ public:
  *        Examples would be lv_color_black() or lv_palette_main(LV_COLOR_BLUE) or custom created colors.
  */
     void setTextColor(lv_color_t newColor);
+};
+
+/**
+ * @brief Enable the display text in an editable box
+ * 
+ */
+class lvppTextarea : public lvppBase {
+public:
+/**
+ * @brief Construct a new lvpp textarea object
+ * 
+ * @param fName Internal object name. This is generally used in findObj() or lvppScreen
+ * @param pText Starting text for the label. Can be changed subsequently. Default nullptr.
+ * @param parent If provided, the parent of the object. This is a real LVGL lv_obj_t pointer
+ */
+    lvppTextarea(const char* fName, const char* pText=nullptr, lv_obj_t* parent=nullptr);
+/**
+ * @brief Set the Text value to display
+ * 
+ * @param pText pointer to a char string for the new value/contents of the textarea.
+ */
+    virtual void setText(const char* pText, const char* pPlaceholder=nullptr);
+/**
+ * @brief Set the Text Color of the label (not the background)
+ * 
+ * @param newColor This is the new color to be used for the label. It is an LVGL lv_color_t construct.
+ *        Examples would be lv_color_black() or lv_palette_main(LV_COLOR_BLUE) or custom created colors.
+ */
+    void setTextColor(lv_color_t newColor);
+/**
+ * @brief Any events _not_ handled by baseEventHandler come here. Can be overridden by a derived class.
+ * 
+ * @param event LVGL lv_event_t type event to be handled.
+ */
+    virtual void eventHandler(lv_event_t* event);
+    void setKeyboard(lvppKeyboard* pKB) { this->pKB = pKB; };
+protected:
+    lvppKeyboard* pKB=nullptr;       ///< Keyboard object for the screen.
 };
 
 /**
@@ -627,6 +680,13 @@ protected:
  * 
  */
     virtual uint16_t lvOptionGetIndex();
+/**
+ * @brief This is the implementation of the pure virtual in lvppOptions. It is responsible
+ *        for doing the actual class-specific 'set' - in this case lv_dropdown_set_selected().
+ * 
+ * @param _val is the index to use when setting the object 'value'
+ */
+    virtual void lvOptionSetIndex(uint16_t _val);
 };
 
 /**
@@ -694,6 +754,13 @@ protected:
  * 
  */
     virtual uint16_t lvOptionGetIndex();
+/**
+ * @brief This is the implementation of the pure virtual in lvppOptions. It is responsible
+ *        for doing the actual class-specific 'set'.
+ * 
+ * @param _val is the index to use when setting the object 'value'
+ */
+    virtual void lvOptionSetIndex(uint16_t _val);
     // TODO: Add a vector of pair<int,string> and a map<int,int> indexToID and map<int,int> IDToIndex
     //       Then we can have a simple 'addOptions' where the user only can get the index or value out.
     //       But they can also addOptions(vector<pair<int,string>>) which then utilizes the map entries too.
@@ -1021,6 +1088,14 @@ public:
  */
     void drawCenteredRectWithFillByIndex(lv_coord_t xBorder, lv_coord_t yBorder, 
         lv_color_t borderColorInd, lv_color_t fillColorInd);
+/**
+ * @brief Get the Canvas Color Buffer - can be used by others wanting a shared buffer
+ * 
+ * @return lv_color_t* which should be passed into the next lvppCanvas instantiation.
+ *         Warning: If the object has allocated the buffer itself, make sure the allocator/owner
+ *                  of the buffer is not destroyed while the users/children of it are using the buffer.
+ */
+    lv_color_t* getCanvasColorBuffer(void) { return pBuffer; };
 protected:
     uint16_t maxColorIndexesAllowed;    ///< Number of color indexes available based on the color depth at creation time.
     uint8_t colorIndexesUsed;           ///< How many colors have presently been used in the indexed color set.

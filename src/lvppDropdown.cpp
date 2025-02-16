@@ -47,6 +47,10 @@ uint16_t lvppDropdown::lvOptionGetIndex() {
     return (uint16_t)lv_dropdown_get_selected(obj);
 }
 
+void lvppDropdown::lvOptionSetIndex(uint16_t _val) {
+    lv_dropdown_set_selected(obj, _val);
+}
+
 //
 // pOptions is a single string with '\n' between each option
 //
@@ -100,6 +104,9 @@ uint16_t lvppRoller::lvOptionGetIndex() {
     return (uint16_t)lv_roller_get_selected(obj);
 }
 
+void lvppRoller::lvOptionSetIndex(uint16_t _val) {
+    lv_roller_set_selected(obj, _val, LV_ANIM_OFF);
+}
 //
 // pOptions is a single string with '\n' between each option
 //
