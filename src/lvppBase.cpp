@@ -653,6 +653,8 @@ void lvppOptions::addOptionWithID(std::string& _opt, uint64_t id) {
 void lvppOptions::clearOptions() {
     options.clear();
     idList.clear();
+
+    lvOptionSetter(getNewlineSepOptions());
 }
 
 uint64_t lvppOptions::getSelectedID() {
@@ -672,6 +674,7 @@ bool lvppOptions::setSelectedID(uint64_t _val) {
 
 const char* lvppOptions::getNewlineSepOptions() {
     bool first=true;
+    oneString = "";
 
     for (const auto& it: options) {
         // Prevents final entry from having \n concatenated.

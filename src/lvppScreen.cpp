@@ -46,6 +46,7 @@ lvppScreen::lvppScreen(lv_obj_t* _pInitScreen) {
     else
         pScreen = _pInitScreen;
     assert(pScreen);
+    lv_obj_add_flag( pScreen, LV_OBJ_FLAG_SCROLL_ON_FOCUS ); 
 
     if (!pKB) {
         pKB = new lvppKeyboard("KB", pScreen);
@@ -54,7 +55,7 @@ lvppScreen::lvppScreen(lv_obj_t* _pInitScreen) {
 }
 
 void lvppScreen::disableScrollBars() {
-    lv_obj_clear_flag(pScreen, LV_OBJ_FLAG_SCROLLABLE);
+   lv_obj_clear_flag(pScreen, LV_OBJ_FLAG_SCROLLABLE);
 }
 
 void lvppScreen::activateScreen(uint32_t anim_time, lv_scr_load_anim_t anim_type) {    

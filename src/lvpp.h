@@ -441,6 +441,11 @@ public:
  */
     virtual void setText(const char* pText, const char* pPlaceholder=nullptr);
 /**
+ * @brief Get the Text value currently in the textarea
+ * 
+ */
+    virtual const char * getText();
+/**
  * @brief Set the Text Color of the label (not the background)
  * 
  * @param newColor This is the new color to be used for the label. It is an LVGL lv_color_t construct.

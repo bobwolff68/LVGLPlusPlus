@@ -43,7 +43,6 @@ lvppTextarea::lvppTextarea(const char* fName, const char* pText, lv_obj_t* paren
 }
 
 void lvppTextarea::setText(const char* pText, const char* pPlaceholder) {
-    printf("Setting text in Textarea\n");
     if (pText) {
         lv_textarea_set_text(obj, pText);
     }
@@ -51,6 +50,10 @@ void lvppTextarea::setText(const char* pText, const char* pPlaceholder) {
     if (pPlaceholder) {
         lv_textarea_set_placeholder_text(obj, pPlaceholder);
     }
+}
+
+const char * lvppTextarea::getText() {
+    return lv_textarea_get_text(obj);
 }
 
 /** @todo I think this add_style needs to go away and an 'invalidate' should be used instead.
@@ -75,6 +78,7 @@ void lvppTextarea::eventHandler(lv_event_t* event) {
                 pKB->enableKeyboard();
                 lv_keyboard_set_textarea(pKB->getObj(), ta);
             }
+//failed            lv_obj_scroll_to_view_recursive(ta, LV_ANIM_ON);
             break;
         case LV_EVENT_DEFOCUSED:
             if (pKB) {
