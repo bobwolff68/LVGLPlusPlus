@@ -31,6 +31,7 @@
  * @brief Implementation for Bar and Bar-like widgets (Bar and Slider)
 */
 
+#if LV_USE_BAR
 
 lvppBar::lvppBar(const char* fName, lv_obj_t* parent) : lvppBaseWithValue(fName, "BAR") {
     objParent = parent ? parent : lv_scr_act();
@@ -55,13 +56,14 @@ void lvppBar::setRange(int16_t range_min, int16_t range_max)
     lv_bar_set_range(obj, range_min, range_max);
 }
 
+#endif
 
 /////////////////////////////
 //
 //
 //
 /////////////////////////////
-
+#if LV_USE_SLIDER
 lvppSlider::lvppSlider(const char* fName, lv_obj_t* parent) : lvppBaseWithValue(fName, "SLIDER") {
     objParent = parent ? parent : lv_scr_act();
     createObj(lv_slider_create(objParent));
@@ -84,3 +86,5 @@ void lvppSlider::setRange(int16_t range_min, int16_t range_max)
 
     lv_bar_set_range(obj, range_min, range_max);
 }
+
+#endif

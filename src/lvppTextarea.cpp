@@ -26,6 +26,7 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //
 #include "lvpp.h"
+#if LV_USE_TEXTAREA
 
 static    lv_style_t style_status;
 
@@ -89,3 +90,5 @@ void lvppTextarea::eventHandler(lv_event_t* event) {
             break;
     }
 }
+
+#endif

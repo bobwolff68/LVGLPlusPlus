@@ -58,36 +58,63 @@ void lvppBase::setFontSize(uint8_t points) {
     lv_font_t F;
 
     switch(points) {
+        #if LV_FONT_MONTSERRAT_8
         case 8:
             lv_style_set_text_font(&style_obj, &lv_font_montserrat_8);
             break;
+        #endif
+
+        #if LV_FONT_MONTSERRAT_10
         case 10:
             lv_style_set_text_font(&style_obj, &lv_font_montserrat_10);
             break;
+        #endif
+
+        #if LV_FONT_MONTSERRAT_12
         case 12:
             lv_style_set_text_font(&style_obj, &lv_font_montserrat_12);
             break;
+        #endif
+
+        #if LV_FONT_MONTSERRAT_14
         case 14:
             lv_style_set_text_font(&style_obj, &lv_font_montserrat_14);
             break;
+        #endif
+
+        #if LV_FONT_MONTSERRAT_16
         case 16:
             lv_style_set_text_font(&style_obj, &lv_font_montserrat_16);
             break;
+        #endif
+
+        #if LV_FONT_MONTSERRAT_18
         case 18:
             lv_style_set_text_font(&style_obj, &lv_font_montserrat_18);
             break;
+        #endif
+
+        #if LV_FONT_MONTSERRAT_20
         case 20:
             lv_style_set_text_font(&style_obj, &lv_font_montserrat_20);
             break;
+        #endif
+
+        #if LV_FONT_MONTSERRAT_22
         case 22:
             lv_style_set_text_font(&style_obj, &lv_font_montserrat_22);
             break;
+        #endif
+
+        #if LV_FONT_MONTSERRAT_24
         case 24:
             lv_style_set_text_font(&style_obj, &lv_font_montserrat_24);
             break;
+        #endif
+
         default:
             LV_LOG_ERROR("lvppBase::setFontSize() - font size not available. Error.\n");
-            throw;
+            while (1); //throw;
             return;
     }
 
@@ -283,8 +310,8 @@ void lvppBase::setAdjJustificationAlignment(lv_text_align_t _align) {
 
 void lvppBase::createObj(lv_obj_t* o) {
     if (!o)
-        throw;
-    
+        while (1); //throw;
+
     obj = o;
     lv_obj_add_style(obj, &style_obj, 0);
 

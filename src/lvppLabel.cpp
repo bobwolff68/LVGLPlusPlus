@@ -27,6 +27,8 @@
 //
 #include "lvpp.h"
 
+#if LV_USE_LABEL
+
 static    lv_style_t style_status;
 
 /** @file lvppLabel.cpp
@@ -61,3 +63,5 @@ void lvppLabel::setTextColor(lv_color_t newColor) {
     lv_style_set_text_color(&style_obj, newColor);
     lv_obj_add_style(obj, &style_obj, 0);
 }
+
+#endif

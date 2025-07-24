@@ -31,6 +31,8 @@
  * @brief All keyboard related lvpp class implementations.
 */
 
+#if LV_USE_KEYBOARD
+
 lvppKeyboard::lvppKeyboard(const char* fName, lv_obj_t* parent) : lvppBase(fName, "KEYBOARD") {
     objParent = parent ? parent : lv_scr_act();
     obj = nullptr;
@@ -73,3 +75,5 @@ void lvppKeyboard::eventHandler(lv_event_t* event) {
             break;
     }
 }
+
+#endif

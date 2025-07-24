@@ -25,11 +25,12 @@
 // OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE 
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //
-#include "lvpp.h"
 
+#include "lvpp.h"
 /** @file lvppArc.cpp
  * @brief Implementation of the LVGL Arc widget
-*/
+ */
+#if LV_USE_ARC
 
 lvppArc::lvppArc(const char* fName, lv_obj_t* parent) : lvppBaseWithValue(fName, "ARC") {
     objParent = parent ? parent : lv_scr_act();
@@ -74,3 +75,5 @@ void lvppArc::setRange(int16_t range_min, int16_t range_max)
 
     lv_arc_set_range(obj, range_min, range_max);
 }
+
+#endif

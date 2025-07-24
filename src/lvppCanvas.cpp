@@ -31,6 +31,8 @@
  * @brief Implementation of both Canvas types - full color and indexed color.
 */
 
+#if LV_USE_CANVAS
+
 lvppCanvasIndexed::lvppCanvasIndexed(const char* fName, lv_coord_t x, lv_coord_t y, lv_coord_t w, lv_coord_t h, uint8_t colorDepth, lv_color_t* providedBuffer, lv_obj_t* parent) 
     : lvppBase(fName, "CANVASINDEXED") {
     lv_img_cf_t cfType;
@@ -461,3 +463,5 @@ void lvppCanvasFullColor::drawLabel(lv_coord_t x, lv_coord_t y, lv_coord_t maxW,
 
     lv_canvas_draw_text(obj, x, y, maxW, pDscLabel, pText);
 }
+
+#endif

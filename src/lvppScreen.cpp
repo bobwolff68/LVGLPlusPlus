@@ -83,7 +83,7 @@ void lvppScreen::addObject(lvppBase* pObj) {
     if (pObj->getObjType()=="TEXTAREA") {
         lvppTextarea* pTA = (lvppTextarea*)pObj;
         if (!pTA)
-            throw std::bad_cast();
+            while(1); //throw std::bad_cast();
         else
             pTA->setKeyboard(pKB);
     }
@@ -110,14 +110,14 @@ bool lvppScreen::setObjValue(const char* objName, int16_t val) {
         if (type=="BAR") {
             lvppBar* pBar = (lvppBar*)pB;
             if (!pBar)
-                throw std::bad_cast();
+                while(1); //throw std::bad_cast();
             else
                 pBar->setValue(val);
         }
         else if (type=="SLIDER") {
             lvppSlider* pSlider = (lvppSlider*)pB;
             if (!pSlider)
-                throw std::bad_cast();
+                while(1); //throw std::bad_cast();
             else
                 pSlider->setValue(val);
         }

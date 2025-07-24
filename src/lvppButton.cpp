@@ -168,6 +168,7 @@ void lvppFullImageToggleButton::setCheckedState(bool bSetChecked) {
 ////////////////////////
 ////////////////////////
 
+#if LV_USE_SWITCH
 lvppSwitch::lvppSwitch(const char* fName, lv_obj_t* parent) : lvppBase(fName, "SWITCH") {
     objParent = parent ? parent : lv_scr_act();
     createObj(lv_switch_create(objParent));
@@ -194,3 +195,4 @@ void lvppSwitch::setCheckedState(bool bChecked) {
 bool lvppSwitch::getCheckedState() {
     return lv_obj_has_state(obj, LV_STATE_CHECKED);
 }
+#endif
