@@ -72,7 +72,7 @@ public:
 */
 /// @todo Add full compliment of object types to setObjValue
 /// @todo Add a getter similar to setObj* as getObj*()
-class lvppScreen { 
+class lvppScreen : public lvppBase { 
 public:
 /**
  * @brief Construct a new lvpp Screen object. The default constructor will allocate a new
@@ -162,6 +162,9 @@ public:
  * 
  */
     void setObjText(std::string str);
+    virtual void eventHandler(lv_event_t* event);
+    virtual void onScreenLoaded() { };
+    virtual void onScreenUnloaded() { };
 protected:
     static lvppKeyboard* pKB;       ///< Keyboard object for the screen.
     lv_obj_t* pScreen=nullptr; ///< The actual underlying LVGL screen pointer.
@@ -745,6 +748,7 @@ public:
  *                  Be sure to use the size of selStr MINUS one here to ensure you can fit a null terminator.
  */
     void getSelectedText(char* selStr, uint8_t selStrLen) { lv_roller_get_selected_str(obj, selStr, selStrLen); };
+    std::string getSelectedText(void);
 protected:
 /**
  * @brief This is the implementation of the pure virtual in lvppOptions. It is responsible

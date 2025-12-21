@@ -138,3 +138,10 @@ void lvppRoller::setSelectedIndex(uint16_t curInd) {
         onValueChanged();
     }
 }
+
+std::string lvppRoller::getSelectedText(void) {
+    char tmp[48];
+    lv_roller_get_selected_str(obj, tmp, 47);
+    std::string retstr(tmp);
+    return retstr;
+}

@@ -337,6 +337,7 @@ void lvppBase::baseEventHandler(lv_event_t* event) {
             break;
         default:
             // Call derived class
+//            printf("%s: CALLING derived eventHandler()...\n", whoAmI());
             eventHandler(event);
             break;
     }
@@ -398,6 +399,9 @@ void lvppBase::initEventNames(void) {
     eventNames[LV_EVENT_SIZE_CHANGED] = "LV_EVENT_SIZE_CHANGED";
     eventNames[LV_EVENT_STYLE_CHANGED] = "LV_EVENT_STYLE_CHANGED";
     eventNames[LV_EVENT_LAYOUT_CHANGED] = "LV_EVENT_LAYOUT_CHANGED";
+
+    eventNames[LV_EVENT_SCREEN_LOADED] = "LV_EVENT_SCREEN_LOADED";
+    eventNames[LV_EVENT_SCREEN_UNLOADED] = "LV_EVENT_SCREEN_UNLOADED";
 
 }
 
@@ -601,6 +605,17 @@ void lvppOptions::setOptionsWithIDs(std::vector<std::pair<std::string, uint64_t>
 //    printf("setOptionsWithIDs after add:\n");
 //    printList();
     lvOptionSetter(getNewlineSepOptions());
+}
+
+bool lvppOptions::setSelectedValueID(uint64_t _val) {
+    // Need to find the index of the input _val
+    auto it = std::find(idList.begin(), idList.end(), _val);
+    if (it == idList.end())
+        return false;
+    
+    uint16_t ind = it - idList.begin();
+    lvOptionSetIndex(ind);
+    return true;
 }
 
 void lvppOptions::setOptions(std::vector<std::string>& _opts) {

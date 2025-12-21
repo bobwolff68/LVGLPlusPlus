@@ -40,12 +40,14 @@
 
 lvppKeyboard* lvppScreen::pKB = nullptr;
 
-lvppScreen::lvppScreen(lv_obj_t* _pInitScreen) {
+lvppScreen::lvppScreen(lv_obj_t* _pInitScreen) : lvppBase("GenericScreen", "SCREEN") {
     if (!_pInitScreen)
         pScreen = lv_obj_create(NULL); 
     else
         pScreen = _pInitScreen;
     assert(pScreen);
+    createObj(pScreen);
+
     lv_obj_add_flag( pScreen, LV_OBJ_FLAG_SCROLL_ON_FOCUS ); 
 
     if (!pKB) {
@@ -125,5 +127,19 @@ bool lvppScreen::setObjValue(const char* objName, int16_t val) {
     }
     else {
         return false;
+    }
+}
+
+void lvppScreen::eventHandler(lv_event_t* event) {
+    lv_event_code_t code = lv_event_get_code(event);
+
+    switch(code) {
+        case LV_EVENT_SCREEN_LOADED:
+//            printf("Calling onScreenLoaded from eventHandler().\n");
+            onScreenLoaded();
+            break;
+        case LV_EVENT_SCREEN_UNLOADED:
+            onScreenUnloaded();
+            break;
     }
 }

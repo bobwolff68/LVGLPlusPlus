@@ -633,6 +633,14 @@ public:
  * @return true = success ; false = failed due to not finding an entry with the _val value.
  */
     virtual bool setSelectedID(uint64_t _val);
+
+/**
+ * @brief Sets the selected index based on the associated ID value.
+ * @param _val The ID value to search for and set the index to.
+ * 
+ * @return true if the ID was found and the index set; false if the ID was not found.
+ */
+    virtual bool setSelectedValueID(uint64_t _val);
 protected:
 /**
  * @brief This is the pure virtual which must be implemented by any class that utilizes
